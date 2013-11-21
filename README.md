@@ -1,6 +1,6 @@
 ﻿ExcelDnaDoc
 ===================
-ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm)
+ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna.
 
 
 Build Scripts
@@ -9,15 +9,13 @@ To build compiled help file (.chm) the HTML Help Workshop must be installed. A s
 
 Usage
 ------------------
-Usage: ExcelDnaDoc.exe dnaPath [/O outputPath] [/Y]  
-  dnaPath      The path to the primary .dna file for the ExcelDna add-in.
-  /Y           If the output folder exists, overwrite without prompting. (not implemented yet)  
-  /O outPath   Output folder path - default is <dnaPath>/content. (not implemented yet)  
+    ExcelDnaDoc.exe dnaPath  
+`dnaPath` The path to the primary .dna file for the ExcelDna add-in.  
 
-Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna  
-         The HTML Help Workshop content will be created in <build folder>\content\.  
+Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
+         The HTML Help Workshop content will be created in `<build folder>\content\`.  
 
-External libraries that have been marked as ExplicitExports=""true"" will be searched for UDFs that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
+External libraries that have been marked as ExplicitExports="true" will be searched for UDFs that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
 
 If The ExcelDna.Documentation library has been referenced then the ExcelFunctionSummaryAttribute is also available to include a longer function summary that will not be exposed in the Excel Function Wizard, but will be included in the HTML Help Workshop content.  
 
