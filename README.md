@@ -27,3 +27,4 @@ Dependencies
  RazorEngine(https://github.com/Antaris/RazorEngine)  
  HTML Help Workshop(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
 
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/6d1b41edf1ed32e109771bb99bbe87bd "githalytics.com")](http://githalytics.com/mndrake/ExcelDnaDoc)
