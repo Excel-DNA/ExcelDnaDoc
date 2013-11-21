@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D041937F-32C5-472F-BE65-6E1285EC0429}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9982916-F06F-4618-9804-D02854FF526A}"
+	ProjectSection(SolutionItems) = preProject
+		buildApp.bat = buildApp.bat
+		buildApp.fsx = buildApp.fsx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+	EndGlobalSection
+EndGlobal

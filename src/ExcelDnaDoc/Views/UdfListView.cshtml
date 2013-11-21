@@ -1,0 +1,34 @@
+﻿@inherits ExcelDnaDoc.ViewModels.UdfListViewModel
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="msdn.css">
+    <title></title>
+</head>
+
+<body>
+    <table style="width: 100%">
+        <tbody>
+            <tr style="vertical-align: top">
+                <td style="width: 100%">
+                    <div>
+                        <h1>User Defined Functions</h1>
+                        <br>
+
+                        @foreach (var group in Model.Groups)
+                        {
+                            <h3><a href="@group.Name Functions.htm">@group.Name Functions</a></h3>
+
+                            foreach (var function in group.Functions)
+                            {
+                            <p><a href="@(function.Name).htm">@function.Name</a></p>
+                            }
+                        }
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

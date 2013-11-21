@@ -1,0 +1,79 @@
+﻿@inherits ExcelDnaDoc.ViewModels.FunctionViewModel
+@{
+    var parameters = new List<string>();
+    foreach (var p in Model.Parameters)
+    {
+        parameters.Add(p.Name);
+    }
+    var paramList = string.Join(", ", parameters.ToArray());
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="msdn.css">
+    <title></title>
+</head>
+
+<body>
+    <table style="width: 100%">
+        <tbody>
+            <tr style="vertical-align: top">
+                <td style="width: 100%">
+                    <div>
+                        <h1>@(Model.Name) function</h1>
+                        <br>
+
+                        <h4>Description</h4>
+                        <hr>
+
+                        <p>@Model.Description</p>
+                        <br>
+
+                        <h4>Syntax</h4>
+                        <hr>
+                        <code>@(Model.Name)(@(paramList))</code><br>
+
+                        <p>@Model.Name function syntax has the following arguments :</p>
+
+                        <ul>
+                            @foreach (var p in @Model.Parameters)
+                            {
+                                <li><b>@p.Name</b> <font color="green">@p.ParameterType</font> @p.Description</li>
+                            }
+                        </ul>
+                        <br>
+
+                        <h4>Returns</h4>
+                        <hr>
+
+                        <p><font color="green">@Model.ReturnType</font></p>
+                        <br>
+
+                        <h4>Summary</h4>
+                        <hr>
+
+                        <p>@Model.Summary</p>
+                        <br>
+
+                        <h4>Remarks</h4>
+                        <hr>
+
+                        <p>
+                            If any arguments are error values, or if any arguments are text that cannot be translated into numbers, Excel
+            displays an error.
+                        </p>
+                        <br>
+
+                        <h4>See Also</h4>
+                        <hr>
+
+                        <p><a href="@Model.GroupName Functions.htm">@Model.GroupName Functions</a></p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

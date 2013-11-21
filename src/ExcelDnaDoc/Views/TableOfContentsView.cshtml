@@ -1,0 +1,40 @@
+﻿@inherits ExcelDnaDoc.ViewModels.TableOfContentsViewModel
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</head>
+<body>
+	<object type="text/site	properties">
+		<param name="ImageType" value="Folder">
+	</object>
+	<ul>
+		<li> <object type="text/sitemap">
+				<param name="Name" value="@Model.ProjectName">
+				<param name="Local" value="index.htm">
+			</object>
+		</li>
+		<ul>
+			@foreach (var group in Model.Groups)
+			{
+				<li> <object type="text/sitemap">
+						<param name="Name" value="@group.Name">
+						<param name="Local" value="@group.Name Functions.htm">
+					</object>
+				</li>
+				<ul>
+					@foreach (var function in group.Functions)
+					{
+						<li> <object type="text/sitemap">
+								<param name="Name" value="@function.Name">
+								<param name="Local" value="@(function.Name + ".htm")">
+							</object>
+						</li>
+					}
+				</ul>
+			}
+		</ul>
+	</ul>
+</body>
+</html>
