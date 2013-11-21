@@ -12,7 +12,7 @@ let buildDir = __SOURCE_DIRECTORY__ + "/sample/SampleLib/bin/Release/"
 let dnaPath = buildDir + "SampleLib-AddIn.dna"
 
 // tools
-let dnaDocRoot = @".\build\ExcelDnaDoc.exe"
+let dnaDocRoot = @".\lib\ExcelDnaDoc.exe"
     
 // Targets
 Target "Clean" (fun _ -> 

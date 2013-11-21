@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExcelDna.Documentation">
-      <HintPath>..\..\build\ExcelDna.Documentation.dll</HintPath>
+      <HintPath>..\..\lib\ExcelDna.Documentation.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDna.Integration">
       <HintPath>..\..\packages\Excel-DNA.0.30.3\lib\ExcelDna.Integration.dll</HintPath>
