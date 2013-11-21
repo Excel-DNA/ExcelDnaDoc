@@ -5,7 +5,7 @@ ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop fi
 
 Build Scripts
 ------------------
-To build compiled help file (.chm) the HTML Help Workshop must be installed. A sample project can be found in the ExceDnaDocSample solution. To see an example verify the path of the HTML Help Compiler in buildSample.fsx. Then run the FAKE build script (buildSample.bat) using the command prompt.  
+To build compiled help file (.chm) the HTML Help Workshop must be installed. A sample project can be found in the ExceDnaDocSample solution. To see an example verify the path of the HTML Help Compiler in buildSample.fsx and then run the FAKE build script (buildSample.bat) using the command prompt.  
 
 Usage
 ------------------
