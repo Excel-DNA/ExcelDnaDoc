@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Math.fs" />
-    <None Include="Script.fsx" />
     <Content Include="SampleLib-AddIn.dna">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -63,8 +62,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition=" Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
   <PropertyGroup>
     <PostBuildEvent>echo F | xcopy "$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDna.xll" "$(TargetDir)SampleLib-AddIn.xll" /C /Y
-"$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDnaPack.exe" "$(TargetDir)SampleLib-AddIn.dna" /Y
-"$(SolutionDir)build\ExcelDnaDoc.exe" "$(TargetDir)SampleLib-AddIn.dna" /Y</PostBuildEvent>
+"$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDnaPack.exe" "$(TargetDir)SampleLib-AddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

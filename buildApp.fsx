@@ -7,15 +7,11 @@ open Fake.AssemblyInfoFile
 RestorePackages()
 
 // Directories
-let buildDir  = @".\build\"
-let deployDir = @".\deploy\"
-let packagesDir = @".\packages"
-
-// tools
-let fxCopRoot = @".\Tools\FxCop\FxCopCmd.exe"
+let buildDir  = "./build/"
+let deployDir = "./lib/"
     
 // version info
-let version = "0.1"  // or retrieve from CI server
+let version = "0.1"
 
 // Targets
 Target "Clean" (fun _ -> 
@@ -49,18 +45,29 @@ Target "Build" (fun _ ->
     |> Log "Build-Output: "
     )
 
-Target "Zip" (fun _ ->
-    !+ (buildDir + "\**\*.*") 
-        -- "*.zip" 
-        |> Scan
-        |> Zip buildDir (deployDir + "ExcelDnaDoc." + version + ".zip")
-)
+Target "Deploy" (fun _ ->        
+    !+ (buildDir + "/**/*.*")
+       -- (buildDir + "/**/*.pdb")
+       -- (buildDir + "/**/*.xml")
+       |> Scan
+       |> Copy deployDir
+    )
+
+//Target "Zip" (fun _ ->
+//    let files = 
+//        !! (build + "\**\*.*")
+//          -- "*.zip" 
+//    ()
+////        |> Scan
+////        |> Zip buildDir (deployDir + "ExcelDnaDoc." + version + ".zip")
+//)
 
 // Dependencies
 "Clean"
   ==> "SetVersions" 
-  ==> "Build"  
+  ==> "Build"
+  ==> "Deploy"
 //  ==> "Zip"
  
 // start build
-RunTargetOrDefault "Build"
+RunTargetOrDefault "Deploy"

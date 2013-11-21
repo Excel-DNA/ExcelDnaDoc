@@ -1,55 +1,60 @@
 // include Fake lib
 #r @"tools\FAKE\tools\FakeLib.dll"
 
+open System
+open System.IO
 open Fake
 
 RestorePackages()
 
 // Directories
-let buildDir = __SOURCE_DIRECTORY__ + "/sample/SampleLib/bin/Release/"
+let buildDir = Path.Combine( __SOURCE_DIRECTORY__, "sample/SampleLib/bin/Release")
 
-// Excel-DNA .dna path
-let dnaPath = buildDir + "SampleLib-AddIn.dna"
+// DNA name
+let dnaName = "SampleLib-AddIn"
 
 // tools
-let dnaDocRoot = @".\lib\ExcelDnaDoc.exe"
+let dnaDocRoot = "./lib/ExcelDnaDoc.exe"
+let helpCompilerRoot = "C:/Program Files (x86)/HTML Help Workshop/hhc.exe"
     
 // Targets
 Target "Clean" (fun _ -> 
     CleanDirs [buildDir]
-)
+    )
 
 Target "Build" (fun _ ->
     { BaseDirectories = [__SOURCE_DIRECTORY__]
-      Includes = ["ExceDnaDocSample.sln"]
+      Includes = ["ExcelDnaDocSample.sln"]
       Excludes = [] } 
     |> Scan
     |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    |> Log "Build-Output: "
     )
 
 Target "CreateHelp" (fun _ ->
     let result =
         ExecProcess (fun info -> 
             info.FileName <- dnaDocRoot
-            info.Arguments <- dnaPath
+            info.Arguments <- Path.Combine(buildDir, dnaName + ".dna")
         ) (System.TimeSpan.FromMinutes 1.0)     
     if result <> 0 then failwith "Operation failed or timed out"
     )
 
 Target "BuildHelp" (fun _ ->
     let projectPath = 
-        System.String.Format(@"{0}content/{1}.hhp", buildDir, System.IO.Path.GetFileNameWithoutExtension(dnaPath))
-    printfn "projectPath: %s" projectPath
-    let compiler = @"C:\Program Files (x86)\HTML Help Workshop\hhc.exe"
+        Path.Combine(buildDir, String.Format("content/{0}.hhp", dnaName))
+    let compiler = helpCompilerRoot
     HTMLHelpWorkShopHelper.CompileHTMLHelpProject compiler projectPath
-    |> printfn "%A"
+    |> Log "BuildHelp-Output: "
+    [ Path.Combine(buildDir, String.Format("content/{0}.chm", dnaName)) ]
+    |> Copy buildDir
     )
 
 // Dependencies
 "Build"
 ==> "CreateHelp"
 ==> "BuildHelp"
+
 
 // start build
 RunTargetOrDefault "BuildHelp"

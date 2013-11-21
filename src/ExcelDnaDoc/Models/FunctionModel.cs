@@ -16,6 +16,7 @@
             string name;
             string description;
             string summary;
+            string topicId;
 
             excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
             excelFunctionSummary = (ExcelFunctionSummaryAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionSummaryAttribute));
@@ -47,9 +48,19 @@
                 description = excelFunction.Description;
             }
 
+            if (excelFunction.HelpTopic == null)
+            {
+                topicId = string.Empty;
+            }
+            else
+            {
+                topicId = excelFunction.HelpTopic.Split('!').Last();
+            }
+
             this.Name = name;
             this.Description = description;
             this.ReturnType = method.ReturnType.Name;
+            this.TopidId = topicId;
             this.Summary = summary;
             this.Parameters = method.GetParameters().Select(p => new ParameterModel(p));
             this.GroupName = functionGroupName;
@@ -64,6 +75,8 @@
         public IEnumerable<ParameterModel> Parameters { get; set; }
 
         public string ReturnType { get; set; }
+
+        public string TopidId { get; set; }
 
         public string Summary { get; set; }
 

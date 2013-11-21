@@ -32,6 +32,7 @@
 
             // strip non ANSI characters from result
             content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);
+            content = content.TrimStart(new char[] { '\r', '\n' });
 
             File.WriteAllText(path, content);
         }
