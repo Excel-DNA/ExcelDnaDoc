@@ -76,15 +76,19 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             string dnaPath = args[0];
             string dnaDirectory = Path.GetDirectoryName(dnaPath);
             string dnaFilePrefix = Path.GetFileNameWithoutExtension(dnaPath);
+            string helpPath = Path.Combine(Path.GetDirectoryName(dnaPath), string.Format("content/{0}.hhp", dnaFilePrefix));
 
             // create HTML Help content
             Console.WriteLine("creating HTML Help content");
+            Console.WriteLine();
             ExcelDnaDoc.HtmlHelp.Create(dnaPath);
 
             //// TODO: reference HTML Help Compiler instead of using FAKE build script
             //// compiling HTML Help content
-            //// Console.WriteLine("creating chm file");
+            Console.WriteLine("creating chm file");
+            Utility.HtmlHelpWorkshopHelper.Compile(helpPath);
 
+            Console.WriteLine();
             Console.WriteLine("-- finished --");
 #if DEBUG
             Console.WriteLine("Press any key to exit.");

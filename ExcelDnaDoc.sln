@@ -7,6 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		buildApp.bat = buildApp.bat
 		buildApp.fsx = buildApp.fsx
+		ExcelDnaDoc.nuspec = ExcelDnaDoc.nuspec
+		License.txt = License.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"

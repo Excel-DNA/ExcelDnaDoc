@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		buildSample.bat = buildSample.bat
 		buildSample.fsx = buildSample.fsx
+		CompileHelp.fsx = CompileHelp.fsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{97977170-6C83-4673-B2D9-9D4925D10AFE}"

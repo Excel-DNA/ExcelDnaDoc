@@ -40,21 +40,9 @@ Target "CreateHelp" (fun _ ->
     if result <> 0 then failwith "Operation failed or timed out"
     )
 
-Target "BuildHelp" (fun _ ->
-    let projectPath = 
-        Path.Combine(buildDir, String.Format("content/{0}.hhp", dnaName))
-    let compiler = helpCompilerRoot
-    HTMLHelpWorkShopHelper.CompileHTMLHelpProject compiler projectPath
-    |> Log "BuildHelp-Output: "
-    [ Path.Combine(buildDir, String.Format("content/{0}.chm", dnaName)) ]
-    |> Copy buildDir
-    )
-
 // Dependencies
 "Build"
 ==> "CreateHelp"
-==> "BuildHelp"
-
 
 // start build
-RunTargetOrDefault "BuildHelp"
+RunTargetOrDefault "CreateHelp"
