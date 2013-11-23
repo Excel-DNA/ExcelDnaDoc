@@ -24,7 +24,8 @@ Example
 
     module Math =
 
-        [<ExcelFunction(Name = "Math.AddThem", Description = "adds two numbers", HelpTopic="DocTest-AddIn.chm!1001")>]
+        [<ExcelFunction( Name = "Math.AddThem", Description = "adds two numbers", 
+                         HelpTopic="DocTest-AddIn.chm!1001")>]
         [<ExcelFunctionSummary("really all it does is add two number ... I promise.")>]
         let addThem
             (
@@ -38,8 +39,7 @@ Example
 
     public class Text 
     {
-        [ExcelFunction( Name = "Text.ConcatThem", 
-                        Description = "concatenates two strings", 
+        [ExcelFunction( Name = "Text.ConcatThem", Description = "concatenates two strings", 
                         HelpTopic = "DocTest-AddIn.chm!1002")]
         public static object ConcatThem(
             [ExcelArgument(Description="the first string")] object a, 
