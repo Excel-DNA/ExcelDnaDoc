@@ -17,10 +17,8 @@ let project = "ExcelDnaDoc"
 let authors = ["David Carlson"]
 let summary = "command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna"
 let description = """
-  To build compiled help file (.chm) the HTML Help Workshop must be installed. A
-  sample project can be found in the ExceDnaDocSample solution. To see an example
-  verify the path of the HTML Help Compiler in buildSample.fsx and then run the
-  FAKE build script (buildSample.bat) using the command prompt."""
+  To build compiled help file (.chm) the HTML Help Workshop must be installed. 
+  For examples see https://github.com/mndrake/ExcelDnaDoc."""
 let tags = "Excel-DNA"
 
 let gitHome = "https://github.com/mndrake"
@@ -50,23 +48,15 @@ Target "AssemblyInfo" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
-// directories
-
-let buildFolder = "bin"
-let deployFolder = "deploy"
-
-// --------------------------------------------------------------------------------------
 // Clean build results
 
-Target "Clean" (fun _ ->
-    CleanDirs [ buildFolder; deployFolder ]
-)
+Target "Clean" (fun _ -> CleanDirs [ "bin" ])
 
 // --------------------------------------------------------------------------------------
 // Build library (builds Visual Studio solution)
 
 Target "Build" (fun _ ->
-    MSBuildRelease buildFolder "Rebuild" ["ExcelDnaDoc.sln"]
+    MSBuildRelease "bin" "Rebuild" ["ExcelDnaDoc.sln"]
     |> Log "Build-Output: "
 )
 
@@ -74,28 +64,6 @@ Target "Build" (fun _ ->
 // Build a NuGet package
 
 Target "NuGet" (fun _ ->
-    // setup folders
-    let toolsFolder = deployFolder + "/tools"
-    let libFolder = deployFolder + "/lib/net40"
-    let contentFolder = deployFolder + "/content"
-    List.iter CreateDir [ toolsFolder; libFolder; contentFolder ]
-    // tools
-    !! "bin/**/*.*" 
-        -- "**/*.xml"
-        -- "**/*.pdb"
-        ++ "nuget/install.ps1"
-    |> Copy toolsFolder
-    // lib
-    !! "bin/ExcelDna.Documentation.dll"
-    |> Copy libFolder
-    // content
-    !! "nuget/ExcelDnaDoc-Template.dna"
-    |> Copy contentFolder
-    // root
-    !! "README.md"
-       ++ "LICENSE.md"
-    |> Copy deployFolder   
-
     NuGet (fun p -> 
         { p with   
             Authors = authors
@@ -105,8 +73,7 @@ Target "NuGet" (fun _ ->
             Version = release.NugetVersion
             ReleaseNotes = release.Notes |> String.concat "\n"
             Tags = tags
-            OutputPath = "deploy"
-            WorkingDir = "deploy"
+            OutputPath = "bin"
             ToolPath = ".nuget/nuget.exe"
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
