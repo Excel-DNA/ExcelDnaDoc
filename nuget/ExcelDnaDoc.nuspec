@@ -6,11 +6,11 @@
     <authors>@authors@</authors>
     <owners>@authors@</owners>
     <summary>@summary@</summary>
-    <licenseUrl>https://github.com/mndrake/ExcelDnaDoc/blob/master/License.txt</licenseUrl>
+    <licenseUrl>https://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/mndrake/ExcelDnaDoc</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>@description@</description>
-    <releaseNotes>@releaseNotes@</releaseNotes>
+    <releaseNotes>v.0.1.x is to be considered alpha</releaseNotes>
     <copyright>Copyright 2013</copyright>    
     <tags>Excel-DNA</tags>
     @dependencies@

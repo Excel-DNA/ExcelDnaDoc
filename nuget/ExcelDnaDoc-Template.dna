@@ -1,5 +1,6 @@
-<DnaLibrary Name="SampleLib Add-In" RuntimeVersion="v4.0">
-  <ExternalLibrary Path="SampleLib.dll" LoadFromBytes="true" Pack="true" ExplicitExports="true" />
+<DnaLibrary Name="%ProjectName% Add-In" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="%OutputFileName%" LoadFromBytes="true" Pack="true" ExplicitExports="true" />
+  <Reference Path="ExcelDna.Documentation.dll" Pack="true" />
   
   <!-- 
        The RuntimeVersion attribute above allows two settings:

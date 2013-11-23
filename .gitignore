@@ -28,10 +28,8 @@ local.properties
 # PDT-specific
 .buildpath
 
-#################
-## FAKE
-#################
-tools/FAKE/
+# publish script
+publish.bat
 
 #################
 ## Visual Studio
@@ -53,6 +51,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+deploy/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

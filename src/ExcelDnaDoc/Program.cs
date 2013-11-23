@@ -13,8 +13,6 @@ ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop fi
 
 Usage: ExcelDnaDoc.exe dnaPath [/O outputPath] [/Y]
   dnaPath      The path to the primary .dna file for the ExcelDna add-in.
-  /Y           If the output folder exists, overwrite without prompting. (not implemented yet)
-  /O outPath   Output folder path - default is <dnaPath>/content. (not implemented yet)
 
 Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna
          The HTML Help Workshop content will be created in <build folder>\content\.
@@ -76,17 +74,23 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             string dnaPath = args[0];
             string dnaDirectory = Path.GetDirectoryName(dnaPath);
             string dnaFilePrefix = Path.GetFileNameWithoutExtension(dnaPath);
-            string helpPath = Path.Combine(Path.GetDirectoryName(dnaPath), string.Format("content/{0}.hhp", dnaFilePrefix));
+            string helpProject = Path.Combine(Path.GetDirectoryName(dnaPath), string.Format("content/{0}.hhp", dnaFilePrefix));
+            string sourceChm = Path.Combine(dnaDirectory, string.Format("content/{0}.chm", dnaFilePrefix));
+            string destinationChm = Path.Combine(dnaDirectory, string.Format("{0}.chm", dnaFilePrefix));
 
             // create HTML Help content
             Console.WriteLine("creating HTML Help content");
             Console.WriteLine();
             ExcelDnaDoc.HtmlHelp.Create(dnaPath);
 
-            //// TODO: reference HTML Help Compiler instead of using FAKE build script
-            //// compiling HTML Help content
+            // compile HTML Help
             Console.WriteLine("creating chm file");
-            Utility.HtmlHelpWorkshopHelper.Compile(helpPath);
+            Utility.HtmlHelpWorkshopHelper.Compile(helpProject);
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // move HTML Help chm file to the main build folder
+            Utility.FileHelper.Move(sourceChm, destinationChm);
 
             Console.WriteLine();
             Console.WriteLine("-- finished --");

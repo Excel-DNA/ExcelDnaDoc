@@ -5,16 +5,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D041937F-32C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9982916-F06F-4618-9804-D02854FF526A}"
 	ProjectSection(SolutionItems) = preProject
-		buildApp.bat = buildApp.bat
-		buildApp.fsx = buildApp.fsx
-		ExcelDnaDoc.nuspec = ExcelDnaDoc.nuspec
-		License.txt = License.txt
+		build.bat = build.bat
+		build.fsx = build.fsx
+		LICENSE.txt = LICENSE.txt
+		publish.bat = publish.bat
 		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4-465E-4561-83F2-28B3853A3646}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\content\ExcelDnaDoc-Template.dna = nuget\content\ExcelDnaDoc-Template.dna
+		nuget\ExcelDnaDoc.nuspec = nuget\ExcelDnaDoc.nuspec
+		nuget\tools\install.ps1 = nuget\tools\install.ps1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -47,6 +47,7 @@
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,6 +70,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utility\ConsoleHelper.cs" />
+    <Compile Include="Utility\FileHelper.cs" />
     <Compile Include="Utility\HtmlHelpWorkshopHelper.cs" />
     <Compile Include="ViewModels\FunctionViewModel.cs" />
     <Compile Include="ViewModels\FunctionGroupViewModel.cs" />
@@ -80,7 +82,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="web.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\FunctionGroupView.cshtml" />
     <None Include="Views\FunctionView.cshtml" />
     <None Include="Views\TableOfContentsView.cshtml" />
@@ -93,6 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestDna.dna" />
     <Content Include="Views\msdn.css" />
     <None Include="Views\ProjectFileView.cshtml" />
   </ItemGroup>
