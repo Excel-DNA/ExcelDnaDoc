@@ -3,9 +3,49 @@
 ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna.
 
 
-Build Scripts
+NuGet Package
 ------------------
-To build compiled help file (.chm) the HTML Help Workshop must be installed. A sample project can be found in the ExceDnaDocSample solution. To see an example verify the path of the HTML Help Compiler in buildSample.fsx and then run the FAKE build script (buildSample.bat) using the command prompt.  
+Currently available on NuGet as a prerelease package. (https://www.nuget.org/packages/ExcelDnaDoc/)
+
+To build compiled help file (.chm) the HTML Help Workshop (HHW) must be installed (http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. If it is installed at another location change `ExcelDnaDoc.exe.config` to
+reference the proper directory before compiling.  
+
+When installed from NuGet it will replace the default .dna file installed by Excel-DNA and adds post build steps to build the .chm documentation file whenever
+the project is build.
+
+Example
+------------------
+
+*F#*
+
+    open ExcelDna.Integration
+    open ExcelDna.Documentation
+
+    module Math =
+
+        [<ExcelFunction(Name = "Math.AddThem", Description = "adds two numbers", HelpTopic="DocTest-AddIn.chm!1001")>]
+        [<ExcelFunctionSummary("really all it does is add two number ... I promise.")>]
+        let addThem
+            (
+                [<ExcelArgument(Name = "Arg1", Description = "the first number")>]a,
+                [<ExcelArgument(Name = "Arg2", Description = "the second number")>]b
+            ) = 
+            
+            a+b
+
+*C#*
+
+    public class Text 
+    {
+        [ExcelFunction(Name = "Text.ConcatThem", Description = "concatenates two strings", HelpTopic="DocTest-AddIn.chm!1002")]
+        public static object ConcatThem(
+            [ExcelArgument(Description="the first string")] object a, 
+            [ExcelArgument(Description="the second string")] object b)
+        {
+            return string.Concat(a.ToString(), b.ToString());
+        }
+    }
 
 Usage
 ------------------
