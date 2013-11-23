@@ -4,3 +4,6 @@
 
 #### 0.1.11-beta - 11/23/2013
 * deploying using restructured F# MAKE (FAKE) build
+
+#### 0.1.12-beta - 11/23/2013
+* fixed nuspec to publish release notes

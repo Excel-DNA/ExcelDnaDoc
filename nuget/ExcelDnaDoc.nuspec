@@ -10,9 +10,9 @@
     <projectUrl>https://github.com/mndrake/ExcelDnaDoc</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>@description@</description>
-    <releaseNotes>v.0.1.x is to be considered alpha</releaseNotes>
+    <releaseNotes>@releaseNotes@</releaseNotes>
     <copyright>Copyright 2013</copyright>    
-    <tags>Excel-DNA</tags>
+    <tags>>@tags@</tags>
     @dependencies@
   </metadata>
 </package>
