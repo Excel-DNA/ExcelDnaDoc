@@ -5,7 +5,7 @@ ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop fi
 
 NuGet Package
 ------------------
-Currently available on NuGet as a prerelease package. (https://www.nuget.org/packages/ExcelDnaDoc/)
+https://www.nuget.org/packages/ExcelDnaDoc/
 
 To build compiled help file (.chm) the HTML Help Workshop (HHW) must be installed (http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
 ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. If it is installed at another location change `ExcelDnaDoc.exe.config` to
