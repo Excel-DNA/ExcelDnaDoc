@@ -97,7 +97,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestDna.dna" />
     <Content Include="Views\msdn.css" />
     <None Include="Views\ProjectFileView.cshtml" />
   </ItemGroup>

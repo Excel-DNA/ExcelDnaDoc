@@ -2,8 +2,6 @@ param($installPath, $toolsPath, $package, $project)
 # based on Excel-DNA install script
 Write-Host "Starting ExcelDnaDoc install script"
 
-#Write-Host "`tSet reference to ExcelDna.Integration to be CopyLocal=false"
-#$project.Object.References | Where-Object { $_.Name -eq 'ExcelDna.Integration' } | ForEach-Object { $_.CopyLocal = $false }
 $projName = $project.Name
 $isFSharp = ($project.Type -eq "F#")
 # Look for and rename old .dna file
@@ -11,35 +9,66 @@ $newDnaFile = $project.ProjectItems | Where-Object { $_.Name -eq "ExcelDnaDoc-Te
 $newDnaFileName = "${projName}-AddIn.dna"
 $oldDnaFile = $project.ProjectItems | Where-Object { $_.Name -eq $newDnaFileName }
 
-# delete prior dna template installed with Excel-DNA
 if ($null -ne $oldDnaFile)
 {
-	$oldDnaFile.Delete()
-}
+	# found prior template installed with Excel-DNA
+	$newDnaFile.Delete()
 
-# create dna template for ExcelDnaDoc
-Write-Host "`tCreating -AddIn.dna file"
-		
-# Rename and fill in ExcelDnaDoc-Template.dna file.
-Write-Host $newDnaFile.Name 
-Write-Host $newDnaFileName
-$newDnaFile.Name = $newDnaFileName
-if ($isFSharp)
-{
-	$newDnaFile.Properties.Item("BuildAction").Value = ([Microsoft.VisualStudio.FSharp.ProjectSystem.BuildAction]::Content)
+	$oldDnaFilePath = $oldDnaFile.Properties.Item("FullPath").Value
+
+	# add reference to ExcelDna.Documentation
+	[xml]$xmlDoc = Get-Content $oldDnaFilePath
+	$xmlElt = $xmlDoc.CreateElement("Reference")
+	$xmlAtt = $xmlDoc.CreateAttribute("Path")
+	$xmlAtt.Value = "ExcelDna.Documentation.dll"
+	$xmlElt.Attributes.Append($xmlAtt)
+	$xmlAtt = $xmlDoc.CreateAttribute("Pack")
+	$xmlAtt.Value = "true"
+	$xmlElt.Attributes.Append($xmlAtt)
+	$xmlDoc.LastChild.AppendChild($xmlElt)
+
+	# set all ExternalLibrary nodes ExplicitExports="true"
+	foreach($extLib in $xmlDoc.DnaLibrary.ExternalLibrary) 
+	{  
+		if ($extLib."ExplicitExports" -eq $null)
+		{
+			$xmlAtt = $xmlDoc.CreateAttribute("ExplicitExports")
+			$xmlAtt.Value = "true"
+			$extLib.Attributes.Append($xmlAtt)		
+		}
+		if ($extLib."ExplicitExports" -eq "false")
+		{
+			$extLib."ExplicitExports" = "true"
+		}
+	}  
+
+	$xmlDoc.Save($oldDnaFilePath)
 }
 else
 {
-	$newDnaFile.Properties.Item("BuildAction").Value = 2 # Content
-}    
-$newDnaFile.Properties.Item("CopyToOutputDirectory").Value = 2 # Copy If Newer
+	# We don't have a file already so create dna template for ExcelDnaDoc
+	Write-Host "`tCreating -AddIn.dna file"
+		
+	# Rename and fill in ExcelDnaDoc-Template.dna file.
+	#Write-Host $newDnaFile.Name 
+	#Write-Host $newDnaFileName
+	$newDnaFile.Name = $newDnaFileName
+	if ($isFSharp)
+	{
+		$newDnaFile.Properties.Item("BuildAction").Value = ([Microsoft.VisualStudio.FSharp.ProjectSystem.BuildAction]::Content)
+	}
+	else
+	{
+		$newDnaFile.Properties.Item("BuildAction").Value = 2 # Content
+	}    
+	$newDnaFile.Properties.Item("CopyToOutputDirectory").Value = 2 # Copy If Newer
 
-# These replacements match strings in the content\ExcelDnaDoc-Template.dna file
-$dnaFullPath = $newDnaFile.Properties.Item("FullPath").Value
-$outputFileName = $project.Properties.Item("OutputFileName").Value
-(get-content $dnaFullPath) | foreach-object {$_ -replace "%OutputFileName%", $outputFileName } | set-content $dnaFullPath
-(get-content $dnaFullPath) | foreach-object {$_ -replace "%ProjectName%"   , $projName       } | set-content $dnaFullPath
-
+	# These replacements match strings in the content\ExcelDnaDoc-Template.dna file
+	$dnaFullPath = $newDnaFile.Properties.Item("FullPath").Value
+	$outputFileName = $project.Properties.Item("OutputFileName").Value
+	(get-content $dnaFullPath) | foreach-object {$_ -replace "%OutputFileName%", $outputFileName } | set-content $dnaFullPath
+	(get-content $dnaFullPath) | foreach-object {$_ -replace "%ProjectName%"   , $projName       } | set-content $dnaFullPath
+}
 
 
 Write-Host "`tAdding post-build commands"

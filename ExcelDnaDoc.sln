@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDna
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4-465E-4561-83F2-28B3853A3646}"
 	ProjectSection(SolutionItems) = preProject
-		nuget\content\ExcelDnaDoc-Template.dna = nuget\content\ExcelDnaDoc-Template.dna
+		nuget\ExcelDnaDoc-Template.dna = nuget\ExcelDnaDoc-Template.dna
 		nuget\ExcelDnaDoc.nuspec = nuget\ExcelDnaDoc.nuspec
-		nuget\tools\install.ps1 = nuget\tools\install.ps1
+		nuget\install.ps1 = nuget\install.ps1
 	EndProjectSection
 EndProject
 Global
