@@ -1,6 +1,6 @@
 param($installPath, $toolsPath, $package, $project)
 # based on Excel-DNA install script
-Write-Host "Starting ExcelDnaDoc install script"
+# Write-Host "Starting ExcelDnaDoc install script"
 
 Write-Host "`tSet reference to ExcelDna.Integration to be CopyLocal=false"
 #$project.Object.References | Where-Object { $_.Name -eq 'ExcelDna.Integration' } | ForEach-Object { $_.CopyLocal = $false }
