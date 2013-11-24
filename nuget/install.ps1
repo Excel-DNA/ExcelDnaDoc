@@ -1,5 +1,5 @@
 param($installPath, $toolsPath, $package, $project)
-
+# based on Excel-DNA install script
 Write-Host "Starting ExcelDnaDoc install script"
 
 Write-Host "`tSet reference to ExcelDna.Integration to be CopyLocal=false"
