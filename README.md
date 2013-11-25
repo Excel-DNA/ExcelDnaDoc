@@ -16,7 +16,7 @@ When installed from NuGet it will edit the default .dna file installed by Excel-
 Example
 ------------------
 
-*F#*
+**F#**
 
     open ExcelDna.Integration
     open ExcelDna.Documentation
@@ -34,7 +34,7 @@ Example
             
             a+b
 
-*C#*
+**C#**
 
     public class Text 
     {
