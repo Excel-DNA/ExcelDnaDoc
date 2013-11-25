@@ -4,6 +4,7 @@
     using System.IO;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Reflection;
     using RazorEngine;
     using RazorEngine.Templating;
 
@@ -19,13 +20,33 @@
 
         public abstract byte[] Template { get; }
 
+        public string ViewFilePath
+        {
+            get
+            {
+                string exeRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                return Path.Combine(exeRoot, string.Format("Views/{0}.cshtml", this.GetType().Name.Replace("ViewModel", "View")));
+            }
+        }
+
         public void Publish(string folder)
         {
+            string template;
+
             // destination file path
             string path = Path.Combine(folder, this.PageName);
 
-            // razorengine template
-            string template = (new UTF8Encoding()).GetString(this.Template);
+            // look for razorengine template otherwise use embedded one
+            if (File.Exists(this.ViewFilePath))
+            {
+                Console.WriteLine("found : " + this.ViewFilePath);
+                template = File.ReadAllText(this.ViewFilePath);
+            }
+            else
+            {
+                Console.WriteLine("didn't find : " + this.ViewFilePath);
+                template = (new UTF8Encoding()).GetString(this.Template);
+            }
 
             // unicode result
             string content = Razor.Parse(template, this.Model);

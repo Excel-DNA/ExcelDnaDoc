@@ -131,9 +131,9 @@ namespace ExcelDnaDoc.Properties {
         ///	color: #000000;
         /// [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string msdn {
+        public static string helpstyle {
             get {
-                return ResourceManager.GetString("msdn", resourceCulture);
+                return ResourceManager.GetString("helpstyle", resourceCulture);
             }
         }
         

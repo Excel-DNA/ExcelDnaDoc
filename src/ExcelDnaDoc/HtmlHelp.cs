@@ -1,6 +1,7 @@
 ﻿namespace ExcelDnaDoc
 {
     using System.IO;
+    using System.Reflection;
     using ExcelDnaDoc.Models;
     using ExcelDnaDoc.ViewModels;
 
@@ -41,8 +42,22 @@
                 }
             }
 
-            // create style sheet
-            File.WriteAllText(Path.Combine(helpDirectoryPath, "msdn.css"), Properties.Resources.msdn);
+            // look for style sheet otherwise use embedded one
+            string styleContent;
+            string stylePath = 
+                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), 
+                             "Views/helpstyle.css");
+
+            if (File.Exists(stylePath))
+            {
+                styleContent = File.ReadAllText(stylePath);                
+            }
+            else
+            {
+                styleContent = Properties.Resources.helpstyle;
+            }
+
+            File.WriteAllText(Path.Combine(helpDirectoryPath, "helpstyle.css"), styleContent);
         }
     }
 }

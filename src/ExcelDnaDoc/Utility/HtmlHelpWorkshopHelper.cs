@@ -1,12 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace ExcelDnaDoc.Utility
+﻿namespace ExcelDnaDoc.Utility
 {
+    using System;
+    using System.Configuration;
+    using System.IO;
+
     public static class HtmlHelpWorkshopHelper
     {
         public static void Compile(string projectFile)

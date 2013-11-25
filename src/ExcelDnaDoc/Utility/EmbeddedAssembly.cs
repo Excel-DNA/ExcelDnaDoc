@@ -1,4 +1,4 @@
-﻿namespace ExcelDnaDoc
+﻿namespace ExcelDnaDoc.Utility
 {
     using System;
     using System.Collections.Generic;

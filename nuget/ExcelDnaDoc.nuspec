@@ -23,6 +23,7 @@
     <file src="..\bin\ExcelDnaDoc.exe.config" target="tools" />
     <file src="..\bin\RazorEngine.dll" target="tools" />
     <file src="..\bin\System.Web.Razor.dll" target="tools" />
+    <file src="..\bin\Views\*.*" target="tools/Views" />
     <file src="..\nuget\install.ps1" target="tools" />
     <file src="..\nuget\ExcelDnaDoc-Template.dna" target="content" />
     <file src="..\README.md" target="" />

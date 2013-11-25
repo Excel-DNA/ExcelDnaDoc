@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmbeddedAssembly.cs" />
+    <Compile Include="Utility\EmbeddedAssembly.cs" />
     <Compile Include="HtmlHelp.cs" />
     <Compile Include="Models\AddInModel.cs" />
     <Compile Include="Models\FunctionGroupModel.cs" />
@@ -85,10 +85,16 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Views\FunctionGroupView.cshtml" />
-    <None Include="Views\FunctionView.cshtml" />
+    <None Include="Views\FunctionGroupView.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\FunctionView.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\TableOfContentsView.cshtml" />
-    <None Include="Views\UdfListView.cshtml" />
+    <None Include="Views\UdfListView.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExcelDna.Documentation\ExcelDna.Documentation.csproj">
@@ -97,7 +103,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\msdn.css" />
+    <Content Include="Views\helpstyle.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Views\ProjectFileView.cshtml" />
   </ItemGroup>
   <ItemGroup>

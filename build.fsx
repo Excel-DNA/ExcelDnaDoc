@@ -17,9 +17,10 @@ let project = "ExcelDnaDoc"
 let authors = ["David Carlson"]
 let summary = "command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna"
 let description = """
+  Command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna. 
   To build compiled help file (.chm) the HTML Help Workshop must be installed. 
   For examples see https://github.com/mndrake/ExcelDnaDoc."""
-let tags = "Excel-DNA"
+let tags = "Excel-DNA Excel"
 
 let gitHome = "https://github.com/mndrake"
 let gitName = "ExcelDnaDoc"

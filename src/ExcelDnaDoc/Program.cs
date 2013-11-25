@@ -102,7 +102,7 @@ Function Wizard, but will be included in the HTML Help Workshop content.
 
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            return EmbeddedAssembly.Get(args.Name);
+            return Utility.EmbeddedAssembly.Get(args.Name);
         }
     }
 }
