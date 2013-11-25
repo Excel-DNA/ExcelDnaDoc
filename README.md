@@ -12,12 +12,12 @@ ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Wor
 reference the proper directory before compiling your project.
 
 *ExcelDnaDoc.exe.config*
-    <?xml version="1.0" encoding="utf-8" ?>
+    `<?xml version="1.0" encoding="utf-8" ?>
     <configuration>
       <appSettings>
         <add key="HtmlHelpWorkshopCompilerPath" value="C:\Program Files (x86)\HTML Help Workshop\hhc.exe"/>
       </appSettings>
-    </configuration>
+    </configuration>`
 
 When installed from NuGet it will replace the default .dna file installed by Excel-DNA and adds post build steps to build the .chm documentation file whenever
 the project is build.
