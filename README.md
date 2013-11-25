@@ -11,8 +11,7 @@ To build compiled help file (.chm) the HTML Help Workshop (HHW) must be installe
 ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. If it is installed at another location change `packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config` to
 reference the proper directory before compiling your project.  
 
-When installed from NuGet it will replace the default .dna file installed by Excel-DNA and adds post build steps to build the .chm documentation file whenever
-the project is build.
+When installed from NuGet it will edit the default .dna file installed by Excel-DNA and adds post build steps to build the .chm documentation file whenever the project is build.
 
 Example
 ------------------
