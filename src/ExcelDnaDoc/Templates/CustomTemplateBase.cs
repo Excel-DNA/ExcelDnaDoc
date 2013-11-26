@@ -1,4 +1,4 @@
-﻿namespace ExcelDnaDoc.ViewModels
+﻿namespace ExcelDnaDoc.Templates
 {
     using System;
     using System.IO;
@@ -8,9 +8,9 @@
     using RazorEngine;
     using RazorEngine.Templating;
 
-    public abstract class ViewModelBase<T> : TemplateBase<T>
+    public abstract class CustomTemplateBase<T> : TemplateBase<T>
     {
-        public ViewModelBase()
+        public CustomTemplateBase()
         {
         }
 
@@ -24,8 +24,9 @@
         {
             get
             {
-                string exeRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return Path.Combine(exeRoot, string.Format("Views/{0}.cshtml", this.GetType().Name.Replace("ViewModel", "View")));
+                return Path.Combine(HtmlHelp.BuildFolderPath, string.Format("HelpContent/{0}.cshtml", this.GetType().Name));
+//                string exeRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+//                return Path.Combine(exeRoot, string.Format("HelpContent/{0}.cshtml", this.GetType().Name));
             }
         }
 
@@ -39,12 +40,11 @@
             // look for razorengine template otherwise use embedded one
             if (File.Exists(this.ViewFilePath))
             {
-                Console.WriteLine("found : " + this.ViewFilePath);
+                Console.WriteLine("using local template : " + Path.GetFileName(this.ViewFilePath));
                 template = File.ReadAllText(this.ViewFilePath);
             }
             else
             {
-                Console.WriteLine("didn't find : " + this.ViewFilePath);
                 template = (new UTF8Encoding()).GetString(this.Template);
             }
 

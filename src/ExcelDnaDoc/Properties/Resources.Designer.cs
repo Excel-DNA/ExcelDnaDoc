@@ -63,9 +63,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] FunctionGroupView {
+        public static byte[] FunctionGroupTemplate {
             get {
-                object obj = ResourceManager.GetObject("FunctionGroupView", resourceCulture);
+                object obj = ResourceManager.GetObject("FunctionGroupTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] FunctionView {
+        public static byte[] FunctionTemplate {
             get {
-                object obj = ResourceManager.GetObject("FunctionView", resourceCulture);
+                object obj = ResourceManager.GetObject("FunctionTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -140,9 +140,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] ProjectFileView {
+        public static byte[] ProjectFileTemplate {
             get {
-                object obj = ResourceManager.GetObject("ProjectFileView", resourceCulture);
+                object obj = ResourceManager.GetObject("ProjectFileTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -150,9 +150,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] TableOfContentsView {
+        public static byte[] TableOfContentsTemplate {
             get {
-                object obj = ResourceManager.GetObject("TableOfContentsView", resourceCulture);
+                object obj = ResourceManager.GetObject("TableOfContentsTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -160,9 +160,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] UdfListView {
+        public static byte[] UdfListTemplate {
             get {
-                object obj = ResourceManager.GetObject("UdfListView", resourceCulture);
+                object obj = ResourceManager.GetObject("UdfListTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -1,6 +1,6 @@
-﻿@using System.Text;
+﻿@model ExcelDna.Documentation.Models.AddInModel
+@using System.Text;
 @using System.Linq;
-@inherits ExcelDnaDoc.ViewModels.ProjectFileViewModel
 @{ var functions = Model.Functions.Where(f => f.TopidId != string.Empty);
    var alias = new StringBuilder();
    var map = new StringBuilder();

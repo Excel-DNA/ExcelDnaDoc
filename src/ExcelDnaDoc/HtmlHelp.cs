@@ -2,43 +2,44 @@
 {
     using System.IO;
     using System.Reflection;
-    using ExcelDnaDoc.Models;
-    using ExcelDnaDoc.ViewModels;
+    using ExcelDna.Documentation.Models;
+    using ExcelDnaDoc.Templates;
 
     public static class HtmlHelp
     {
-        public static void Create(string dnaPath, string helpFolder = "content")
+        public static string BuildFolderPath {get;set;}
+
+        public static void Create(string dnaPath, string helpSubfolder = "content")
         {
-            var addin = new AddInModel(dnaPath);
-            var helpDirectoryPath = Path.Combine((new FileInfo(dnaPath)).Directory.FullName, helpFolder);
+            HtmlHelp.BuildFolderPath = Path.GetDirectoryName(dnaPath);
+
+            var addin = Utility.ModelHelper.CreateAddInModel(dnaPath);
+
+            var helpFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
 
             // delete and recreate the destination directory
-            if (Directory.Exists(helpDirectoryPath)) 
-            {
-                Directory.Delete(helpDirectoryPath, true);
-            }
-
-            Directory.CreateDirectory(helpDirectoryPath);
+            if (Directory.Exists(helpFolderPath)) Directory.Delete(helpFolderPath, true);
+            Directory.CreateDirectory(helpFolderPath);
 
             // HTML Help Workshop File Creation
 
             // create Help Project File
-            new ProjectFileViewModel { Model = addin }.Publish(helpDirectoryPath);
+            new ProjectFileTemplate { Model = addin }.Publish(helpFolderPath);
 
             // create Table of Contents Page
-            new TableOfContentsViewModel { Model = addin }.Publish(helpDirectoryPath);
+            new TableOfContentsTemplate { Model = addin }.Publish(helpFolderPath);
 
             // create UDF List Page
-            new UdfListViewModel { Model = addin }.Publish(helpDirectoryPath);
+            new UdfListTemplate { Model = addin }.Publish(helpFolderPath);
 
             // create Function and Function Group Pages
             foreach (var group in addin.Groups)
             {
-                new FunctionGroupViewModel { Model = group }.Publish(helpDirectoryPath);
+                new FunctionGroupTemplate { Model = group }.Publish(helpFolderPath);
 
                 foreach (FunctionModel function in group.Functions)
                 {
-                    new FunctionViewModel { Model = function }.Publish(helpDirectoryPath);
+                    new FunctionTemplate { Model = function }.Publish(helpFolderPath);
                 }
             }
 
@@ -57,7 +58,7 @@
                 styleContent = Properties.Resources.helpstyle;
             }
 
-            File.WriteAllText(Path.Combine(helpDirectoryPath, "helpstyle.css"), styleContent);
+            File.WriteAllText(Path.Combine(helpFolderPath, "helpstyle.css"), styleContent);
         }
     }
 }

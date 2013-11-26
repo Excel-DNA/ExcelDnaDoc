@@ -56,12 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utility\EmbeddedAssembly.cs" />
+    <Compile Include="Utility\ModelHelper.cs" />
     <Compile Include="HtmlHelp.cs" />
-    <Compile Include="Models\AddInModel.cs" />
-    <Compile Include="Models\FunctionGroupModel.cs" />
-    <Compile Include="Models\FunctionModel.cs" />
-    <Compile Include="Models\ParameterModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -72,27 +68,29 @@
     <Compile Include="Utility\ConsoleHelper.cs" />
     <Compile Include="Utility\FileHelper.cs" />
     <Compile Include="Utility\HtmlHelpWorkshopHelper.cs" />
-    <Compile Include="ViewModels\FunctionViewModel.cs" />
-    <Compile Include="ViewModels\FunctionGroupViewModel.cs" />
-    <Compile Include="ViewModels\UdfListViewModel.cs" />
-    <Compile Include="ViewModels\ProjectFileViewModel.cs" />
-    <Compile Include="ViewModels\TableOfContentsViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Templates\FunctionTemplate.cs" />
+    <Compile Include="Templates\FunctionGroupTemplate.cs" />
+    <Compile Include="Templates\UdfListTemplate.cs" />
+    <Compile Include="Templates\ProjectFileTemplate.cs" />
+    <Compile Include="Templates\TableOfContentsTemplate.cs" />
+    <Compile Include="Templates\CustomTemplateBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="web.config" />
+    <None Include="web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Views\FunctionGroupView.cshtml">
+    <None Include="HelpContent\FunctionGroupTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\FunctionView.cshtml">
+    <None Include="HelpContent\FunctionTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\TableOfContentsView.cshtml" />
-    <None Include="Views\UdfListView.cshtml">
+    <None Include="HelpContent\TableOfContentsTemplate.cshtml" />
+    <None Include="HelpContent\UdfListTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -103,10 +101,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\helpstyle.css">
+    <Content Include="HelpContent\helpstyle.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Views\ProjectFileView.cshtml" />
+    <None Include="HelpContent\ProjectFileTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
