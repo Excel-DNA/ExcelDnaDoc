@@ -17,36 +17,42 @@ Example
 ------------------
 
 **F#**
+```fsharp
+open ExcelDna.Integration
+open ExcelDna.Documentation
 
-    open ExcelDna.Integration
-    open ExcelDna.Documentation
+module Math =
 
-    module Math =
-
-        [<ExcelFunction( Name = "Math.AddThem", Description = "adds two numbers", 
-                         HelpTopic="DocTest-AddIn.chm!1001")>]
-        [<ExcelFunctionSummary("really all it does is add two number ... I promise.")>]
-        let addThem
-            (
-                [<ExcelArgument(Name = "Arg1", Description = "the first number")>]a,
-                [<ExcelArgument(Name = "Arg2", Description = "the second number")>]b
-            ) = 
-            
-            a+b
+    [<ExcelFunction( Name = "Math.AddThem", Category = "Math", 
+                     Description = "adds two numbers", 
+                     HelpTopic="DocTest-AddIn.chm!1001")>]
+    [<ExcelFunctionSummary("really all it does is add two number ... I promise.")>]
+    let addThem
+        (
+            [<ExcelArgument(Name = "Arg1", Description = "the first number")>]a,
+            [<ExcelArgument(Name = "Arg2", Description = "the second number")>]b
+        ) = 
+        
+        a+b
+```
 
 **C#**
+```csharp
+using ExcelDna.Integration;
 
-    public class Text 
+public class Text 
+{
+    [ExcelFunction( Name = "Text.ConcatThem", 
+                    Description = "concatenates two strings", 
+                    HelpTopic = "DocTest-AddIn.chm!1002")]
+    public static object ConcatThem(
+        [ExcelArgument(Description="the first string")] object a, 
+        [ExcelArgument(Description="the second string")] object b)
     {
-        [ExcelFunction( Name = "Text.ConcatThem", Description = "concatenates two strings", 
-                        HelpTopic = "DocTest-AddIn.chm!1002")]
-        public static object ConcatThem(
-            [ExcelArgument(Description="the first string")] object a, 
-            [ExcelArgument(Description="the second string")] object b)
-        {
-            return string.Concat(a.ToString(), b.ToString());
-        }
+        return string.Concat(a.ToString(), b.ToString());
     }
+}
+```
 
 Usage
 ------------------
