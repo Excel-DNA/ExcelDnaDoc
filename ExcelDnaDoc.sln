@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4
 		nuget\ExcelDnaDoc-Template.dna = nuget\ExcelDnaDoc-Template.dna
 		nuget\ExcelDnaDoc.nuspec = nuget\ExcelDnaDoc.nuspec
 		nuget\install.ps1 = nuget\install.ps1
+		test.ps1 = test.ps1
+		nuget\uninstall.ps1 = nuget\uninstall.ps1
 	EndProjectSection
 EndProject
 Global

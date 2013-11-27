@@ -13,34 +13,32 @@ if ($null -ne $oldDnaFile)
 {
 	# found prior template installed with Excel-DNA
 	$newDnaFile.Delete()
-	#$proj.Properties.Item("FullPath").Value
 	$oldDnaFilePath = $oldDnaFile.Properties.Item("FullPath").Value
-	#"C:\Github\DocTest\packages\ExcelDnaDoc.0.1.14-alpha\tools\ExcelDnaDoc.exe" "$(TargetDir)DocTest-AddIn.dna" /Y
+
 	# add reference to ExcelDna.Documentation
 	[xml]$xmlDoc = Get-Content $oldDnaFilePath
-	$xmlElt = $xmlDoc.CreateElement("Reference")
-	$xmlAtt = $xmlDoc.CreateAttribute("Path")
-	$xmlAtt.Value = "ExcelDna.Documentation.dll"
-	$xmlElt.Attributes.Append($xmlAtt)
-	$xmlAtt = $xmlDoc.CreateAttribute("Pack")
-	$xmlAtt.Value = "true"
-	$xmlElt.Attributes.Append($xmlAtt)
-	$xmlDoc.LastChild.AppendChild($xmlElt)
 
-	# set all ExternalLibrary nodes ExplicitExports="true"
-	foreach($extLib in $xmlDoc.DnaLibrary.ExternalLibrary) 
+	#check if reference already exists
+	$refExists = "false"
+	foreach($ref in $xmlDoc.DnaLibrary.Reference) 
 	{  
-		if ($extLib."ExplicitExports" -eq $null)
+		if ($ref."Path" -eq "ExcelDna.Documentation.dll")
 		{
-			$xmlAtt = $xmlDoc.CreateAttribute("ExplicitExports")
-			$xmlAtt.Value = "true"
-			$extLib.Attributes.Append($xmlAtt)		
+			$refExists = "true"
 		}
-		if ($extLib."ExplicitExports" -eq "false")
-		{
-			$extLib."ExplicitExports" = "true"
-		}
-	}  
+	}
+
+	if ($refExists -eq "false")
+	{
+		$xmlElt = $xmlDoc.CreateElement("Reference")
+		$xmlAtt = $xmlDoc.CreateAttribute("Path")
+		$xmlAtt.Value = "ExcelDna.Documentation.dll"
+		$xmlElt.Attributes.Append($xmlAtt)
+		$xmlAtt = $xmlDoc.CreateAttribute("Pack")
+		$xmlAtt.Value = "true"
+		$xmlElt.Attributes.Append($xmlAtt)
+		$xmlDoc.LastChild.AppendChild($xmlElt)
+	}
 
 	$xmlDoc.Save($oldDnaFilePath)
 }

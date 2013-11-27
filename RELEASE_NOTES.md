@@ -8,3 +8,5 @@
 
 #### 0.1.14-alpha - unreleased
 * added customizable templates and css style
+* no longer requires ExplicitExports=true
+* added uninstall script to NuGet package
