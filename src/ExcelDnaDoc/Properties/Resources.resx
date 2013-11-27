@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="FunctionGroupTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\HelpContent\FunctionGroupTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CategoryTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\HelpContent\CategoryTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FunctionTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\FunctionTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ExcelFunctionSummaryAttribute.cs" />
     <Compile Include="Models\AddInModel.cs" />
-    <Compile Include="Models\FunctionGroupModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\FunctionModel.cs" />
     <Compile Include="Models\ParameterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@
     {
         public string DnaFileName { get; set; }
 
-        public IEnumerable<FunctionGroupModel> Groups { get; set; }
+        public IEnumerable<CategoryModel> Categories { get; set; }
 
         public string ProjectName { get; set; }
 
@@ -14,7 +14,9 @@
         {
             get
             {
-                foreach (var group in this.Groups)
+                var result = new List<FunctionModel>();
+
+                foreach (var group in this.Categories)
                 {
                     foreach (var function in group.Functions)
                     {

@@ -1,6 +1,7 @@
 ﻿namespace ExcelDnaDoc
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
     using ExcelDna.Documentation.Models;
@@ -10,6 +11,7 @@
     {
         public static string BuildFolderPath { get; set; }
         public static string HelpContentFolderPath { get; set; }
+        public static Dictionary<string, string> TemplateCache = new Dictionary<string, string>();
 
         public static void Create(string dnaPath, string helpSubfolder = "HelpContent")
         {
@@ -24,17 +26,19 @@
 
             // HTML Help Workshop content creation
             Console.WriteLine("creating HTML Help content");
-            Console.WriteLine();
+            Console.WriteLine(); 
 
-            new ProjectFileTemplate { Model = addin }.Publish(HelpContentFolderPath);
-            new TableOfContentsTemplate { Model = addin }.Publish(HelpContentFolderPath);
-            new UdfListTemplate { Model = addin }.Publish(HelpContentFolderPath);
-            foreach (var group in addin.Groups) 
+            new ProjectFileTemplate { Model = addin }.Publish();
+            new TableOfContentsTemplate { Model = addin }.Publish();
+            new UdfListTemplate { Model = addin }.Publish();
+
+            foreach (var group in addin.Categories) 
             {
-                new FunctionGroupTemplate { Model = group }.Publish(HelpContentFolderPath);
+                new CategoryTemplate { Model = group }.Publish();
+
                 foreach (FunctionModel function in group.Functions) 
                 {
-                    new FunctionTemplate { Model = function }.Publish(HelpContentFolderPath);
+                    new FunctionTemplate { Model = function }.Publish();
                 }
             }
 
@@ -47,11 +51,12 @@
             }
             else 
             {
-                System.Console.WriteLine("found local template: helpstyle.css"); 
+                System.Console.WriteLine("using local template : helpstyle.css"); 
             }
 
-            // compile HTML Help
+            Console.WriteLine();
 
+            // compile HTML Help
             Console.WriteLine("creating chm file");
             Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".hhp"));
             Console.WriteLine();

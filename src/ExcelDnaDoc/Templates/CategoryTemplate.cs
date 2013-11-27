@@ -2,7 +2,7 @@
 {
     using ExcelDna.Documentation.Models;
 
-    public class FunctionGroupTemplate : CustomTemplateBase<FunctionGroupModel>
+    public class CategoryTemplate : CustomTemplateBase<CategoryModel>
     {
         public override string PageName
         {
@@ -11,7 +11,7 @@
 
         public override byte[] Template 
         { 
-            get { return Properties.Resources.FunctionGroupTemplate; } 
+            get { return Properties.Resources.CategoryTemplate; } 
         }
     }
 }

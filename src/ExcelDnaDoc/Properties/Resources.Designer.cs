@@ -63,9 +63,9 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] FunctionGroupTemplate {
+        public static byte[] CategoryTemplate {
             get {
-                object obj = ResourceManager.GetObject("FunctionGroupTemplate", resourceCulture);
+                object obj = ResourceManager.GetObject("CategoryTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }

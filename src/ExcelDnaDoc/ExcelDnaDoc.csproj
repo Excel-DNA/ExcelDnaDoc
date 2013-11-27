@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utility\ExcelDnaHelper.cs" />
     <Compile Include="Utility\ModelHelper.cs" />
     <Compile Include="HtmlHelp.cs" />
     <Compile Include="Program.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="Utility\FileHelper.cs" />
     <Compile Include="Utility\HtmlHelpWorkshopHelper.cs" />
     <Compile Include="Templates\FunctionTemplate.cs" />
-    <Compile Include="Templates\FunctionGroupTemplate.cs" />
+    <Compile Include="Templates\CategoryTemplate.cs" />
     <Compile Include="Templates\UdfListTemplate.cs" />
     <Compile Include="Templates\ProjectFileTemplate.cs" />
     <Compile Include="Templates\TableOfContentsTemplate.cs" />
@@ -83,7 +84,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="HelpContent\FunctionGroupTemplate.cshtml">
+    <None Include="HelpContent\CategoryTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="HelpContent\FunctionTemplate.cshtml">

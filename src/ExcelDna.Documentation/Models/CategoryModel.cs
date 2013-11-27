@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class FunctionGroupModel
+    public class CategoryModel
     {
         public IEnumerable<FunctionModel> Functions { get; set; }
 

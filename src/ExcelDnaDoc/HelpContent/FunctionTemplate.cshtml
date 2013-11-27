@@ -23,16 +23,19 @@
                 <td style="width: 100%">
                     <div>
                         <h1>@(Model.Name) function</h1>
-                        <br>
+                        <br/>
 
-                        <h4>Description</h4>
-                        <hr>
+                        @if(@Model.Description != string.Empty)
+                        {
+                            <h4>Description</h4>
+                            <hr/>
 
-                        <p>@Model.Description</p>
-                        <br>
+                            <p>@Model.Description</p>
+                            <br/>
+                        }
 
                         <h4>Syntax</h4>
-                        <hr>
+                        <hr/>
                         <code>@(Model.Name)(@(paramList))</code><br>
 
                         <p>@Model.Name function syntax has the following arguments :</p>
@@ -43,33 +46,35 @@
                                 <li><b>@p.Name</b> <font color="green">@p.ParameterType</font> @p.Description</li>
                             }
                         </ul>
-                        <br>
+                        <br/>
 
                         <h4>Returns</h4>
-                        <hr>
+                        <hr/>
 
                         <p><font color="green">@Model.ReturnType</font></p>
-                        <br>
+                        <br/>
 
-                        <h4>Summary</h4>
-                        <hr>
+                        @if (@Model.Summary != string.Empty)
+                        {
+                            <h4>Summary</h4>
+                            <hr/>
 
-                        <p>@Model.Summary</p>
-                        <br>
+                            <p>@Model.Summary</p>
+                            <br/>
+                        }
 
                         <h4>Remarks</h4>
-                        <hr>
+                        <hr/>
 
                         <p>
-                            If any arguments are error values, or if any arguments are text that cannot be translated into numbers, Excel
-            displays an error.
+                            If any arguments are error values, or if any arguments are text that cannot be translated into numbers, Excel displays an error.
                         </p>
-                        <br>
+                        <br/>
 
                         <h4>See Also</h4>
-                        <hr>
+                        <hr/>
 
-                        <p><a href="@Model.GroupName Functions.htm">@Model.GroupName Functions</a></p>
+                        <p><a href="@Model.Category Functions.htm">@Model.Category Functions</a></p>
                     </div>
                 </td>
             </tr>

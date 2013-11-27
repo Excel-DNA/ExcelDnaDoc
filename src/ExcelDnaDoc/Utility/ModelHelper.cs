@@ -7,166 +7,96 @@
     using ExcelDna.Documentation;
     using ExcelDna.Documentation.Models;
     using ExcelDna.Integration;
+    using System.Collections.Generic;
 
     public static class ModelHelper
     {
         public static ParameterModel CreateParameterModel(ParameterInfo parameter)
         {
-            ExcelArgumentAttribute excelArgument;
-            string description;
-            string name;
-
-            excelArgument =
-                (ExcelArgumentAttribute)
-                Attribute.GetCustomAttribute(parameter, typeof(ExcelArgumentAttribute));
-
-            if (excelArgument == null)
+            var model = new ParameterModel
             {
-                name = parameter.Name;
-            }
-            else if (excelArgument.Name == null)
-            {
-                name = parameter.Name;
-            }
-            else
-            {
-                name = excelArgument.Name;
-            }
-
-            if (excelArgument == null)
-            {
-                description = "N/A";
-            }
-            else if (excelArgument.Description == null)
-            {
-                description = "N/A";
-            }
-            else
-            {
-                description = excelArgument.Description;
-            }
-
-            return new ParameterModel
-            {
-                // parameter exposed to Excel has first letter capitalized
-                Name = char.ToUpper(name[0]) + name.Substring(1),
-
+                Name = parameter.Name,
                 ParameterType = parameter.ParameterType.Name,
-                Description = description
+                Description = string.Empty
             };
+
+            var excelArgument = (ExcelArgumentAttribute)Attribute.GetCustomAttribute(parameter, typeof(ExcelArgumentAttribute));
+
+            if (excelArgument != null)
+            {
+                if (excelArgument.Name != null) { model.Name = excelArgument.Name; }
+                if (excelArgument.Description != null) { model.Description = excelArgument.Description; }
+            }
+
+            model.Name = char.ToUpper(model.Name[0]) + model.Name.Substring(1);
+
+            return model;
         }
 
-        public static FunctionModel CreateFunctionModel(MethodInfo method, string functionGroupName)
+        public static FunctionModel CreateFunctionModel(MethodInfo method, string defaultCategory)
         {
-            ExcelFunctionAttribute excelFunction;
-            ExcelFunctionSummaryAttribute excelFunctionSummary;
-            string name;
-            string description;
-            string summary;
-            string topicId;
+            var function =
+                new FunctionModel
+                {
+                    Category = defaultCategory,
+                    Description = string.Empty,
+                    Name = method.Name,
+                    Parameters = method.GetParameters().Select(p => CreateParameterModel(p)),
+                    ReturnType = method.ReturnType.Name,
+                    Summary = string.Empty,
+                    TopidId = string.Empty
+                };
 
-            excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
-            excelFunctionSummary = (ExcelFunctionSummaryAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionSummaryAttribute));
+            var excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
+            var excelFunctionSummary = (ExcelFunctionSummaryAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionSummaryAttribute));
 
-            if (excelFunctionSummary == null)
+            // check if ExcelFunctionSummaryAttribute used
+            if (excelFunctionSummary != null)
             {
-                summary = "N/A";
-            }
-            else
-            {
-                summary = excelFunctionSummary.Summary;
-            }
-
-            if (excelFunction.Name == null)
-            {
-                name = method.Name;
-            }
-            else
-            {
-                name = excelFunction.Name;
+                if (excelFunctionSummary.Summary != null) { function.Summary = excelFunctionSummary.Summary; }
             }
 
-            if (excelFunction.Description == null)
+            // check if ExcelFunctionAttribute used
+            if (excelFunction != null)
             {
-                description = "N/A";
-            }
-            else
-            {
-                description = excelFunction.Description;
-            }
-
-            if (excelFunction.HelpTopic == null)
-            {
-                topicId = string.Empty;
-            }
-            else
-            {
-                topicId = excelFunction.HelpTopic.Split('!').Last();
+                if (excelFunction.Name != null) { function.Name = excelFunction.Name; }
+                if (excelFunction.Description != null) { function.Description = excelFunction.Description; }
+                if (excelFunction.HelpTopic != null) { function.TopidId = excelFunction.HelpTopic.Split('!').Last(); }
+                if (excelFunction.Category != null) { function.Category = excelFunction.Category; }
             }
 
-            return new FunctionModel
-            {
-                Name = name,
-                Description = description,
-                ReturnType = method.ReturnType.Name,
-                TopidId = topicId,
-                Summary = summary,
-                Parameters = method.GetParameters().Select(p => CreateParameterModel(p)),
-                GroupName = functionGroupName
-            };
-        }
-
-        public static FunctionGroupModel CreateFunctionGroupModel(Type type)
-        {
-            return new FunctionGroupModel
-            {
-                Name = type.Name,
-                Functions =
-                    type.GetMethods()
-                    .Where(f => IsValidFunction(f))
-                    .Select(f => CreateFunctionModel(f, type.Name))
-                    .OrderBy(f => f.Name)
-            };
+            return function;
         }
 
         public static AddInModel CreateAddInModel(string dnaPath)
         {
-            string projectName;
-            var dnaPathName = Path.GetFileNameWithoutExtension(dnaPath);
-
-
+            var model = new AddInModel();
             var dnaLibrary = DnaLibrary.LoadFrom(dnaPath);
+            var defaultCategory = dnaLibrary.Name;
 
-            if (dnaLibrary.Name != null)
-            {
-                projectName = dnaLibrary.Name;
-            }
-            else
-            {
-                projectName = dnaPathName;
-            }
+            //var functions = new List<FunctionModel>();
 
-            return new AddInModel
-            {
-                DnaFileName = dnaPathName,
-                Groups =
-                        dnaLibrary
-                        .ExternalLibraries
-                        .Where(e => e.ExplicitExports)
-                        .Select(e => Assembly.LoadFile(dnaLibrary.ResolvePath(e.Path)))
-                        .SelectMany(a => a.GetExportedTypes())
-                        .Select(t => CreateFunctionGroupModel(t))
-                        .Where(g => g.Functions.Count() > 0)
-                        .OrderBy(g => g.Name)
-            };
-        }
+            model.DnaFileName = Path.GetFileNameWithoutExtension(dnaPath);
 
-        public static bool IsValidFunction(MethodInfo method)
-        {
-            ExcelFunctionAttribute excelFunction;
-            excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
+            if (dnaLibrary.Name != null) {model.ProjectName = dnaLibrary.Name;}
+            else { model.ProjectName = model.DnaFileName; }
 
-            return excelFunction != null;
+            // process function libraries
+
+            model.Categories =
+                dnaLibrary
+                .ExternalLibraries
+                .SelectMany(library =>
+                    Assembly.LoadFile(dnaLibrary.ResolvePath(library.Path))
+                    .GetExportedTypes()
+                    .SelectMany(t => t.GetMethods())
+                    .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
+                    .Select(m => CreateFunctionModel(m, defaultCategory)))
+                .GroupBy(f => f.Category)
+                .Select(g => new CategoryModel { Name = g.Key, Functions = g.OrderBy(f => f.Name) })
+                .OrderBy(c => c.Name);
+
+            return model;
         }
     }
 }
