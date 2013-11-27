@@ -67,7 +67,7 @@ Usage
 `dnaPath` The path to the primary .dna file for the ExcelDna add-in.  
 
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
-         The HTML Help Workshop content will be created in `<build folder>\content\`.  
+         The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
 
 External libraries that have been marked as ExplicitExports="true" will be searched for UDFs that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
 
