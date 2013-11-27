@@ -65,7 +65,6 @@ Target "Build" (fun _ ->
 // Build a NuGet package
 
 Target "NuGet" (fun _ ->
-    "bin/web.config" |> FileHelper.Rename "bin/web.config.txt"
     NuGet (fun p -> 
         { p with   
             Authors = authors

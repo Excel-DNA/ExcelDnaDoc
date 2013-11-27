@@ -41,32 +41,17 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             }
 
             string dnaPath = args[0];
-            string dnaDirectory = Path.GetDirectoryName(dnaPath);
-            string dnaFilePrefix = Path.GetFileNameWithoutExtension(dnaPath);
-            string helpProject = Path.Combine(Path.GetDirectoryName(dnaPath), string.Format("content/{0}.hhp", dnaFilePrefix));
-            string sourceChm = Path.Combine(dnaDirectory, string.Format("content/{0}.chm", dnaFilePrefix));
-            string destinationChm = Path.Combine(dnaDirectory, string.Format("{0}.chm", dnaFilePrefix));
 
-            // create HTML Help content
-            Console.WriteLine("creating HTML Help content");
-            Console.WriteLine();
-            ExcelDnaDoc.HtmlHelp.Create(dnaPath);
+            // verify dna file exists
 
-            // compile HTML Help
-            Console.WriteLine("creating chm file");
-            Utility.HtmlHelpWorkshopHelper.Compile(helpProject);
-            Console.WriteLine();
-            Console.WriteLine();
-
-            // move HTML Help chm file to the main build folder
-            Utility.FileHelper.Move(sourceChm, destinationChm);
-
-            Console.WriteLine();
-            Console.WriteLine("-- finished --");
-#if DEBUG
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
-#endif
+            if (!File.Exists(dnaPath))
+            {
+                Console.Write("no dna file found");
+            }
+            else
+            {
+                ExcelDnaDoc.HtmlHelp.Create(dnaPath);
+            }
         }
     }
 }

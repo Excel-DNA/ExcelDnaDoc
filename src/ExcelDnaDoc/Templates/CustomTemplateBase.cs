@@ -24,9 +24,7 @@
         {
             get
             {
-                return Path.Combine(HtmlHelp.BuildFolderPath, string.Format("HelpContent/{0}.cshtml", this.GetType().Name));
-//                string exeRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-//                return Path.Combine(exeRoot, string.Format("HelpContent/{0}.cshtml", this.GetType().Name));
+                return Path.Combine(HtmlHelp.HelpContentFolderPath, this.GetType().Name + ".cshtml");
             }
         }
 

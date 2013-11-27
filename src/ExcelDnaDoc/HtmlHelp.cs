@@ -1,5 +1,6 @@
 ﻿namespace ExcelDnaDoc
 {
+    using System;
     using System.IO;
     using System.Reflection;
     using ExcelDna.Documentation.Models;
@@ -7,58 +8,66 @@
 
     public static class HtmlHelp
     {
-        public static string BuildFolderPath {get;set;}
+        public static string BuildFolderPath { get; set; }
+        public static string HelpContentFolderPath { get; set; }
 
-        public static void Create(string dnaPath, string helpSubfolder = "content")
+        public static void Create(string dnaPath, string helpSubfolder = "HelpContent")
         {
-            HtmlHelp.BuildFolderPath = Path.GetDirectoryName(dnaPath);
+            BuildFolderPath = Path.GetDirectoryName(dnaPath);
+            HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
 
+            // initialize data models
             var addin = Utility.ModelHelper.CreateAddInModel(dnaPath);
 
-            var helpFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
+            // create help content folder if it does not exist
+            if (!Directory.Exists(HelpContentFolderPath)) Directory.CreateDirectory(HelpContentFolderPath);
 
-            // delete and recreate the destination directory
-            if (Directory.Exists(helpFolderPath)) Directory.Delete(helpFolderPath, true);
-            Directory.CreateDirectory(helpFolderPath);
+            // HTML Help Workshop content creation
+            Console.WriteLine("creating HTML Help content");
+            Console.WriteLine();
 
-            // HTML Help Workshop File Creation
-
-            // create Help Project File
-            new ProjectFileTemplate { Model = addin }.Publish(helpFolderPath);
-
-            // create Table of Contents Page
-            new TableOfContentsTemplate { Model = addin }.Publish(helpFolderPath);
-
-            // create UDF List Page
-            new UdfListTemplate { Model = addin }.Publish(helpFolderPath);
-
-            // create Function and Function Group Pages
-            foreach (var group in addin.Groups)
+            new ProjectFileTemplate { Model = addin }.Publish(HelpContentFolderPath);
+            new TableOfContentsTemplate { Model = addin }.Publish(HelpContentFolderPath);
+            new UdfListTemplate { Model = addin }.Publish(HelpContentFolderPath);
+            foreach (var group in addin.Groups) 
             {
-                new FunctionGroupTemplate { Model = group }.Publish(helpFolderPath);
-
-                foreach (FunctionModel function in group.Functions)
+                new FunctionGroupTemplate { Model = group }.Publish(HelpContentFolderPath);
+                foreach (FunctionModel function in group.Functions) 
                 {
-                    new FunctionTemplate { Model = function }.Publish(helpFolderPath);
+                    new FunctionTemplate { Model = function }.Publish(HelpContentFolderPath);
                 }
             }
 
             // look for style sheet otherwise use embedded one
-            string styleContent;
-            string stylePath = 
-                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), 
-                             "Views/helpstyle.css");
 
-            if (File.Exists(stylePath))
+            string stylePath = Path.Combine(HelpContentFolderPath, "helpstyle.css");
+            if (!File.Exists(stylePath)) 
             {
-                styleContent = File.ReadAllText(stylePath);                
+                File.WriteAllText(stylePath, Properties.Resources.helpstyle); 
             }
-            else
+            else 
             {
-                styleContent = Properties.Resources.helpstyle;
+                System.Console.WriteLine("found local template: helpstyle.css"); 
             }
 
-            File.WriteAllText(Path.Combine(helpFolderPath, "helpstyle.css"), styleContent);
+            // compile HTML Help
+
+            Console.WriteLine("creating chm file");
+            Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".hhp"));
+            Console.WriteLine();
+            Console.WriteLine();
+
+            // move HTML Help chm file to the main build folder
+            Utility.FileHelper.Move(
+                Path.Combine(HelpContentFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".chm"),
+                Path.Combine(BuildFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".chm"));
+
+            Console.WriteLine();
+            Console.WriteLine("-- finished --");
+#if DEBUG
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+#endif
         }
     }
 }

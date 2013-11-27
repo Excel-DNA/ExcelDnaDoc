@@ -18,14 +18,15 @@
   <files>
     <file src="..\bin\ExcelDna.Documentation.dll" target="lib/net40" />
     <file src="..\bin\ExcelDna.Documentation.dll" target="tools" />
+    <file src="..\bin\ExcelDna.Documentation.dll" target="content" />
     <file src="..\bin\ExcelDna.Integration.dll" target="tools" />
     <file src="..\bin\ExcelDnaDoc.exe" target="tools" />
     <file src="..\bin\ExcelDnaDoc.exe.config" target="tools" />
     <file src="..\bin\RazorEngine.dll" target="tools" />
     <file src="..\bin\System.Web.Razor.dll" target="tools" />
+    <file src="..\bin\HelpContent\*.*" target="tools/HelpContent" />
+    <file src="..\bin\web.config" target="tools" />
     <file src="..\nuget\install.ps1" target="tools" />
-    <file src="..\bin\HelpContent\*.*" target="content/HelpContent" />
-    <file src="..\bin\web.config.txt" target="content" />
     <file src="..\nuget\ExcelDnaDoc-Template.dna" target="content" />
     <file src="..\README.md" target="" />
   </files>

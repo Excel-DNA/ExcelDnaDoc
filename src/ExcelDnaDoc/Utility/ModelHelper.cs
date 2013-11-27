@@ -133,6 +133,8 @@
         {
             string projectName;
             var dnaPathName = Path.GetFileNameWithoutExtension(dnaPath);
+
+
             var dnaLibrary = DnaLibrary.LoadFrom(dnaPath);
 
             if (dnaLibrary.Name != null)

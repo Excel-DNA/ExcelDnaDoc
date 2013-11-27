@@ -13,9 +13,9 @@ if ($null -ne $oldDnaFile)
 {
 	# found prior template installed with Excel-DNA
 	$newDnaFile.Delete()
-
+	#$proj.Properties.Item("FullPath").Value
 	$oldDnaFilePath = $oldDnaFile.Properties.Item("FullPath").Value
-
+	#"C:\Github\DocTest\packages\ExcelDnaDoc.0.1.14-alpha\tools\ExcelDnaDoc.exe" "$(TargetDir)DocTest-AddIn.dna" /Y
 	# add reference to ExcelDna.Documentation
 	[xml]$xmlDoc = Get-Content $oldDnaFilePath
 	$xmlElt = $xmlDoc.CreateElement("Reference")
