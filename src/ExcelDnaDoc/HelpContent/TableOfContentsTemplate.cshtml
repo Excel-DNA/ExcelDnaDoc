@@ -34,6 +34,24 @@
 					}
 				</ul>
 			}
+			@if (Model.Commands.Count() != 0)
+			{ 
+				<li> <object type="text/sitemap">
+						<param name="Name" value="@Model.ProjectName Commands">
+						<param name="Local" value="@Model.ProjectName Commands.htm">
+					</object>
+				</li>
+				<ul>
+					@foreach (var command in Model.Commands)
+					{
+						<li> <object type="text/sitemap">
+								<param name="Name" value="@command.Name">
+								<param name="Local" value="@(command.Name + ".htm")">
+							</object>
+						</li>
+					}
+				</ul>
+			}
 		</ul>
 	</ul>
 </body>

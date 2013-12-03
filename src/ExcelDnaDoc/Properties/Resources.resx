@@ -121,19 +121,25 @@
   <data name="CategoryTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\CategoryTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="CommandListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\HelpContent\CommandListTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CommandTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\HelpContent\CommandTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="FunctionTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\FunctionTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="helpstyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\helpstyle.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="MethodListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\HelpContent\MethodListTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ProjectFileTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\ProjectFileTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TableOfContentsTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\HelpContent\TableOfContentsTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="UdfListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\HelpContent\UdfListTemplate.cshtml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

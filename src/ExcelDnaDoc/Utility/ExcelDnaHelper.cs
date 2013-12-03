@@ -37,5 +37,16 @@ namespace ExcelDnaDoc.Utility
             ParameterInfo[] parameters = method.GetParameters();
             return (parameters.All(p => IsValidExcelDnaType(p.ParameterType))) && IsValidExcelDnaType(method.ReturnType);
         }
+
+        public static bool IsValidCommand(MethodInfo method)
+        {
+            if (!(method.IsPublic && method.IsStatic))
+            {
+                return false;
+            }
+
+            var excelCommand = (ExcelCommandAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelCommandAttribute));
+            return (excelCommand != null);
+        }
     }
 }

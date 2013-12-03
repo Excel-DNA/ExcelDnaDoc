@@ -2,16 +2,16 @@
 {
     using ExcelDna.Documentation.Models;
 
-    public class UdfListTemplate : CustomTemplateBase<AddInModel>
+    public class TableOfContentsView : ViewBase<AddInModel>
     {
         public override string PageName
         {
-            get { return "index.htm"; }
+            get { return "Table of Contents.hhc"; }
         }
 
         public override byte[] Template
         {
-            get { return Properties.Resources.UdfListTemplate; }
-        }
+            get { return Properties.Resources.TableOfContentsTemplate; }
+        }    
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using ExcelDna.Documentation.Models;
     using ExcelDnaDoc.Templates;
@@ -28,17 +29,29 @@
             Console.WriteLine("creating HTML Help content");
             Console.WriteLine(); 
 
-            new ProjectFileTemplate { Model = addin }.Publish();
-            new TableOfContentsTemplate { Model = addin }.Publish();
-            new UdfListTemplate { Model = addin }.Publish();
+            new ProjectFileView { Model = addin }.Publish();
+            new TableOfContentsView { Model = addin }.Publish();
+            new MethodListView { Model = addin }.Publish();
 
             foreach (var group in addin.Categories) 
             {
-                new CategoryTemplate { Model = group }.Publish();
+                new CategoryView { Model = group }.Publish();
 
                 foreach (FunctionModel function in group.Functions) 
                 {
-                    new FunctionTemplate { Model = function }.Publish();
+                    new FunctionView { Model = function }.Publish();
+                }
+            }
+
+            // create Excel Commands content
+
+            if (addin.Commands.Count() != 0)
+            {
+                new CommandListView { Model = addin }.Publish();
+
+                foreach (var command in addin.Commands)
+                {
+                    new CommandView { Model = command }.Publish();
                 }
             }
 

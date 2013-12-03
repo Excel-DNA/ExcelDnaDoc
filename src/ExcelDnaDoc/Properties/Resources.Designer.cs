@@ -73,6 +73,26 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] CommandListTemplate {
+            get {
+                object obj = ResourceManager.GetObject("CommandListTemplate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] CommandTemplate {
+            get {
+                object obj = ResourceManager.GetObject("CommandTemplate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] FunctionTemplate {
             get {
                 object obj = ResourceManager.GetObject("FunctionTemplate", resourceCulture);
@@ -140,6 +160,16 @@ namespace ExcelDnaDoc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] MethodListTemplate {
+            get {
+                object obj = ResourceManager.GetObject("MethodListTemplate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] ProjectFileTemplate {
             get {
                 object obj = ResourceManager.GetObject("ProjectFileTemplate", resourceCulture);
@@ -153,16 +183,6 @@ namespace ExcelDnaDoc.Properties {
         public static byte[] TableOfContentsTemplate {
             get {
                 object obj = ResourceManager.GetObject("TableOfContentsTemplate", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] UdfListTemplate {
-            get {
-                object obj = ResourceManager.GetObject("UdfListTemplate", resourceCulture);
                 return ((byte[])(obj));
             }
         }

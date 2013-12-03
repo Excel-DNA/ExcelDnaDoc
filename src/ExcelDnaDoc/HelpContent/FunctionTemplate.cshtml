@@ -51,7 +51,7 @@
                         <h4>Returns</h4>
                         <hr/>
 
-                        <p><font color="green">@Model.ReturnType</font></p>
+                        <p><font color="green">@Model.ReturnType</font> @Model.Returns</p>
                         <br/>
 
                         @if (@Model.Summary != string.Empty)
@@ -63,13 +63,14 @@
                             <br/>
                         }
 
-                        <h4>Remarks</h4>
-                        <hr/>
+                        @if (@Model.Remarks != string.Empty)
+                        { 
+                            <h4>Remarks</h4>
+                            <hr/>
 
-                        <p>
-                            If any arguments are error values, or if any arguments are text that cannot be translated into numbers, Excel displays an error.
-                        </p>
-                        <br/>
+                            <p>@Model.Remarks</p>
+                            <br/>
+                        }
 
                         <h4>See Also</h4>
                         <hr/>

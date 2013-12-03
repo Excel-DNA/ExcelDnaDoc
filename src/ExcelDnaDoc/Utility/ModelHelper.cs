@@ -11,6 +11,31 @@
 
     public static class ModelHelper
     {
+        public static CommandModel CreateCommandModel(MethodInfo method, string defaultCategory)
+        {
+            var command = new CommandModel
+            {
+                Name = method.Name,
+                Description = string.Empty,
+                ShortCut = string.Empty,
+                TopicId = string.Empty,
+                Category = defaultCategory
+            };
+
+            var excelCommand = (ExcelCommandAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelCommandAttribute));
+
+            // check if ExcelCommandAttribute used
+            if (excelCommand != null)
+            {
+                if (excelCommand.Name != null) { command.Name = excelCommand.Name; }
+                if (excelCommand.Description != null) { command.Description = excelCommand.Description; }
+                if (excelCommand.HelpTopic != null) { command.TopicId = excelCommand.HelpTopic.Split('!').Last(); }
+            }
+
+
+            return command;
+        }
+
         public static ParameterModel CreateParameterModel(ParameterInfo parameter)
         {
             var model = new ParameterModel
@@ -43,17 +68,20 @@
                     Name = method.Name,
                     Parameters = method.GetParameters().Select(p => CreateParameterModel(p)),
                     ReturnType = method.ReturnType.Name,
+                    Returns = string.Empty,
                     Summary = string.Empty,
-                    TopidId = string.Empty
+                    TopicId = string.Empty,
+                    Remarks = string.Empty
                 };
 
             var excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
-            var excelFunctionSummary = (ExcelFunctionSummaryAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionSummaryAttribute));
+            var excelFunctionSummary = (ExcelFunctionDocAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionDocAttribute));
 
-            // check if ExcelFunctionSummaryAttribute used
+            // check if ExcelFunctionDocAttribute used
             if (excelFunctionSummary != null)
             {
                 if (excelFunctionSummary.Summary != null) { function.Summary = excelFunctionSummary.Summary; }
+                if (excelFunctionSummary.Returns != null) { function.Returns = excelFunctionSummary.Returns; }
             }
 
             // check if ExcelFunctionAttribute used
@@ -61,7 +89,7 @@
             {
                 if (excelFunction.Name != null) { function.Name = excelFunction.Name; }
                 if (excelFunction.Description != null) { function.Description = excelFunction.Description; }
-                if (excelFunction.HelpTopic != null) { function.TopidId = excelFunction.HelpTopic.Split('!').Last(); }
+                if (excelFunction.HelpTopic != null) { function.TopicId = excelFunction.HelpTopic.Split('!').Last(); }
                 if (excelFunction.Category != null) { function.Category = excelFunction.Category; }
             }
 
@@ -94,6 +122,19 @@
                     .Select(m => CreateFunctionModel(m, defaultCategory)))
                 .GroupBy(f => f.Category)
                 .Select(g => new CategoryModel { Name = g.Key, Functions = g.OrderBy(f => f.Name) })
+                .OrderBy(c => c.Name);
+
+            // find ExcelCommands
+
+            model.Commands =
+                dnaLibrary
+                .ExternalLibraries
+                .SelectMany(library =>
+                    Assembly.LoadFile(dnaLibrary.ResolvePath(library.Path))
+                    .GetExportedTypes()
+                    .SelectMany(t => t.GetMethods())
+                    .Where(m => ExcelDnaHelper.IsValidCommand(m))
+                    .Select(m => CreateCommandModel(m, defaultCategory)))
                 .OrderBy(c => c.Name);
 
             return model;

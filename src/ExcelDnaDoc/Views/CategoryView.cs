@@ -2,7 +2,7 @@
 {
     using ExcelDna.Documentation.Models;
 
-    public class CategoryTemplate : CustomTemplateBase<CategoryModel>
+    public class CategoryView : ViewBase<CategoryModel>
     {
         public override string PageName
         {

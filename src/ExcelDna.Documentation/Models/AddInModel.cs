@@ -26,5 +26,7 @@
             }
 
         }
+
+        public IEnumerable<CommandModel> Commands { get; set; }
     }
 }

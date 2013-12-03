@@ -10,11 +10,60 @@ NuGet Package
 ------------------
 https://www.nuget.org/packages/ExcelDnaDoc/
 
-To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed (http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
-ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. If it is installed at another location change `packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config` to
-reference the proper directory before compiling your project.  
+To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed 
+(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. 
+If it is installed at another location change `packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config` 
+to reference the proper directory before compiling your project.  
 
-When installed from NuGet it will edit the default .dna file installed by Excel-DNA and adds post build steps to build the .chm documentation file whenever the project is build.
+When installed from NuGet it will edit the default .dna file installed by Excel-DNA and adds post 
+build steps to build the .chm documentation file whenever the project is build.
+
+Notes
+------------------
+
+Uses the `ExcelFunction`, `ExcelArgument`, and `ExcelCommand` attributes in Excel-DNA to build 
+documentation for your Excel-DNA add-in.  
+
+The following fields are can be used to create documentation :  
+
+### _ExcelFunction Attribute_
+|					|																			|
+| ----------------- | ------------------------------------------------------------------------- |
+| `Name`			| if not given the actual method name is used								|
+| `Description`		| if not used no description will be included in documentation				|
+| `Category`		| if not given functions will be grouped under "*<project name>* Functions" | 
+| `HelpTopic`		| can be used to link function to generated help in Excel's function wizard | 
+
+### _ExcelArgument Attribute_
+|					|																			|
+| ----------------- | ------------------------------------------------------------------------- |
+| `Name`			| if not given the actual parameter name is used							|
+| `Description`		| if not used no description will be included in documentation				|
+
+### _ExcelCommand Attribute_  
+|					|																			|
+| ----------------- | ------------------------------------------------------------------------- |
+| `Name`			| if not given the actual parameter name is used							|
+| `Description`		| if not used no description will be included in documentation				|
+| `HelpTopic`		| can be used to link function to generated help in Excel's function wizard |
+| `ShortCut`		| if not used no shortcut will be included in documentation					|
+
+If ExcelDna.Documentation is included as a reference (default in NuGet package) then an additional 
+attribute `ExcelFunctionDoc` that is available as a replacement  to the `ExcelFunction` attribute 
+which includes additional fields that can be used for additional documentation.
+
+### _ExcelFunctionDoc Attribute_
+|					|																			|
+| ----------------- | ------------------------------------------------------------------------- |
+| `Name`			| if not given the actual method name is used								|
+| `Description`		| if not used no description will be included in documentation				|
+| `Category`		| if not given functions will be grouped under "*<project name>* Functions" | 
+| `HelpTopic`		| can be used to link function to generated help in Excel's function wizard | 
+| `Returns`			| description of the return value											|
+| `Summary`			| longer discussion of function included in documentation					|  
+| `Remarks`			| remarks on usage and / or possible errors									|
+
 
 Example
 ------------------
@@ -27,14 +76,15 @@ open ExcelDna.Documentation
 
 module Math =
 
-    [<ExcelFunction( Name = "Math.AddThem", Category = "Math", 
-                     Description = "adds two numbers", 
-                     HelpTopic="DocTest-AddIn.chm!1001")>]
-    [<ExcelFunctionSummary("really all it does is add two number ... I promise.")>]
+    [<ExcelFunctionDoc( Name = "Math.AddThem", Category = "Math", 
+                        Description = "adds two numbers", 
+                        HelpTopic = "DocTest-AddIn.chm!1001",
+						Summary = "really all it does is add two number ... I promise.",
+						Returns = "the sum of the two arguments")>]
     let addThem
         (
-            [<ExcelArgument(Name = "Arg1", Description = "the first number")>]a,
-            [<ExcelArgument(Name = "Arg2", Description = "the second number")>]b
+            [<ExcelArgument(Name = "Arg1", Description = "the first argument")>]a,
+            [<ExcelArgument(Name = "Arg2", Description = "the second argument")>]b
         ) = 
         
         a+b
@@ -61,7 +111,7 @@ namespace DocTest
 }
 ```
 
-Usage
+Command Line Usage
 ------------------
     ExcelDnaDoc.exe dnaPath  
 `dnaPath` The path to the primary .dna file for the ExcelDna add-in.  
@@ -69,9 +119,12 @@ Usage
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
          The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
 
-External libraries that have been marked as ExplicitExports="true" will be searched for UDFs that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
+External libraries that have been marked as ExplicitExports="true" will be searched for UDFs 
+that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
 
-If The ExcelDna.Documentation library has been referenced then the ExcelFunctionSummaryAttribute is also available to include a longer function summary that will not be exposed in the Excel Function Wizard, but will be included in the HTML Help Workshop content.  
+If The ExcelDna.Documentation library has been referenced then the ExcelFunctionSummaryAttribute 
+is also available to include a longer function summary that will not be exposed in the Excel Function 
+Wizard, but will be included in the HTML Help Workshop content.  
 
 Dependencies
 ------------------

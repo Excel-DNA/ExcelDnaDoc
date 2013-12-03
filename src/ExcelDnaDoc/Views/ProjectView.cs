@@ -2,16 +2,16 @@
 {
     using ExcelDna.Documentation.Models;
 
-    public class FunctionTemplate : CustomTemplateBase<FunctionModel>
+    public class ProjectFileView : ViewBase<AddInModel>
     {
         public override string PageName
         {
-            get { return this.Model.Name + ".htm"; }
+            get { return this.Model.DnaFileName + ".hhp"; }
         }
 
         public override byte[] Template
         {
-            get { return Properties.Resources.FunctionTemplate; }
+            get { return Properties.Resources.ProjectFileTemplate; }
         }
     }
 }

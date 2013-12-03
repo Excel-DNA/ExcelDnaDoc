@@ -21,7 +21,35 @@ if ($null -ne $dnaFileItem)
 	}
 }
 
-# Remove post-build command
+# remove HelpContent files
+$templateNames = "TableOfContentsTemplate.cshtml", "ProjectFileTemplate.cshtml", "MethodListTemplate.cshtml", "helpstyle.css",
+				 "FunctionTemplate.cshtml", "CommandTemplate.cshtml", "CommandListTemplate.cshtml", "CategoryTemplate.cshtml",
+				 "web.config"
+
+$helpContentFolder =  $project.ProjectItems | Where-Object { $_.Name -eq "HelpContent" }
+
+if ($helpContentFolder -ne $null)
+{
+	$templateFiles = $helpContentFolder.ProjectItems | Where-Object { $templateNames -contains $_.Name}
+
+	foreach($file in $templateFiles)
+	{
+		$file.Delete()
+	}
+
+	$helpContentBinFolder = $helpContentFolder.ProjectItems | Where-Object { $_.Name -eq "bin" }
+	if ($helpContentBinFolder -ne $null)
+	{
+		$docuLibFile = $helpContentFolder.ProjectItems | Where-Object { $_.Name -eq "ExcelDna.Documentation.dll" }
+		if ($docuLibFile -ne $null)
+		{
+			$docuLibFile.Delete()
+		}
+	}
+}
+
+
+# remove post-build command
 $postBuildCheck = "ExcelDnaDoc.exe`""
 $prop = $project.Properties.Item("PostBuildEvent")
 if ($prop.Value -eq "") 
@@ -30,19 +58,19 @@ if ($prop.Value -eq "")
 }
 else 
 {
-    Write-Host "`tCleaning post-build command line"
-    # Culinary approach courtesy of arcond:-)
+	Write-Host "`tCleaning post-build command line"
+	# Culinary approach courtesy of arcond:-)
 	$banana = $prop.Value.Split("`n");
 	$dessert = ""
 	foreach ($scoop in $banana) 
-    {
+	{
 	   if (!($scoop.Contains($postBuildCheck))) 
-       {
-           # Keep this scoop
-	       $dessert = "$dessert$scoop`n"
+	   {
+		   # Keep this scoop
+		   $dessert = "$dessert$scoop`n"
 	   }
 	}
-    $prop.Value = $dessert.Trim()
+	$prop.Value = $dessert.Trim()
 #	write-host 'Removed ExcelDnaDoc post-build event'
 }
 

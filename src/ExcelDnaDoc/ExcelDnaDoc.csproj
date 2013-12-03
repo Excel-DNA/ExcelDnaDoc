@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\CommandListView.cs" />
+    <Compile Include="Views\CommandView.cs" />
     <Compile Include="Utility\ExcelDnaHelper.cs" />
     <Compile Include="Utility\ModelHelper.cs" />
     <Compile Include="HtmlHelp.cs" />
@@ -69,15 +71,21 @@
     <Compile Include="Utility\ConsoleHelper.cs" />
     <Compile Include="Utility\FileHelper.cs" />
     <Compile Include="Utility\HtmlHelpWorkshopHelper.cs" />
-    <Compile Include="Templates\FunctionTemplate.cs" />
-    <Compile Include="Templates\CategoryTemplate.cs" />
-    <Compile Include="Templates\UdfListTemplate.cs" />
-    <Compile Include="Templates\ProjectFileTemplate.cs" />
-    <Compile Include="Templates\TableOfContentsTemplate.cs" />
-    <Compile Include="Templates\CustomTemplateBase.cs" />
+    <Compile Include="Views\FunctionView.cs" />
+    <Compile Include="Views\CategoryView.cs" />
+    <Compile Include="Views\MethodListView.cs" />
+    <Compile Include="Views\ProjectView.cs" />
+    <Compile Include="Views\TableOfContentsView.cs" />
+    <Compile Include="Views\ViewBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="HelpContent\CommandListTemplate.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\CommandTemplate.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="web.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -90,8 +98,10 @@
     <None Include="HelpContent\FunctionTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="HelpContent\TableOfContentsTemplate.cshtml" />
-    <None Include="HelpContent\UdfListTemplate.cshtml">
+    <None Include="HelpContent\TableOfContentsTemplate.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\MethodListTemplate.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -105,7 +115,15 @@
     <Content Include="HelpContent\helpstyle.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="HelpContent\ProjectFileTemplate.cshtml" />
+    <None Include="HelpContent\_readme_.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\web.config.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\ProjectFileTemplate.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

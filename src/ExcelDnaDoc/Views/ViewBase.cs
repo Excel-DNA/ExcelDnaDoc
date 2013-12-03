@@ -8,7 +8,7 @@
     using RazorEngine;
     using RazorEngine.Templating;
 
-    public abstract class CustomTemplateBase<T> : TemplateBase<T>
+    public abstract class ViewBase<T> : TemplateBase<T>
     {
         public new T Model { get; set; }
 
@@ -20,37 +20,37 @@
         {
             get
             {
-                return Path.Combine(HtmlHelp.HelpContentFolderPath, this.ViewName + ".cshtml");
+                return Path.Combine(HtmlHelp.HelpContentFolderPath, this.TemplateName + ".cshtml");
             }
         }
 
-        public string ViewName
+        public string TemplateName
         {
             get
             {
-                return this.GetType().Name;
+                return this.GetType().Name.Replace("View","Template");
             }
         }
 
         public void Publish()
         {
             // check to see if template is in cache
-            if (!HtmlHelp.TemplateCache.ContainsKey(this.ViewName))
+            if (!HtmlHelp.TemplateCache.ContainsKey(this.TemplateName))
             {
                 // look for razorengine template otherwise use embedded one
                 if (File.Exists(this.ViewFilePath))
                 {
                     Console.WriteLine("using local template : " + Path.GetFileName(this.ViewFilePath));
-                    HtmlHelp.TemplateCache.Add(this.ViewName, File.ReadAllText(this.ViewFilePath));
+                    HtmlHelp.TemplateCache.Add(this.TemplateName, File.ReadAllText(this.ViewFilePath));
                 }
                 else
                 {
-                    HtmlHelp.TemplateCache.Add(this.ViewName, (new UTF8Encoding()).GetString(this.Template));
+                    HtmlHelp.TemplateCache.Add(this.TemplateName, (new UTF8Encoding()).GetString(this.Template));
                 }                
             }
 
             // unicode result
-            string content = Razor.Parse(HtmlHelp.TemplateCache[this.ViewName], this.Model);
+            string content = Razor.Parse(HtmlHelp.TemplateCache[this.TemplateName], this.Model);
 
             // strip non ANSI characters from result
             content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);

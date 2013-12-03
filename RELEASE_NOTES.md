@@ -10,3 +10,5 @@
 * added customizable templates and css style
 * no longer requires ExplicitExports=true
 * added uninstall script to NuGet package
+
+#### 0.1.15-alpha - unreleased

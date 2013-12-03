@@ -13,7 +13,7 @@
             <tr style="vertical-align: top">
                 <td style="width: 100%">
                     <div>
-                        <h1>User Defined Functions</h1>
+                        <h1>@Model.ProjectName Contents</h1>
                         <br>
 
                         @foreach (var group in Model.Categories)
@@ -22,8 +22,18 @@
 
                             foreach (var function in group.Functions)
                             {
-                            <p><a href="@(function.Name).htm">@function.Name</a></p>
+                                <p><a href="@(function.Name).htm">@function.Name</a></p>
                             }
+                        }
+
+                        @if (Model.Commands.Count() != 0)
+                        {
+                            <h3><a href="@Model.ProjectName Commands.htm">@Model.ProjectName Commands</a></h3>
+                            
+                            foreach (var command in Model.Commands)
+                            {
+                                <p><a href="@(command.Name).htm">@command.Name</a></p> 
+                            } 
                         }
                     </div>
                 </td>

@@ -68,6 +68,20 @@ else
 	(get-content $dnaFullPath) | foreach-object {$_ -replace "%ProjectName%"   , $projName       } | set-content $dnaFullPath
 }
 
+# initialize settings for razor templates
+$templateNames = "TableOfContentsTemplate.cshtml", "ProjectFileTemplate.cshtml", "MethodListTemplate.cshtml", "helpstyle.css",
+				 "FunctionTemplate.cshtml", "CommandTemplate.cshtml", "CommandListTemplate.cshtml", "CategoryTemplate.cshtml"
+
+$helpContentFolder =  $project.ProjectItems | Where-Object { $_.Name -eq "HelpContent" }
+$templateFiles = $helpContentFolder.ProjectItems | Where-Object { $templateNames -contains $_.Name}
+
+$webConfigFile = $helpContentFolder.ProjectItems | Where-Object { $_.Name -eq "web.config.txt" }
+$webConfigFile.Name = "web.config"
+
+foreach($file in $templateFiles)
+{
+	$file.Properties.Item("CopyToOutputDirectory").Value = 2 # Copy If Newer
+}
 
 Write-Host "`tAdding post-build commands"
 # We'd actually like to put $(ProjectDir)tools\Excel-DNA.0.30.0\tools\ExcelDna.xll

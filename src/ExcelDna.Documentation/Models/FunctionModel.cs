@@ -14,8 +14,12 @@
 
         public string ReturnType { get; set; }
 
-        public string TopidId { get; set; }
+        public string Returns { get; set; }
+
+        public string TopicId { get; set; }
 
         public string Summary { get; set; }
+
+        public string Remarks { get; set; }
     }
 }

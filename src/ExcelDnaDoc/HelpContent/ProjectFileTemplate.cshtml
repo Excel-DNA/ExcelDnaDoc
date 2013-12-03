@@ -1,13 +1,19 @@
 ﻿@model ExcelDna.Documentation.Models.AddInModel
 @using System.Text;
 @using System.Linq;
-@{ var functions = Model.Functions.Where(f => f.TopidId != string.Empty);
+@{ var functions = Model.Functions.Where(f => f.TopicId != string.Empty);
+   var commands = Model.Commands.Where(c => c.TopicId != string.Empty);
    var alias = new StringBuilder();
    var map = new StringBuilder();
    foreach (var f in functions)
    {
-       alias.AppendLine(string.Format("Topic{0}={1}.htm", f.TopidId, f.Name));
-       map.AppendLine(string.Format("#define Topic{0} {0}", f.TopidId));
+       alias.AppendLine(string.Format("Topic{0}={1}.htm", f.TopicId, f.Name));
+       map.AppendLine(string.Format("#define Topic{0} {0}", f.TopicId));
+   }
+   foreach (var c in commands)
+   {
+       alias.AppendLine(string.Format("Topic{0}={1}.htm", c.TopicId, c.Name));
+       map.AppendLine(string.Format("#define Topic{0} {0}", c.TopicId));
    }
    }
 [OPTIONS]
