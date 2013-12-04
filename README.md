@@ -122,11 +122,11 @@ Command Line Usage
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
          The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
 
-External libraries that have been marked as ExplicitExports="true" will be searched for UDFs 
-that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
+External libraries will be searched for UDFs and Commands
+that are exposed to Excel and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
 
-If The ExcelDna.Documentation library has been referenced then the ExcelFunctionSummaryAttribute 
-is also available to include a longer function summary that will not be exposed in the Excel Function 
+If The ExcelDna.Documentation library has been referenced then the ExcelFunctionDocAttribute 
+is also available to include additional documentation fields that will not be exposed in the Excel Function 
 Wizard, but will be included in the HTML Help Workshop content.  
 
 Dependencies
