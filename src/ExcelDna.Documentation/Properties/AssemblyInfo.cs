@@ -4,10 +4,10 @@ using System.Reflection;
 [assembly: AssemblyTitleAttribute("ExcelDna.Documentation")]
 [assembly: AssemblyProductAttribute("ExcelDnaDoc")]
 [assembly: AssemblyDescriptionAttribute("command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna")]
-[assembly: AssemblyVersionAttribute("0.1.15")]
-[assembly: AssemblyFileVersionAttribute("0.1.15")]
+[assembly: AssemblyVersionAttribute("0.1.16")]
+[assembly: AssemblyFileVersionAttribute("0.1.16")]
 namespace System {
     internal static class AssemblyVersionInformation {
-        internal const string Version = "0.1.15";
+        internal const string Version = "0.1.16";
     }
 }

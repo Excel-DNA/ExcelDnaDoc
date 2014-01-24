@@ -115,7 +115,7 @@
                 dnaLibrary
                 .ExternalLibraries
                 .SelectMany(library =>
-                    Assembly.LoadFile(dnaLibrary.ResolvePath(library.Path))
+                    Assembly.LoadFrom(dnaLibrary.ResolvePath(library.Path))
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
@@ -130,7 +130,7 @@
                 dnaLibrary
                 .ExternalLibraries
                 .SelectMany(library =>
-                    Assembly.LoadFile(dnaLibrary.ResolvePath(library.Path))
+                    Assembly.LoadFrom(dnaLibrary.ResolvePath(library.Path))
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidCommand(m))
