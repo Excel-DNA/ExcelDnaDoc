@@ -3,7 +3,10 @@
 ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna.
 
 * single help file created even if multiple library are specified in the "dna" file.  
-* can use customized templates and content
+* can use customized templates and content  
+
+Use the issues log to report any issues or give feedback for future enhancements.
+
 
 
 NuGet Package
@@ -50,7 +53,7 @@ The following fields are can be used to create documentation :
 | `ShortCut`		| if not used no shortcut will be included in documentation					|
 
 If ExcelDna.Documentation is included as a reference (default in NuGet package) then an additional 
-attribute `ExcelFunctionDoc` that is available as a replacement  to the `ExcelFunction` attribute 
+attribute `ExcelFunctionDoc` is available as a replacement to the `ExcelFunction` attribute 
 which includes additional fields that can be used for additional documentation.
 
 ### _ExcelFunctionDoc Attribute_
@@ -119,11 +122,11 @@ Command Line Usage
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
          The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
 
-External libraries that have been marked as ExplicitExports="true" will be searched for UDFs 
-that have been marked and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
+External libraries will be searched for UDFs and Commands
+that are exposed to Excel and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
 
-If The ExcelDna.Documentation library has been referenced then the ExcelFunctionSummaryAttribute 
-is also available to include a longer function summary that will not be exposed in the Excel Function 
+If The ExcelDna.Documentation library has been referenced then the ExcelFunctionDocAttribute 
+is also available to include additional documentation fields that will not be exposed in the Excel Function 
 Wizard, but will be included in the HTML Help Workshop content.  
 
 Dependencies

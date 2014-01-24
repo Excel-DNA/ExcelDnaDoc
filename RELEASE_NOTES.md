@@ -14,6 +14,9 @@
 #### 0.1.15 - 12/03/2013
 * added customizable razor templates with intellisense to NuGet installed content
 * breaking change - removed ExcelFunctionSummary attribute and replaced with ExcelFunctionDoc attribute which also implements ExcelFunction attribute from Excel-DNA
+<<<<<<< HEAD
 
 #### 0.1.16 - 1/24/2013
 * bug fix - if referenced assemblies referred to additional assemblies documentation failed
+=======
+>>>>>>> 3df232df6b8377c6bcd2529fee5159152c1d0fdc
