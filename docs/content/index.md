@@ -1,5 +1,5 @@
-ExcelDnaDoc
-===================
+ExcelDnaDoc - Documentation Builder for Excel-DNA
+=================================================
 ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna.
 
 * single help file created even if multiple library are specified in the "dna" file.  
