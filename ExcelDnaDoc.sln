@@ -3,12 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D041937F-32C5-472F-BE65-6E1285EC0429}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9982916-F06F-4618-9804-D02854FF526A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{B9982916-F06F-4618-9804-D02854FF526A}"
 	ProjectSection(SolutionItems) = preProject
-		build.bat = build.bat
 		build.fsx = build.fsx
 		LICENSE.txt = LICENSE.txt
-		publish.bat = publish.bat
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
@@ -25,6 +23,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4
 		nuget\uninstall.ps1 = nuget\uninstall.ps1
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{59032046-AD44-4EF8-B9A0-B75DC1927BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAddIn", "src\samples\MyAddIn\MyAddIn.csproj", "{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyLib", "src\samples\MyLib\MyLib.fsproj", "{EF06927C-F4F2-48E3-9A26-13F8F994695D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{34302A7E-E047-464D-9A58-6C53091326C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{20247996-742D-491D-841A-F8267908FD39}"
+	ProjectSection(SolutionItems) = preProject
+		docs\tools\generate.fsx = docs\tools\generate.fsx
+		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{ADAA0329-F9B5-4A18-A91C-5A5C27018CD0}"
+	ProjectSection(SolutionItems) = preProject
+		docs\content\csharp_example.md = docs\content\csharp_example.md
+		docs\content\csharp_simple.md = docs\content\csharp_simple.md
+		docs\content\example.fsx = docs\content\example.fsx
+		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\introduction.fsx = docs\content\introduction.fsx
+		docs\content\presentation.fsx = docs\content\presentation.fsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +61,14 @@ Global
 		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{498B3355-81A0-4946-AC0D-DED3B4E14A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +76,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F} = {D041937F-32C5-472F-BE65-6E1285EC0429}
 		{498B3355-81A0-4946-AC0D-DED3B4E14A0D} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+		{59032046-AD44-4EF8-B9A0-B75DC1927BAD} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
+		{20247996-742D-491D-841A-F8267908FD39} = {34302A7E-E047-464D-9A58-6C53091326C9}
+		{ADAA0329-F9B5-4A18-A91C-5A5C27018CD0} = {34302A7E-E047-464D-9A58-6C53091326C9}
 	EndGlobalSection
 EndGlobal

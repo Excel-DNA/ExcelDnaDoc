@@ -8,6 +8,7 @@ open System
 open System.IO
 open Fake 
 open Fake.AssemblyInfoFile
+open Fake.Git
 
 // --------------------------------------------------------------------------------------
 // Information about the project to be used at NuGet and in AssemblyInfo files
@@ -51,7 +52,9 @@ Target "AssemblyInfo" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Clean build results
 
-Target "Clean" (fun _ -> CleanDirs [ "bin" ])
+Target "Clean" (fun _ -> CleanDirs ["bin";"temp"])
+
+Target "CleanDocs" (fun _ -> CleanDirs ["docs/output"])
 
 // --------------------------------------------------------------------------------------
 // Build library (builds Visual Studio solution)
@@ -83,6 +86,37 @@ Target "NuGet" (fun _ ->
 )
 
 // --------------------------------------------------------------------------------------
+// Generate the documentation
+
+Target "GenerateDocs" (fun _ ->
+    executeFSIWithArgs "docs/tools" "generate.fsx" ["--define:RELEASE"] [] |> ignore
+)
+
+
+// --------------------------------------------------------------------------------------
+// Release Scripts
+
+Target "ReleaseDocs" (fun _ ->
+    Repository.clone "" (gitHome + "/" + gitName + ".git") "temp/gh-pages"
+    Branches.checkoutBranch "temp/gh-pages" "gh-pages"
+    CopyRecursive "docs/output" "temp/gh-pages" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
+    let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
+    CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
+    Branches.push "temp/gh-pages"
+)
+
+Target "ReleaseBinaries" (fun _ ->
+    Repository.clone "" (gitHome + "/" + gitName + ".git") "temp/release"
+    Branches.checkoutBranch "temp/release" "release"
+    CopyRecursive "bin" "temp/release" true |> printfn "%A"
+    CommandHelper.runSimpleGitCommand "temp/release" "add ." |> printfn "%s"
+    let cmd = sprintf """commit -a -m "Update binaries for version %s""" release.NugetVersion
+    CommandHelper.runSimpleGitCommand "temp/release" cmd |> printfn "%s"
+    Branches.push "temp/release"
+)
+
+// --------------------------------------------------------------------------------------
 // Help
 
 Target "Help" (fun _ ->
@@ -91,9 +125,14 @@ Target "Help" (fun _ ->
     printfn ""
     printfn "  Targets for building:"
     printfn "  * Build"
+    printfn "  * All (calls previous 1)"
     printfn ""
     printfn "  Targets for releasing:"
+    printfn "  * GenerateDocs"
+    printfn "  * ReleaseDocs (calls previous)"
+    printfn "  * ReleaseBinaries"
     printfn "  * NuGet (creates package only, doesn't publish)"
+    printfn "  * Release (calls previous 4)"
     printfn "")
 
 Target "All" DoNothing
@@ -101,7 +140,13 @@ Target "All" DoNothing
 "Clean" 
 ==> "AssemblyInfo" 
 ==> "Build" 
-==> "NuGet" 
 ==> "All"
+
+Target "Release" DoNothing
+"All" ==> "CleanDocs"
+"CleanDocs" ==> "GenerateDocs" ==> "ReleaseDocs"
+"ReleaseDocs" ==> "Release"
+"ReleaseBinaries" ==> "Release"
+"NuGet" ==> "Release"
 
 RunTargetOrDefault "Help"
