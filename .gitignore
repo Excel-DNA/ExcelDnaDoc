@@ -5,11 +5,9 @@ obj/
 # build folder
 bin/
 
-.project
-
 publish.bat
 
-*.csproj.user
+*.user
 
 # NuGet Packages Directory
 packages/
@@ -25,3 +23,6 @@ TestResults.xml
 
 # Nuget outputs
 nuget/*.nupkg
+nuget/*.nuspec
+
+.project

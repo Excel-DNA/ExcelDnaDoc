@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{20247996
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{ADAA0329-F9B5-4A18-A91C-5A5C27018CD0}"
 	ProjectSection(SolutionItems) = preProject
-		docs\content\index.fsx = docs\content\index.fsx
+		docs\content\index.md = docs\content\index.md
 	EndProjectSection
 EndProject
 Global

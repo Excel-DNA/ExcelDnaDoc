@@ -1,9 +1,3 @@
-(*** hide ***)
-// This block of code is omitted in the generated HTML documentation. Use 
-// it to define helpers that you do not want to show in the documentation.
-#I "../../bin"
-
-(**
 ExcelDnaDoc
 ===================
 ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna.
@@ -16,10 +10,10 @@ Use the [issues log][issues] to report any issues or give feedback for future en
 <div class="row">
   <div class="span1"></div>
   <div class="span6">
-	<div class="well well-small" id="nuget">
-	  The ExcelDnaDoc library can be <a href="https://nuget.org/packages/ExcelDnaDoc">installed from NuGet</a>:
-	  <pre>PM> Install-Package ExcelDnaDoc</pre>
-	</div>
+    <div class="well well-small" id="nuget">
+      The ExcelDnaDoc library can be <a href="https://nuget.org/packages/ExcelDnaDoc">installed from NuGet</a>:
+      <pre>PM> Install-Package ExcelDnaDoc</pre>
+    </div>
   </div>
   <div class="span1"></div>
 </div>
@@ -27,8 +21,7 @@ Use the [issues log][issues] to report any issues or give feedback for future en
 <p>Alternatively, you can download the <a href="https://github.com/mndrake/ExcelDnaDoc/zipball/master">source as a ZIP file</a> or download 
 the <a href="https://github.com/mndrake/ExcelDnaDoc/zipball/release">compiled binaries</a> as a ZIP.</p>  
 
-To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed 
-(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+To build a compiled help file (.chm) the [HTML Help Workshop](http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx) (HHW) must be installed.
 ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. 
 If it is installed at another location change `packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config` 
 to reference the proper directory before compiling your project.  
@@ -85,56 +78,54 @@ which includes additional fields that can be used for additional documentation.
 Example
 ------------------
 
-**F#**
-```fsharp
-namespace DocTest
-open ExcelDna.Integration
-open ExcelDna.Documentation
+    **F#**
+    [lang=fsharp]
+    namespace DocTest
+    open ExcelDna.Integration
+    open ExcelDna.Documentation
 
-module Math =
+    module Math =
 
-	[<ExcelFunctionDoc( Name = "Math.AddThem", Category = "Math", 
-						Description = "adds two numbers", 
-						HelpTopic = "DocTest-AddIn.chm!1001",
-						Summary = "really all it does is add two number ... I promise.",
-						Returns = "the sum of the two arguments")>]
-	let addThem
-		(
-			[<ExcelArgument(Name = "Arg1", Description = "the first argument")>]a,
-			[<ExcelArgument(Name = "Arg2", Description = "the second argument")>]b
-		) = 
-		
-		a+b
-```
+        [<ExcelFunctionDoc( Name = "Math.AddThem", Category = "Math", 
+                            Description = "adds two numbers", 
+                            HelpTopic = "DocTest-AddIn.chm!1001",
+                            Summary = "really all it does is add two number ... I promise.",
+                            Returns = "the sum of the two arguments")>]
+        let addThem
+            (
+                [<ExcelArgument(Name = "Arg1", Description = "the first argument")>]a,
+                [<ExcelArgument(Name = "Arg2", Description = "the second argument")>]b
+            ) = 
+        
+            a+b
 
-**C#**
-```csharp
-namespace DocTest
-{
-	using ExcelDna.Integration;
-	
-	public class Text 
-	{
-		[ExcelFunction( Name = "Text.ConcatThem", 
-						Description = "concatenates two strings", 
-						HelpTopic = "DocTest-AddIn.chm!1002")]
-		public static object ConcatThem(
-			[ExcelArgument(Description="the first string")] object a, 
-			[ExcelArgument(Description="the second string")] object b)
-		{
-			return string.Concat(a.ToString(), b.ToString());
-		}
-	}
-}
-```
+    **C#**
+    [lang=csharp]
+    namespace DocTest
+    {
+        using ExcelDna.Integration;
+    
+        public class Text 
+        {
+            [ExcelFunction( Name = "Text.ConcatThem", 
+                            Description = "concatenates two strings", 
+                            HelpTopic = "DocTest-AddIn.chm!1002")]
+            public static object ConcatThem(
+                [ExcelArgument(Description="the first string")] object a, 
+                [ExcelArgument(Description="the second string")] object b)
+            {
+                return string.Concat(a.ToString(), b.ToString());
+            }
+        }
+    }
 
 Command Line Usage
 ------------------
-	ExcelDnaDoc.exe dnaPath  
+    ExcelDnaDoc.exe dnaPath  
 `dnaPath` The path to the primary .dna file for the ExcelDna add-in.  
 
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
-		 The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
+         The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  
 
 External libraries will be searched for UDFs and Commands
 that are exposed to Excel and documented using the ExcelFunctionAttribute and the ExcelArgumentAttribute.  
@@ -143,19 +134,17 @@ If The ExcelDna.Documentation library has been referenced then the ExcelFunction
 is also available to include additional documentation fields that will not be exposed in the Excel Function 
 Wizard, but will be included in the HTML Help Workshop content.  
 
-Dependencies
-------------------
- NuGet Package Manager(http://nuget.codeplex.com/)  
- FAKE (F# MAKE) (http://fsharp.github.io/FAKE/)  
- Excel-DNA (http://exceldna.codeplex.com/)  
- RazorEngine(https://github.com/Antaris/RazorEngine)  
- HTML Help Workshop(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
+Dependencies that Must be Installed to use ExcelDnaDoc NuGet Package
+--------------------------------------------------------------------
+ [NuGet Package Manager] (http://nuget.codeplex.com/)  
+ [Excel-DNA] (http://exceldna.codeplex.com/)  
+ [HTML Help Workshop ](http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
 
+Outside Projects Used by ExcelDnaDoc (do not need to be installed by user)
+--------------------------------------------------------------------------
+ [FAKE (F# MAKE)] (http://fsharp.github.io/FAKE/)  
+ [RazorEngine] (https://github.com/Antaris/RazorEngine)  
 
-Samples & documentation
------------------------
-
- * [API Reference](reference/index.html) all public types, modules and functions in the library.  
  
 Contributing and copyright
 --------------------------
@@ -172,4 +161,3 @@ redistribution for both commercial and non-commercial purposes. For more informa
   [issues]: https://github.com/mndrake/ExcelDnaDoc/issues
   [readme]: https://github.com/mndrake/ExcelDnaDoc/blob/master/README.md
   [license]: https://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt
-*)
