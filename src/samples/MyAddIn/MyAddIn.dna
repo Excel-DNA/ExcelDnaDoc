@@ -1,0 +1,5 @@
+<DnaLibrary Name="MyAddIn" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="MyAddIn.dll" LoadFromBytes="true" Pack="true" ExplicitExports="true" />
+  <ExternalLibrary Path="MyLib.dll" LoadFromBytes="true" Pack="true" ExplicitExports="true" />
+  <Reference Path="ExcelDna.Documentation.dll" Pack="true" />
+</DnaLibrary>
