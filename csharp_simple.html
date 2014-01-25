@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>csharp_simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna">
+    <meta name="author" content="David Carlson">
+
+    <script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="/ExcelDnaDoc/content/style.css" />
+    <script type="text/javascript" src="/ExcelDnaDoc/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/mndrake/ExcelDnaDoc">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/ExcelDnaDoc/index.html">ExcelDnaDoc</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+<h2>C# Simple Example</h2>
+
+<p>Review the GitHub site for an example of this in a MVVM app.</p>
+
+<pre lang="csharp"><span class="k">using</span> System;
+<span class="k">using</span> Arcadia;
+
+<span class="k">public</span> <span class="k">class</span> SimpleCalculationEngine : CalculationEngine
+{
+    <span class="k">public</span> SimpleCalculationEngine()
+        : <span class="k">base</span>()
+    {
+        <span class="c">// NodeFunc wrappers around static methods</span>
+
+        <span class="k">var</span> add2 = <span class="k">new</span> NodeFunc&lt;Tuple&lt;<span class="k">int</span>, <span class="k">int</span>&gt;, <span class="k">int</span>&gt;
+                    (x =&gt; SimpleMethods.Add2(x.Item1, x.Item2));
+        <span class="k">var</span> add3 = <span class="k">new</span> NodeFunc&lt;Tuple&lt;<span class="k">int</span>, <span class="k">int</span>, <span class="k">int</span>&gt;, <span class="k">int</span>&gt;
+                    (x =&gt; SimpleMethods.Add3(x.Item1, x.Item2, x.Item3));
+
+        <span class="c">// input nodes</span>
+
+        <span class="k">var</span> in0 = AddInput(1);
+        <span class="k">var</span> in1 = AddInput(1);
+        <span class="k">var</span> in2 = AddInput(1);
+        <span class="k">var</span> in3 = AddInput(1);
+        <span class="k">var</span> in4 = AddInput(1);
+        <span class="k">var</span> in5 = AddInput(1);
+        <span class="k">var</span> in6 = AddInput(1);
+        <span class="k">var</span> in7 = AddInput(1);
+        <span class="k">var</span> in8 = AddInput(1);
+        <span class="k">var</span> in9 = AddInput(1);
+        <span class="k">var</span> in10 = AddInput(1);
+        <span class="k">var</span> in11 = AddInput(1);
+        <span class="k">var</span> in12 = AddInput(1);
+        <span class="k">var</span> in13 = AddInput(1);
+
+        <span class="c">// output nodes</span>
+
+        <span class="c">//main calculation chain</span>
+
+        <span class="k">var</span> out0 = AddOutput(Tuple.Create(in0, in1), add2);
+        <span class="k">var</span> out1 = AddOutput(Tuple.Create(in2, in3), add2);
+        <span class="k">var</span> out2 = AddOutput(Tuple.Create(in4, in5, in6), add3);
+        <span class="k">var</span> out3 = AddOutput(Tuple.Create(in7, in8), add2);
+        <span class="k">var</span> out4 = AddOutput(Tuple.Create(out1, out2), add2);
+        <span class="k">var</span> out5 = AddOutput(Tuple.Create(out0, out3), add2);
+        <span class="k">var</span> out6 = AddOutput(Tuple.Create(in9, in10), add2);
+        <span class="k">var</span> out7 = AddOutput(Tuple.Create(in11, in12), add2);
+        <span class="k">var</span> out8 = AddOutput(Tuple.Create(out4, out6), add2);
+        <span class="k">var</span> out9 = AddOutput(Tuple.Create(out5, out7, out8), add3);
+
+        <span class="c">// secondary calculation chain</span>
+        <span class="k">var</span> out10 = AddOutput(Tuple.Create(out0, out5), add2);
+
+        <span class="c">// single input -&gt; output example</span>
+        <span class="k">var</span> out11 = AddOutput(in13, <span class="k">new</span> NodeFunc&lt;<span class="k">int</span>, <span class="k">int</span>&gt;(x =&gt; x));
+    }
+}</pre>
+
+
+        </div>
+        <div class="span3">
+          <ul class="nav nav-list" id="menu">
+            <li class="nav-header">ExcelDnaDoc</li>
+            <li><a href="/ExcelDnaDoc/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/ExcelDnaDoc">Get Library via NuGet</a></li>
+            <li><a href="http://github.com/mndrake/ExcelDnaDoc">Source Code on GitHub</a></li>
+            <li><a href="http://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt">License</a></li>
+            <li><a href="http://github.com/mndrake/ExcelDnaDoc/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/ExcelDnaDoc/introduction.html">Introduction</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/ExcelDnaDoc/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/mndrake/ExcelDnaDoc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  </body>
+  </html>
