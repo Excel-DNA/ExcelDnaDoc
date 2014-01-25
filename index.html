@@ -58,8 +58,7 @@
 <p>Alternatively, you can download the <a href="https://github.com/mndrake/ExcelDnaDoc/zipball/master">source as a ZIP file</a> or download 
 the <a href="https://github.com/mndrake/ExcelDnaDoc/zipball/release">compiled binaries</a> as a ZIP.</p>  
 
-<p>To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed 
-(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+<p>To build a compiled help file (.chm) the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx">HTML Help Workshop</a> (HHW) must be installed.
 ExcelDnaDoc expects HHW to be installed at <code>C:\Program Files (x86)\HTML Help Workshop\</code>. 
 If it is installed at another location change <code>packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config</code> 
 to reference the proper directory before compiling your project.</p>
@@ -204,44 +203,6 @@ which includes additional fields that can be used for additional documentation.<
 
 <h2>Example</h2>
 
-<p><strong>F#</strong>
-<code></code>`fsharp
-namespace DocTest
-open ExcelDna.Integration
-open ExcelDna.Documentation</p>
-
-<p>module Math =</p>
-
-<table class="pre"><tr><td class="lines"><pre class="fssnip">
-<span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-</pre>
-</td>
-<td class="snippet"><pre class="fssnip">
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">addThem</span>
-    (
-        [&lt;<span class="i">ExcelArgument</span>(<span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Arg1</span><span class="s">&quot;</span>, <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">first</span><span class="s"> </span><span class="s">argument</span><span class="s">&quot;</span>)&gt;]<span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">a</span>,
-        [&lt;<span class="i">ExcelArgument</span>(<span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Arg2</span><span class="s">&quot;</span>, <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">second</span><span class="s"> </span><span class="s">argument</span><span class="s">&quot;</span>)&gt;]<span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">b</span>
-    ) <span class="o">=</span> 
-
-    <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="i">a</span><span class="o">+</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="i">b</span></pre>
-</td>
-</tr>
-</table>
-
-<p><code></code>`</p>
-
-<p><strong>C#</strong>
-<code></code>`csharp
-namespace DocTest
-{
-    using ExcelDna.Integration;</p>
-
 <table class="pre"><tr><td class="lines"><pre class="fssnip">
 <span class="l"> 1: </span>
 <span class="l"> 2: </span>
@@ -255,27 +216,80 @@ namespace DocTest
 <span class="l">10: </span>
 <span class="l">11: </span>
 <span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+<span class="l">20: </span>
+<span class="l">21: </span>
+<span class="l">22: </span>
+<span class="l">23: </span>
+<span class="l">24: </span>
+<span class="l">25: </span>
+<span class="l">26: </span>
+<span class="l">27: </span>
+<span class="l">28: </span>
+<span class="l">29: </span>
+<span class="l">30: </span>
+<span class="l">31: </span>
+<span class="l">32: </span>
+<span class="l">33: </span>
+<span class="l">34: </span>
+<span class="l">35: </span>
+<span class="l">36: </span>
+<span class="l">37: </span>
+<span class="l">38: </span>
+<span class="l">39: </span>
+<span class="l">40: </span>
 </pre>
 </td>
 <td class="snippet"><pre class="fssnip">
-<span class="k">public</span> <span class="k">class</span> <span class="i">Text</span> 
+<span class="o">**</span><span class="i">F#</span><span class="o">**</span>
+[<span class="i">lang</span><span class="o">=</span><span class="i">fsharp</span>]
+<span class="k">namespace</span> <span class="i">DocTest</span>
+<span class="k">open</span> <span class="i">ExcelDna</span><span class="o">.</span><span class="i">Integration</span>
+<span class="k">open</span> <span class="i">ExcelDna</span><span class="o">.</span><span class="i">Documentation</span>
+
+<span class="k">module</span> <span class="i">Math</span> <span class="o">=</span>
+
+    [&lt;<span class="i">ExcelFunctionDoc</span>( <span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Math</span><span class="s">.</span><span class="s">AddThem</span><span class="s">&quot;</span>, <span class="i">Category</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Math</span><span class="s">&quot;</span>, 
+                        <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">adds</span><span class="s"> </span><span class="s">two</span><span class="s"> </span><span class="s">numbers</span><span class="s">&quot;</span>, 
+                        <span class="i">HelpTopic</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">DocTest</span><span class="s">-</span><span class="s">AddIn</span><span class="s">.</span><span class="s">chm</span><span class="s">!</span><span class="s">1001</span><span class="s">&quot;</span>,
+                        <span class="i">Summary</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">really</span><span class="s"> </span><span class="s">all</span><span class="s"> </span><span class="s">it</span><span class="s"> </span><span class="s">does</span><span class="s"> </span><span class="s">is</span><span class="s"> </span><span class="s">add</span><span class="s"> </span><span class="s">two</span><span class="s"> </span><span class="s">number</span><span class="s"> </span><span class="s">.</span><span class="s">.</span><span class="s">.</span><span class="s"> </span><span class="s">I</span><span class="s"> </span><span class="s">promise</span><span class="s">.</span><span class="s">&quot;</span>,
+                        <span class="i">Returns</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">sum</span><span class="s"> </span><span class="s">of</span><span class="s"> </span><span class="s">the</span><span class="s"> </span><span class="s">two</span><span class="s"> </span><span class="s">arguments</span><span class="s">&quot;</span>)&gt;]
+    <span class="k">let</span> <span class="i">addThem</span>
+        (
+            [&lt;<span class="i">ExcelArgument</span>(<span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Arg1</span><span class="s">&quot;</span>, <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">first</span><span class="s"> </span><span class="s">argument</span><span class="s">&quot;</span>)&gt;]<span class="i">a</span>,
+            [&lt;<span class="i">ExcelArgument</span>(<span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Arg2</span><span class="s">&quot;</span>, <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">second</span><span class="s"> </span><span class="s">argument</span><span class="s">&quot;</span>)&gt;]<span class="i">b</span>
+        ) <span class="o">=</span> 
+
+        <span class="i">a</span><span class="o">+</span><span class="i">b</span>
+
+<span class="o">**</span><span class="i">C#</span><span class="o">**</span>
+[<span class="i">lang</span><span class="o">=</span><span class="i">csharp</span>]
+<span class="k">namespace</span> <span class="i">DocTest</span>
 {
-    [<span class="i">ExcelFunction</span>( <span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Text</span><span class="s">.</span><span class="s">ConcatThem</span><span class="s">&quot;</span>, 
-                    <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">concatenates</span><span class="s"> </span><span class="s">two</span><span class="s"> </span><span class="s">strings</span><span class="s">&quot;</span>, 
-                    <span class="i">HelpTopic</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">DocTest</span><span class="s">-</span><span class="s">AddIn</span><span class="s">.</span><span class="s">chm</span><span class="s">!</span><span class="s">1002</span><span class="s">&quot;</span>)]
-    <span class="k">public</span> <span class="k">static</span> <span class="i">object</span> <span class="i">ConcatThem</span>(
-        [<span class="i">ExcelArgument</span>(<span class="i">Description</span><span class="o">=</span><span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">first</span><span class="s"> </span><span class="s">string</span><span class="s">&quot;</span>)] <span class="i">object</span> <span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="i">a</span>, 
-        [<span class="i">ExcelArgument</span>(<span class="i">Description</span><span class="o">=</span><span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">second</span><span class="s"> </span><span class="s">string</span><span class="s">&quot;</span>)] <span class="i">object</span> <span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="i">b</span>)
+    <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">using</span> <span class="i">ExcelDna</span><span class="o">.</span><span class="i">Integration</span>;
+
+    <span class="k">public</span> <span class="k">class</span> <span class="i">Text</span> 
     {
-        <span class="k">return</span> <span onmouseout="hideTip(event, 'fs4', 8)" onmouseover="showTip(event, 'fs4', 8)" class="i">string</span><span class="o">.</span><span class="i">Concat</span>(<span onmouseout="hideTip(event, 'fs2', 9)" onmouseover="showTip(event, 'fs2', 9)" class="i">a</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="i">ToString</span>(), <span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="i">b</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 12)" onmouseover="showTip(event, 'fs5', 12)" class="i">ToString</span>());
+        [<span class="i">ExcelFunction</span>( <span class="i">Name</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">Text</span><span class="s">.</span><span class="s">ConcatThem</span><span class="s">&quot;</span>, 
+                        <span class="i">Description</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">concatenates</span><span class="s"> </span><span class="s">two</span><span class="s"> </span><span class="s">strings</span><span class="s">&quot;</span>, 
+                        <span class="i">HelpTopic</span> <span class="o">=</span> <span class="s">&quot;</span><span class="s">DocTest</span><span class="s">-</span><span class="s">AddIn</span><span class="s">.</span><span class="s">chm</span><span class="s">!</span><span class="s">1002</span><span class="s">&quot;</span>)]
+        <span class="k">public</span> <span class="k">static</span> <span class="i">object</span> <span class="i">ConcatThem</span>(
+            [<span class="i">ExcelArgument</span>(<span class="i">Description</span><span class="o">=</span><span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">first</span><span class="s"> </span><span class="s">string</span><span class="s">&quot;</span>)] <span class="i">object</span> <span class="i">a</span>, 
+            [<span class="i">ExcelArgument</span>(<span class="i">Description</span><span class="o">=</span><span class="s">&quot;</span><span class="s">the</span><span class="s"> </span><span class="s">second</span><span class="s"> </span><span class="s">string</span><span class="s">&quot;</span>)] <span class="i">object</span> <span class="i">b</span>)
+        {
+            <span class="k">return</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">string</span><span class="o">.</span><span class="i">Concat</span>(<span class="i">a</span><span class="o">.</span><span class="i">ToString</span>(), <span class="i">b</span><span class="o">.</span><span class="i">ToString</span>());
+        }
     }
 }</pre>
 </td>
 </tr>
 </table>
-
-<p>}
-<code></code>`</p>
 
 <h2>Command Line Usage</h2>
 
@@ -301,19 +315,16 @@ that are exposed to Excel and documented using the ExcelFunctionAttribute and th
 is also available to include additional documentation fields that will not be exposed in the Excel Function 
 Wizard, but will be included in the HTML Help Workshop content.</p>
 
-<h2>Dependencies</h2>
+<h2>Dependencies that Must be Installed to use ExcelDnaDoc NuGet Package</h2>
 
-<p>NuGet Package Manager(http://nuget.codeplex.com/)<br />
- FAKE (F# MAKE) (http://fsharp.github.io/FAKE/)<br />
- Excel-DNA (http://exceldna.codeplex.com/)<br />
- RazorEngine(https://github.com/Antaris/RazorEngine)<br />
- HTML Help Workshop(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)</p>
+<p>[NuGet Package Manager] (http://nuget.codeplex.com/)<br />
+ [Excel-DNA] (http://exceldna.codeplex.com/)<br />
+ <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx">HTML Help Workshop </a></p>
 
-<h2>Samples &amp; documentation</h2>
+<h2>Outside Projects Used by ExcelDnaDoc (do not need to be installed by user)</h2>
 
-<ul>
-<li><a href="reference/index.html">API Reference</a> all public types, modules and functions in the library.</li>
-</ul>
+<p>[FAKE (F# MAKE)] (http://fsharp.github.io/FAKE/)<br />
+ [RazorEngine] (https://github.com/Antaris/RazorEngine)</p>
 
 <h2>Contributing and copyright</h2>
 
@@ -324,11 +335,8 @@ the project and submit pull requests.</p>
 redistribution for both commercial and non-commercial purposes. For more information see the 
 <a href="https://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt">License file</a> in the GitHub repository.</p>
 
-<div class="tip" id="fs1">val addThem : a:int * b:int -&gt; int<br /><br />Full name: index.addThem</div>
-<div class="tip" id="fs2">val a : int</div>
-<div class="tip" id="fs3">val b : int</div>
-<div class="tip" id="fs4">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
-<div class="tip" id="fs5">System.Int32.ToString() : string<br />System.Int32.ToString(provider: System.IFormatProvider) : string<br />System.Int32.ToString(format: string) : string<br />System.Int32.ToString(format: string, provider: System.IFormatProvider) : string</div>
+<div class="tip" id="fs1">val using : resource:&#39;T -&gt; action:(&#39;T -&gt; &#39;U) -&gt; &#39;U (requires &#39;T :&gt; System.IDisposable)<br /><br />Full name: Microsoft.FSharp.Core.Operators.using</div>
+<div class="tip" id="fs2">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = System.String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
 
         </div>
         <div class="span3">
@@ -341,11 +349,6 @@ redistribution for both commercial and non-commercial purposes. For more informa
             <li><a href="http://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt">License</a></li>
             <li><a href="http://github.com/mndrake/ExcelDnaDoc/blob/master/RELEASE_NOTES.md">Release Notes</a></li>
             
-            <li class="nav-header">Getting started</li>
-            <li><a href="/ExcelDnaDoc/introduction.html">Introduction</a></li>
-
-            <li class="nav-header">Documentation</li>
-            <li><a href="/ExcelDnaDoc/reference/index.html">API Reference</a></li>
           </ul>
         </div>
       </div>
