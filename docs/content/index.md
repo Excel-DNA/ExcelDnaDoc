@@ -134,17 +134,13 @@ If The ExcelDna.Documentation library has been referenced then the ExcelFunction
 is also available to include additional documentation fields that will not be exposed in the Excel Function 
 Wizard, but will be included in the HTML Help Workshop content.  
 
-Dependencies that Must be Installed to use ExcelDnaDoc NuGet Package
---------------------------------------------------------------------
- [NuGet Package Manager] (http://nuget.codeplex.com/)  
- [Excel-DNA] (http://exceldna.codeplex.com/)  
+This Project Uses
+-----------------
+ [Excel-DNA](http://exceldna.codeplex.com/)  
+ [FAKE (F# MAKE)](http://fsharp.github.io/FAKE/)  
  [HTML Help Workshop ](http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
-
-Outside Projects Used by ExcelDnaDoc (do not need to be installed by user)
---------------------------------------------------------------------------
- [FAKE (F# MAKE)] (http://fsharp.github.io/FAKE/)  
- [RazorEngine] (https://github.com/Antaris/RazorEngine)  
-
+ [NuGet Package Manager](http://nuget.codeplex.com/)  
+ [RazorEngine](https://github.com/Antaris/RazorEngine)  
  
 Contributing and copyright
 --------------------------
