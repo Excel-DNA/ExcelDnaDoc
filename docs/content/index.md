@@ -78,7 +78,8 @@ which includes additional fields that can be used for additional documentation.
 Example
 ------------------
 
-    **F#**
+**F#**  
+
     [lang=fsharp]
     namespace DocTest
     open ExcelDna.Integration
@@ -99,7 +100,8 @@ Example
         
             a+b
 
-    **C#**
+**C#**  
+
     [lang=csharp]
     namespace DocTest
     {
