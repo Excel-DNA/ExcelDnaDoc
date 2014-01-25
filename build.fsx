@@ -60,8 +60,11 @@ Target "CleanDocs" (fun _ -> CleanDirs ["docs/output"])
 // Build library (builds Visual Studio solution)
 
 Target "Build" (fun _ ->
-    MSBuildRelease "bin" "Rebuild" ["ExcelDnaDoc.sln"]
-    |> Log "Build-Output: "
+    !! "src/ExcelDna.Documentation/ExcelDna.Documentation.dll"
+    ++ "src/ExcelDnaDoc/ExcelDnaDoc.dll"
+    |> MSBuildRelease "bin" "Rebuild"
+    |> ignore
+//    |> Log "Build-Output: "
 )
 
 // --------------------------------------------------------------------------------------
