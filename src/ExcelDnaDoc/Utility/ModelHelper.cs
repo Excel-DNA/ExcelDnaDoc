@@ -82,6 +82,7 @@
             {
                 if (excelFunctionSummary.Summary != null) { function.Summary = excelFunctionSummary.Summary; }
                 if (excelFunctionSummary.Returns != null) { function.Returns = excelFunctionSummary.Returns; }
+                if (excelFunctionSummary.Remarks != null) { function.Remarks = excelFunctionSummary.Remarks; } 
             }
 
             // check if ExcelFunctionAttribute used
