@@ -26,3 +26,5 @@ nuget/*.nupkg
 nuget/*.nuspec
 
 .project
+
+**/_Resharper.*/**
