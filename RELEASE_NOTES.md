@@ -17,3 +17,6 @@
 
 #### 0.1.16 - 1/24/2013
 * bug fix - if referenced assemblies referred to additional assemblies documentation failed
+
+#### 0.1.17 - 1/28/2013
+* bug fix - if ExcelFunctionDoc attribute was used the Remarks property was not flowing through to the generated documentation.
