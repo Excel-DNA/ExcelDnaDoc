@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExcelDna.Documentation, Version=0.1.16.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.0.1.16\lib\net40\ExcelDna.Documentation.dll</HintPath>
+    <Reference Include="ExcelDna.Documentation, Version=0.1.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ExcelDnaDoc.0.1.17\lib\net40\ExcelDna.Documentation.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDna.Integration">
       <HintPath>..\..\..\packages\Excel-DNA.0.30.3\lib\ExcelDna.Integration.dll</HintPath>
@@ -92,7 +92,7 @@
   <PropertyGroup>
     <PostBuildEvent>echo F | xcopy "$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDna.xll" "$(TargetDir)MyAddIn.xll" /C /Y
 "$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn.dna" /Y
-"$(SolutionDir)packages\ExcelDnaDoc.0.1.16\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
+"C:\Github\ExcelDnaDoc\packages\ExcelDnaDoc.0.1.17\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>IF EXIST “$(TargetDir)MyAddIn-packed.xll” DEL “$(TargetDir)MyAddIn-packed.xll”</PreBuildEvent>
