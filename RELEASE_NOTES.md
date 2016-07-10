@@ -20,3 +20,9 @@
 
 #### 0.1.17 - 1/28/2014
 * bug fix - if ExcelFunctionDoc attribute was used the Remarks property was not flowing through to the generated documentation.
+
+#### 0.2.0-beta - 7/10/2016
+* upgraded to use new ExcelDna.AddIn package
+
+#### 0.2.1 - 7/10/2016
+* upgraded to use new ExcelDna.AddIn package (0.33.9)

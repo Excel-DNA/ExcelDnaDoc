@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D041937F-32C5-472F-BE65-6E1285EC0429}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{B9982916-F06F-4618-9804-D02854FF526A}"
@@ -11,10 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{B998
 		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4-465E-4561-83F2-28B3853A3646}"
 	ProjectSection(SolutionItems) = preProject
 		nuget\ExcelDnaDoc-Template.dna = nuget\ExcelDnaDoc-Template.dna
@@ -24,10 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{E75256E4
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{59032046-AD44-4EF8-B9A0-B75DC1927BAD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAddIn", "src\samples\MyAddIn\MyAddIn.csproj", "{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyLib", "src\samples\MyLib\MyLib.fsproj", "{EF06927C-F4F2-48E3-9A26-13F8F994695D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{34302A7E-E047-464D-9A58-6C53091326C9}"
 EndProject
@@ -41,6 +35,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{ADAA
 	ProjectSection(SolutionItems) = preProject
 		docs\content\index.md = docs\content\index.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAddIn", "src\samples\MyAddIn\MyAddIn.csproj", "{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MyLib", "src\samples\MyLib\MyLib.fsproj", "{EF06927C-F4F2-48E3-9A26-13F8F994695D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,12 +71,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F} = {D041937F-32C5-472F-BE65-6E1285EC0429}
-		{498B3355-81A0-4946-AC0D-DED3B4E14A0D} = {D041937F-32C5-472F-BE65-6E1285EC0429}
 		{59032046-AD44-4EF8-B9A0-B75DC1927BAD} = {D041937F-32C5-472F-BE65-6E1285EC0429}
-		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
-		{EF06927C-F4F2-48E3-9A26-13F8F994695D} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
 		{20247996-742D-491D-841A-F8267908FD39} = {34302A7E-E047-464D-9A58-6C53091326C9}
 		{ADAA0329-F9B5-4A18-A91C-5A5C27018CD0} = {34302A7E-E047-464D-9A58-6C53091326C9}
+		{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+		{498B3355-81A0-4946-AC0D-DED3B4E14A0D} = {D041937F-32C5-472F-BE65-6E1285EC0429}
+		{EB06A18A-DBB0-4AEE-BCE9-325C5FD362F5} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
+		{EF06927C-F4F2-48E3-9A26-13F8F994695D} = {59032046-AD44-4EF8-B9A0-B75DC1927BAD}
 	EndGlobalSection
 EndGlobal

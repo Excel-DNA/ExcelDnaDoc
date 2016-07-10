@@ -30,11 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExcelDna.Documentation, Version=0.1.17.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.0.1.17\lib\net40\ExcelDna.Documentation.dll</HintPath>
+    <Reference Include="ExcelDna.Documentation, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.0-beta\lib\net40\ExcelDna.Documentation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ExcelDna.Integration">
-      <HintPath>..\..\..\packages\Excel-DNA.0.30.3\lib\ExcelDna.Integration.dll</HintPath>
+    <Reference Include="ExcelDna.Integration, Version=0.33.5730.40390, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ExcelDna.Integration.0.33.9\lib\ExcelDna.Integration.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,52 +51,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HelpContent\bin\ExcelDna.Documentation.dll" />
-    <Content Include="HelpContent\helpstyle.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="HelpContent\web.config" />
-    <Content Include="HelpContent\_readme_.txt" />
-    <Content Include="MyAddIn.dna">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="HelpContent\CategoryTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\CommandListTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\CommandTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\FunctionTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\MethodListTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\ProjectFileTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HelpContent\TableOfContentsTemplate.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MyLib\MyLib.fsproj">
       <Project>{ef06927c-f4f2-48e3-9a26-13f8f994695d}</Project>
       <Name>MyLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MyAddIn.dna">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo F | xcopy "$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDna.xll" "$(TargetDir)MyAddIn.xll" /C /Y
-"$(SolutionDir)packages\Excel-DNA.0.30.3\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn.dna" /Y
-"C:\Github\ExcelDnaDoc\packages\ExcelDnaDoc.0.1.17\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$(TargetDir)MyAddIn.xll*" /C /Y
+xcopy "$(TargetDir)MyAddIn.dna*" "$(TargetDir)MyAddIn64.dna*" /C /Y
+xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)MyAddIn64.xll*" /C /Y
+"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn.dna" /Y
+"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn64.dna" /Y
+"$(SolutionDir)\packages\ExcelDnaDoc.0.2.0-beta\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>IF EXIST “$(TargetDir)MyAddIn-packed.xll” DEL “$(TargetDir)MyAddIn-packed.xll”</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
