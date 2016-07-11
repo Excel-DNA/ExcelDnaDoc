@@ -26,3 +26,9 @@
 
 #### 0.2.1 - 7/10/2016
 * upgraded to use new ExcelDna.AddIn package (0.33.9)
+
+#### 0.2.2 - 7/10/2016
+* allow for raw HTML to be included in function summary
+
+#### 0.2.3 - 7/10/2016
+* bug fix - function summary was showing in remarks section

@@ -61,7 +61,7 @@ xcopy "$(TargetDir)MyLib-AddIn.dna*" "$(TargetDir)MyLib-AddIn64.dna*" /C /Y
 xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)MyLib-AddIn64.xll*" /C /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn.dna" /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn64.dna" /Y
-"C:\Users\dave\Documents\GitHub\ExcelDnaDoc\packages\ExcelDnaDoc.0.2.0-beta\tools\ExcelDnaDoc.exe" "$(TargetDir)MyLib-AddIn.dna" /Y</PostBuildEvent>
+"$(SolutionDir)\packages\ExcelDnaDoc.0.2.3\tools\ExcelDnaDoc.exe" "$(TargetDir)MyLib-AddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Math.fs" />
@@ -69,7 +69,7 @@ xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(Ta
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ExcelDna.Documentation">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.0-beta\lib\net40\ExcelDna.Documentation.dll</HintPath>
+      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.3\lib\net40\ExcelDna.Documentation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelDna.Integration">

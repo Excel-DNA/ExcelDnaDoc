@@ -30,11 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExcelDna.Documentation, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.0-beta\lib\net40\ExcelDna.Documentation.dll</HintPath>
+    <Reference Include="ExcelDna.Documentation">
+      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.3\lib\net40\ExcelDna.Documentation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ExcelDna.Integration, Version=0.33.5730.40390, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ExcelDna.Integration">
       <HintPath>..\..\..\packages\ExcelDna.Integration.0.33.9\lib\ExcelDna.Integration.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -69,7 +69,7 @@ xcopy "$(TargetDir)MyAddIn.dna*" "$(TargetDir)MyAddIn64.dna*" /C /Y
 xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)MyAddIn64.xll*" /C /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn.dna" /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyAddIn64.dna" /Y
-"$(SolutionDir)\packages\ExcelDnaDoc.0.2.0-beta\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
+"$(SolutionDir)\packages\ExcelDnaDoc.0.2.3\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

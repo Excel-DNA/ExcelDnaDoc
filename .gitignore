@@ -30,3 +30,4 @@ nuget/*.nuspec
 .project
 
 **/_Resharper.*/**
+.vs/config/applicationhost.config
