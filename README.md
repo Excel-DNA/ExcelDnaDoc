@@ -7,7 +7,7 @@ ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop fi
 
 Use the issues log to report any issues or give feedback for future enhancements.
 
-
+![Help Example](https://raw.githubusercontent.com/mndrake/ExcelDnaDoc/master/docs/files/help.png)
 
 NuGet Package
 ------------------
