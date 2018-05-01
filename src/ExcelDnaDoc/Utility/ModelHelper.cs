@@ -71,7 +71,9 @@
                     Returns = string.Empty,
                     Summary = string.Empty,
                     TopicId = string.Empty,
-                    Remarks = string.Empty
+                    Remarks = string.Empty,
+                    Example = string.Empty,
+                    IsHidden = false
                 };
 
             var excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
@@ -82,7 +84,40 @@
             {
                 if (excelFunctionSummary.Summary != null) { function.Summary = excelFunctionSummary.Summary; }
                 if (excelFunctionSummary.Returns != null) { function.Returns = excelFunctionSummary.Returns; }
-                if (excelFunctionSummary.Remarks != null) { function.Remarks = excelFunctionSummary.Remarks; } 
+                if (excelFunctionSummary.Remarks != null) { function.Remarks = excelFunctionSummary.Remarks; }
+                if (excelFunctionSummary.Example != null) { function.Example = excelFunctionSummary.Example; }
+            }
+            else
+            {
+				//Use reflection to check for matching properties or fields
+				//Adds support to allow people to use their own classes that inherit from ExcelFunctionAttribute
+                var attribs = Attribute.GetCustomAttributes(method);
+                foreach (var attrib in attribs)
+                {
+                    if (attrib != null && typeof(ExcelFunctionAttribute).IsAssignableFrom(attrib.GetType()))
+                    {
+                        string summary = (string)attrib.GetType().GetProperty("Summary")?.GetValue(attrib, null);
+                        if(string.IsNullOrEmpty(summary))
+                            summary = (string)attrib.GetType().GetField("Summary")?.GetValue(attrib);
+
+                        string remarks = (string)attrib.GetType().GetProperty("Remarks")?.GetValue(attrib, null);
+                        if (string.IsNullOrEmpty(remarks))
+                            remarks = (string)attrib.GetType().GetField("Remarks")?.GetValue(attrib);
+
+                        string example = (string)attrib.GetType().GetProperty("Example")?.GetValue(attrib, null);
+                        if (string.IsNullOrEmpty(example))
+                            example = (string)attrib.GetType().GetField("Example")?.GetValue(attrib);
+
+                        string returns = (string)attrib.GetType().GetProperty("Returns")?.GetValue(attrib, null);
+                        if (string.IsNullOrEmpty(returns))
+                            returns = (string)attrib.GetType().GetField("Returns")?.GetValue(attrib);
+
+                        if (!string.IsNullOrEmpty(summary)) { function.Summary = summary; }
+                        if (!string.IsNullOrEmpty(remarks)) { function.Remarks = remarks; }
+                        if (!string.IsNullOrEmpty(example)) { function.Example = example; }
+                        if (!string.IsNullOrEmpty(returns)) { function.Returns = returns; }
+                    }
+                }
             }
 
             // check if ExcelFunctionAttribute used
@@ -92,6 +127,7 @@
                 if (excelFunction.Description != null) { function.Description = excelFunction.Description; }
                 if (excelFunction.HelpTopic != null) { function.TopicId = excelFunction.HelpTopic.Split('!').Last(); }
                 if (excelFunction.Category != null) { function.Category = excelFunction.Category; }
+				function.IsHidden = excelFunction.IsHidden;
             }
 
             return function;
