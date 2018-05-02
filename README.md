@@ -116,8 +116,9 @@ namespace DocTest
 
 Command Line Usage
 ------------------
-    ExcelDnaDoc.exe dnaPath  
+    ExcelDnaDoc.exe dnaPath [/X]
 `dnaPath` The path to the primary .dna file for the ExcelDna add-in.  
+`/X` Optional. Excludes hidden functions from being documented if provided.
 
 Example: `ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna`  
          The HTML Help Workshop content will be created in `<build folder>\HelpContent\`.  

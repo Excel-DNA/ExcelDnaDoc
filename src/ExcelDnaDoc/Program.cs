@@ -14,7 +14,7 @@ ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop fi
 
 Usage: ExcelDnaDoc.exe dnaPath [/X]
   dnaPath      The path to the primary .dna file for the ExcelDna add-in.
-  /X           Excludes hidden functions from being documented
+  /X           Optional. Excludes hidden functions from being documented if provided.
 
 Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna
          The HTML Help Workshop content will be created in <build folder>\content\.
