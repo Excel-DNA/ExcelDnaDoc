@@ -66,6 +66,7 @@ which includes additional fields that can be used for additional documentation.
 | `Returns`			| description of the return value											|
 | `Summary`			| longer discussion of function included in documentation					|  
 | `Remarks`			| remarks on usage and / or possible errors									|
+| `Example`			| sample code to demonstrate correct usage									|
 
 
 Example
@@ -83,6 +84,7 @@ module Math =
                         Description = "adds two numbers", 
                         HelpTopic = "DocTest-AddIn.chm!1001",
 						Summary = "really all it does is add two number ... I promise.",
+						Example = "Math.AddThem(1, 2) returns 3",
 						Returns = "the sum of the two arguments")>]
     let addThem
         (
