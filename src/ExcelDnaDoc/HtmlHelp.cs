@@ -14,13 +14,13 @@
         public static string HelpContentFolderPath { get; set; }
         public static Dictionary<string, string> TemplateCache = new Dictionary<string, string>();
 
-        public static void Create(string dnaPath, string helpSubfolder = "HelpContent")
+        public static void Create(string dnaPath, string helpSubfolder = "HelpContent", bool excludeHidden = false)
         {
             BuildFolderPath = Path.GetDirectoryName(dnaPath);
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
 
             // initialize data models
-            var addin = Utility.ModelHelper.CreateAddInModel(dnaPath);
+            var addin = Utility.ModelHelper.CreateAddInModel(dnaPath, excludeHidden);
 
             // create help content folder if it does not exist
             if (!Directory.Exists(HelpContentFolderPath)) Directory.CreateDirectory(HelpContentFolderPath);
