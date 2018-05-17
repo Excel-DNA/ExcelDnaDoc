@@ -21,5 +21,9 @@
         public string Summary { get; set; }
 
         public string Remarks { get; set; }
+
+        public string Example { get; set; }
+
+        public bool IsHidden { get; set; }
     }
 }
