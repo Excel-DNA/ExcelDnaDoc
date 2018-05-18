@@ -34,7 +34,7 @@ Function Wizard, but will be included in the HTML Help Workshop content.
 
             if (args.Length < 1)
             {
-                Console.Write("No .dna file specified.\r\n\r\n" + usageInfo);
+                Console.Write("dnaPath not provided.\r\n\r\n" + usageInfo);
 #if DEBUG
                 Console.WriteLine("Press any key to exit.");
                 Console.ReadKey();
@@ -48,7 +48,11 @@ Function Wizard, but will be included in the HTML Help Workshop content.
 
             if (!File.Exists(dnaPath))
             {
-                Console.Write("no dna file found");
+                Console.Write("No dna file found at the specified location.");
+#if DEBUG
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+#endif
             }
             else
             {
