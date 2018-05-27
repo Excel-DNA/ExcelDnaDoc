@@ -31,3 +31,7 @@ nuget/*.nuspec
 
 **/_Resharper.*/**
 .vs/config/applicationhost.config
+
+# Visual Studio 2015/2017 cache/options directory 
+.vs/ 
+
