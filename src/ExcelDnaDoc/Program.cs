@@ -13,11 +13,12 @@
 ExcelDnaDoc is a command-line utility to create a compiled HTML Help Workshop file (.chm)
 
 Usage: ExcelDnaDoc.exe dnaPath [/X]
-  dnaPath          The path to the primary .dna file for the ExcelDna add-in.
-  /ExcludeHidden   Optional. Excludes hidden functions from being documented if provided.
+  dnaPath                    The path to the primary .dna file for the ExcelDna add-in.
+  /ExcludeHidden             Optional. Excludes hidden functions from being documented if provided.
+  /SkipCompile               Optional. Skips compiling the HTML Help file (.chm) if provided.
 
 Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna
-         The HTML Help Workshop content will be created in <build folder>\content\.
+         The HTML Help Workshop content will be created in <build folder>\HelpContent\.
 
 External libraries that have been marked as ExplicitExports=""true"" will be searched for
 UDFs that have been marked and documented using the ExcelFunctionAttribute and the
@@ -57,7 +58,9 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             else
             {
                 bool excludeHidden = args.Any(x => x.Equals(@"/ExcludeHidden", StringComparison.OrdinalIgnoreCase));
-                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden);
+                bool skipCompile = args.Any(x => x.Equals(@"/SkipCompile", StringComparison.OrdinalIgnoreCase));
+
+                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile);
             }
         }
     }
