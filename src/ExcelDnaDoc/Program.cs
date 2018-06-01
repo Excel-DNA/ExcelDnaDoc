@@ -56,7 +56,8 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             }
             else
             {
-                HtmlHelp.Create(dnaPath, excludeHidden: args.Any("/ExcludeHidden".Contains));
+                bool excludeHidden = args.Any(x => x.Equals(@"/ExcludeHidden", StringComparison.OrdinalIgnoreCase));
+                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden);
             }
         }
     }
