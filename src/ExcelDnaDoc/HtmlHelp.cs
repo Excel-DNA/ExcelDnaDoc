@@ -16,7 +16,7 @@
         public static string HelpContentFolderPath { get; set; }
         public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
-        public static void Create(string dnaPath, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false)
+        public static void Create(string dnaPath, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
         {
             BuildFolderPath = Path.GetDirectoryName(dnaPath);
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
@@ -28,9 +28,9 @@
             if (!Directory.Exists(HelpContentFolderPath)) Directory.CreateDirectory(HelpContentFolderPath);
 
             // HTML Help Workshop content creation
-            Console.WriteLine($"creating HTML Help content in {HelpContentFolderPath}");
-            Console.WriteLine($"ExcludeHidden: {excludeHidden}, SkipCompile: {skipCompile}");
             Console.WriteLine($"Started: {DateTime.Now}");
+            Console.WriteLine($"creating HTML Help content in {HelpContentFolderPath}");
+            Console.WriteLine($"ExcludeHidden: {excludeHidden}, SkipCompile: {skipCompile}, Async: {runAsync}");
             Console.WriteLine();
             
             //Only needed for HelpWorkshop compilation
