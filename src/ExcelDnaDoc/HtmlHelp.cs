@@ -1,6 +1,7 @@
 ﻿namespace ExcelDnaDoc
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -12,7 +13,7 @@
     {
         public static string BuildFolderPath { get; set; }
         public static string HelpContentFolderPath { get; set; }
-        public static Dictionary<string, string> TemplateCache = new Dictionary<string, string>();
+        public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
         public static void Create(string dnaPath, string helpSubfolder = "HelpContent", bool excludeHidden = false)
         {

@@ -35,22 +35,22 @@
         public void Publish()
         {
             // check to see if template is in cache
-            if (!HtmlHelp.TemplateCache.ContainsKey(this.TemplateName))
+            string cacheItem = HtmlHelp.TemplateCache.GetOrAdd(this.TemplateName, k=>
             {
                 // look for razorengine template otherwise use embedded one
                 if (File.Exists(this.ViewFilePath))
                 {
                     Console.WriteLine("using local template : " + Path.GetFileName(this.ViewFilePath));
-                    HtmlHelp.TemplateCache.Add(this.TemplateName, File.ReadAllText(this.ViewFilePath));
+                    return File.ReadAllText(this.ViewFilePath);
                 }
                 else
                 {
-                    HtmlHelp.TemplateCache.Add(this.TemplateName, (new UTF8Encoding()).GetString(this.Template));
-                }                
-            }
+                    return (new UTF8Encoding()).GetString(this.Template);
+                }
+            });
 
             // unicode result
-            string content = Razor.Parse(HtmlHelp.TemplateCache[this.TemplateName], this.Model);
+            string content = Razor.Parse(cacheItem, this.Model);
 
             // strip non ANSI characters from result
             content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);
