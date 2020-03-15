@@ -157,7 +157,7 @@
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
                     .Select(m => CreateFunctionModel(m, defaultCategory)))
-                    .Where(m => excludeHidden && !m.IsHidden) //Used to exclude hidden functions
+                    .Where(m => !excludeHidden || !m.IsHidden) //Used to exclude hidden functions
                 .GroupBy(f => f.Category)
                 .Select(g => new CategoryModel { Name = g.Key, Functions = g.OrderBy(f => f.Name) })
                 .OrderBy(c => c.Name);
