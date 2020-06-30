@@ -84,7 +84,7 @@ Target "NuGet" (fun _ ->
             ToolPath = ".nuget/nuget.exe"
             AccessKey = getBuildParamOrDefault "nugetkey" ""
             Publish = hasBuildParam "nugetkey"
-            Dependencies = [("ExcelDna.AddIn", "0.33.9")] })
+            Dependencies = [("ExcelDna.Integration", "1.1.0")] })
         "nuget/ExcelDnaDoc.nuspec"
 )
 
