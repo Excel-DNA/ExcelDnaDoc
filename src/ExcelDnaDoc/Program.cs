@@ -16,6 +16,7 @@ Usage: ExcelDnaDoc.exe dnaPath [/X]
   dnaPath                 The path to the primary .dna file for the ExcelDna add-in.
   /ExcludeHidden or /X    Optional. Excludes hidden functions from being documented if provided.
   /SkipCompile or /S      Optional. Skips compiling the HTML Help file (.chm) if provided.
+  /Async or /A            Optional. Runs in async mode, consuming more cpu, but taking less time to run.
 
 Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna
          The HTML Help Workshop content will be created in <build folder>\HelpContent\.
@@ -66,6 +67,11 @@ Function Wizard, but will be included in the HTML Help Workshop content.
                     x => x.Equals(
                         @"/SkipCompile", StringComparison.OrdinalIgnoreCase) || 
                         x.Equals(@"/S", StringComparison.OrdinalIgnoreCase));
+
+                bool runAsync = args.Any(
+                    x => x.Equals(
+                        @"/Async", StringComparison.OrdinalIgnoreCase) ||
+                        x.Equals(@"/A", StringComparison.OrdinalIgnoreCase));
 
                 HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile);
                 Console.WriteLine("Successful");
