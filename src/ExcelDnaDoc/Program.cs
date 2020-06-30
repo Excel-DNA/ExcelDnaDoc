@@ -73,7 +73,12 @@ Function Wizard, but will be included in the HTML Help Workshop content.
                         @"/Async", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/A", StringComparison.OrdinalIgnoreCase));
 
-                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile, runAsync: runAsync);
+                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile);
+                Console.WriteLine("Successful");
+#if DEBUG
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+#endif
             }
         }
     }

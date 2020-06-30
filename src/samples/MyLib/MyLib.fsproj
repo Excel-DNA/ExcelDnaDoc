@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Name>MyLib</Name>
     <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,7 +25,7 @@
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\MyLib.XML</DocumentationFile>
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Program Files (x86)\Microsoft Office\Root\Office16\EXCEL.EXE</StartProgram>
+    <StartProgram>C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE</StartProgram>
     <StartArguments>"MyLib-AddIn.xll"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -56,11 +58,11 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna.xll" "$(TargetDir)MyLib-AddIn.xll*" /C /Y
+    <PostBuildEvent>xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDna.xll" "$(TargetDir)MyLib-AddIn.xll*" /C /Y
 xcopy "$(TargetDir)MyLib-AddIn.dna*" "$(TargetDir)MyLib-AddIn64.dna*" /C /Y
-xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(TargetDir)MyLib-AddIn64.xll*" /C /Y
-"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn.dna" /Y
-"$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn64.dna" /Y
+xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDna64.xll" "$(TargetDir)MyLib-AddIn64.xll*" /C /Y
+"$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn.dna" /Y
+"$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn64.dna" /Y
 "$(SolutionDir)\packages\ExcelDnaDoc.0.2.3\tools\ExcelDnaDoc.exe" "$(TargetDir)MyLib-AddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
@@ -73,7 +75,7 @@ xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.0.33.9\tools\ExcelDna64.xll" "$(Ta
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelDna.Integration">
-      <HintPath>..\..\..\packages\ExcelDna.Integration.0.33.9\lib\ExcelDna.Integration.dll</HintPath>
+      <HintPath>..\..\..\packages\ExcelDna.Integration.1.0.0\lib\ExcelDna.Integration.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
