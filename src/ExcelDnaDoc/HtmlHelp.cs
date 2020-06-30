@@ -70,10 +70,7 @@
             }
 
             //Will be empty if async not enabled
-            foreach(Task task in tasks)
-            {
-                task.Wait();
-            }
+            Task.WaitAll(tasks.ToArray());
 
             // look for style sheet otherwise use embedded one
 
