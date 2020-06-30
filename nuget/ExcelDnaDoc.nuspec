@@ -6,8 +6,8 @@
     <authors>@authors@</authors>
     <owners>@authors@</owners>
     <summary>@summary@</summary>
-    <licenseUrl>https://github.com/mndrake/ExcelDnaDoc/blob/master/LICENSE.txt</licenseUrl>
-    <projectUrl>http://mndrake.github.io/ExcelDnaDoc/index.html</projectUrl>
+    <licenseUrl>https://github.com/Excel-DNA/ExcelDnaDoc/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://excel-dna.net</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>@description@</description>
     <releaseNotes>@releaseNotes@</releaseNotes>
