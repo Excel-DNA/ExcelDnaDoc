@@ -1,3 +1,8 @@
+#### 1.1.0-beta - 30/06/2020
+* add async support (thanks @Cronan)
+* rebuild for Excel-DNA v1.1
+* beta version
+
 #### 0.1.12-beta - 11/23/2013
 * fixed release notes integration 
 * beta version

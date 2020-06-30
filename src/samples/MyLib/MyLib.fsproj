@@ -26,7 +26,7 @@
     <DocumentationFile>bin\Debug\MyLib.XML</DocumentationFile>
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE</StartProgram>
-    <StartArguments>"MyLib-AddIn.xll"</StartArguments>
+    <StartArguments>"ExcelDnaDoc-Template.xll"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,20 +63,57 @@ xcopy "$(TargetDir)MyLib-AddIn.dna*" "$(TargetDir)MyLib-AddIn64.dna*" /C /Y
 xcopy "$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDna64.xll" "$(TargetDir)MyLib-AddIn64.xll*" /C /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn.dna" /Y
 "$(SolutionDir)\packages\ExcelDna.AddIn.1.0.0\tools\ExcelDnaPack.exe" "$(TargetDir)MyLib-AddIn64.dna" /Y
-"$(SolutionDir)\packages\ExcelDnaDoc.0.2.3\tools\ExcelDnaDoc.exe" "$(TargetDir)MyLib-AddIn.dna" /Y</PostBuildEvent>
+"C:\Work\Excel-DNA\ExcelDnaDoc\packages\ExcelDnaDoc.1.1.0-beta\tools\ExcelDnaDoc.exe" "$(TargetDir)MyLib-AddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets" Condition="Exists('..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets'))" />
+  </Target>
   <ItemGroup>
     <Compile Include="Math.fs" />
     <None Include="packages.config" />
+    <None Include="Properties\ExcelDna.Build.props" />
+    <None Include="ExcelDna-Template.dna" />
+    <Content Include="HelpContent\_readme_.txt" />
+    <Content Include="HelpContent\web.config.txt" />
+    <None Include="HelpContent\TableOfContentsTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\ProjectFileTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\MethodListTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="HelpContent\helpstyle.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="HelpContent\FunctionTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\CommandTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\CommandListTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\CategoryTemplate.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HelpContent\bin\ExcelDna.Documentation.dll" />
+    <None Include="ExcelDnaDoc-Template.dna">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ExcelDna.Documentation">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.0.2.3\lib\net40\ExcelDna.Documentation.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\ExcelDnaDoc.1.1.0-beta\lib\net40\ExcelDna.Documentation.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDna.Integration">
-      <HintPath>..\..\..\packages\ExcelDna.Integration.1.0.0\lib\ExcelDna.Integration.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\packages\ExcelDna.Integration.1.1.0\lib\ExcelDna.Integration.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>

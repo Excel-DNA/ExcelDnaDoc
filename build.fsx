@@ -15,15 +15,15 @@ open Fake.Git
 // --------------------------------------------------------------------------------------
 
 let project = "ExcelDnaDoc"
-let authors = ["David Carlson"]
+let authors = ["David Carlson, Excel-DNA Developers"]
 let summary = "command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna"
 let description = """
   Command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna. 
   To build compiled help file (.chm) the HTML Help Workshop must be installed. 
-  For examples see https://github.com/mndrake/ExcelDnaDoc."""
+  For examples see https://github.com/Excel-DNA/ExcelDnaDoc."""
 let tags = "Excel-DNA Excel"
 
-let gitHome = "https://github.com/mndrake"
+let gitHome = "https://github.com/Excel-DNA"
 let gitName = "ExcelDnaDoc"
 
 RestorePackages()

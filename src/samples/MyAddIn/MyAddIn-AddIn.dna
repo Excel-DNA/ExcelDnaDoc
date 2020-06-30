@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<DnaLibrary Name="ExcelDnaDoc Add-In" RuntimeVersion="v4.0" xmlns="http://schemas.excel-dna.net/addin/2018/05/dnalibrary">
-  <ExternalLibrary Path="ExcelDnaDoc.exe" ExplicitExports="false" LoadFromBytes="true" Pack="true" IncludePdb="false" />
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DnaLibrary Name="MyAddIn Add-In" RuntimeVersion="v4.0" xmlns="http://schemas.excel-dna.net/addin/2018/05/dnalibrary">
+  <ExternalLibrary Path="MyAddIn.dll" ExplicitExports="false" LoadFromBytes="true" Pack="true" IncludePdb="false" />
   <!--
        The RuntimeVersion attribute above allows two settings:
        * RuntimeVersion="v4.0" - for .NET 4 and 4.5
@@ -20,4 +19,5 @@
        Excel-DNA also allows the XML for ribbon UI extensions to be specified in the .dna file.
        See the main Excel-DNA site at http://excel-dna.net for downloads of the full distribution.
   -->
+  <Reference Path="ExcelDna.Documentation.dll" Pack="true" xmlns="" />
 </DnaLibrary>
