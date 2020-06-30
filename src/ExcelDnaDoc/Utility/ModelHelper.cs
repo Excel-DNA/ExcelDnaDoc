@@ -89,15 +89,15 @@
             }
             else
             {
-				//Use reflection to check for matching properties or fields
-				//Adds support to allow people to use their own classes that inherit from ExcelFunctionAttribute
+                //Use reflection to check for matching properties or fields
+                //Adds support to allow people to use their own classes that inherit from ExcelFunctionAttribute
                 var attribs = Attribute.GetCustomAttributes(method);
                 foreach (var attrib in attribs)
                 {
                     if (attrib != null && typeof(ExcelFunctionAttribute).IsAssignableFrom(attrib.GetType()))
                     {
                         string summary = (string)attrib.GetType().GetProperty("Summary")?.GetValue(attrib, null);
-                        if(string.IsNullOrEmpty(summary))
+                        if (string.IsNullOrEmpty(summary))
                             summary = (string)attrib.GetType().GetField("Summary")?.GetValue(attrib);
 
                         string remarks = (string)attrib.GetType().GetProperty("Remarks")?.GetValue(attrib, null);
@@ -127,7 +127,7 @@
                 if (excelFunction.Description != null) { function.Description = excelFunction.Description; }
                 if (excelFunction.HelpTopic != null) { function.TopicId = excelFunction.HelpTopic.Split('!').Last(); }
                 if (excelFunction.Category != null) { function.Category = excelFunction.Category; }
-				function.IsHidden = excelFunction.IsHidden;
+                function.IsHidden = excelFunction.IsHidden;
             }
 
             return function;
@@ -143,7 +143,7 @@
 
             model.DnaFileName = Path.GetFileNameWithoutExtension(dnaPath);
 
-            if (dnaLibrary.Name != null) {model.ProjectName = dnaLibrary.Name;}
+            if (dnaLibrary.Name != null) { model.ProjectName = dnaLibrary.Name; }
             else { model.ProjectName = model.DnaFileName; }
 
             // process function libraries
@@ -157,7 +157,7 @@
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
                     .Select(m => CreateFunctionModel(m, defaultCategory)))
-                    .Where(m => excludeHidden && !m.IsHidden) //Used to exclude hidden functions
+                    .Where(m => !excludeHidden || (excludeHidden && !m.IsHidden)) //Used to exclude hidden functions
                 .GroupBy(f => f.Category)
                 .Select(g => new CategoryModel { Name = g.Key, Functions = g.OrderBy(f => f.Name) })
                 .OrderBy(c => c.Name);
