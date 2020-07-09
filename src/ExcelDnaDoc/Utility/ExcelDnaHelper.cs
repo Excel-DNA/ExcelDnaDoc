@@ -30,8 +30,7 @@ namespace ExcelDnaDoc.Utility
 
             if (explicitExports)
             {
-                var excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
-                return (excelFunction != null);
+                return Attribute.IsDefined(method, typeof(ExcelFunctionAttribute));
             }
 
             ParameterInfo[] parameters = method.GetParameters();
@@ -45,8 +44,7 @@ namespace ExcelDnaDoc.Utility
                 return false;
             }
 
-            var excelCommand = (ExcelCommandAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelCommandAttribute));
-            return (excelCommand != null);
+            return Attribute.IsDefined(method, typeof(ExcelCommandAttribute));
         }
     }
 }

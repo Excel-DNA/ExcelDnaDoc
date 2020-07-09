@@ -22,10 +22,12 @@
                 Category = defaultCategory
             };
 
-            var excelCommand = (ExcelCommandAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelCommandAttribute));
+            var excelCommand = Attribute.GetCustomAttributes(method, typeof(ExcelCommandAttribute))
+                .OfType<ExcelCommandAttribute>()
+                .FirstOrDefault();
 
             // check if ExcelCommandAttribute used
-            if (excelCommand != null)
+            if (!(excelCommand is null))
             {
                 if (excelCommand.Name != null) { command.Name = excelCommand.Name; }
                 if (excelCommand.Description != null) { command.Description = excelCommand.Description; }
@@ -45,9 +47,11 @@
                 Description = string.Empty
             };
 
-            var excelArgument = (ExcelArgumentAttribute)Attribute.GetCustomAttribute(parameter, typeof(ExcelArgumentAttribute));
+            var excelArgument = Attribute.GetCustomAttributes(parameter, typeof(ExcelArgumentAttribute))
+                .OfType<ExcelArgumentAttribute>()
+                .FirstOrDefault();
 
-            if (excelArgument != null)
+            if (!(excelArgument is null))
             {
                 if (excelArgument.Name != null) { model.Name = excelArgument.Name; }
                 if (excelArgument.Description != null) { model.Description = excelArgument.Description; }
@@ -76,11 +80,13 @@
                     IsHidden = false
                 };
 
-            var excelFunction = (ExcelFunctionAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionAttribute));
-            var excelFunctionSummary = (ExcelFunctionDocAttribute)Attribute.GetCustomAttribute(method, typeof(ExcelFunctionDocAttribute));
+            var customAttributes = Attribute.GetCustomAttributes(method, typeof(ExcelFunctionAttribute));
+
+            var excelFunction = customAttributes.OfType<ExcelFunctionAttribute>().FirstOrDefault();
+            var excelFunctionSummary = customAttributes.OfType<ExcelFunctionDocAttribute>().FirstOrDefault();
 
             // check if ExcelFunctionDocAttribute used
-            if (excelFunctionSummary != null)
+            if (!(excelFunctionSummary is null))
             {
                 if (excelFunctionSummary.Summary != null) { function.Summary = excelFunctionSummary.Summary; }
                 if (excelFunctionSummary.Returns != null) { function.Returns = excelFunctionSummary.Returns; }
@@ -91,10 +97,9 @@
             {
                 //Use reflection to check for matching properties or fields
                 //Adds support to allow people to use their own classes that inherit from ExcelFunctionAttribute
-                var attribs = Attribute.GetCustomAttributes(method);
-                foreach (var attrib in attribs)
+                foreach (var attrib in customAttributes)
                 {
-                    if (attrib != null && typeof(ExcelFunctionAttribute).IsAssignableFrom(attrib.GetType()))
+                    if (!(attrib is null))
                     {
                         string summary = (string)attrib.GetType().GetProperty("Summary")?.GetValue(attrib, null);
                         if (string.IsNullOrEmpty(summary))
@@ -121,7 +126,7 @@
             }
 
             // check if ExcelFunctionAttribute used
-            if (excelFunction != null)
+            if (!(excelFunction is null))
             {
                 if (excelFunction.Name != null) { function.Name = excelFunction.Name; }
                 if (excelFunction.Description != null) { function.Description = excelFunction.Description; }
