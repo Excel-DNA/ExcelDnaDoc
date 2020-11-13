@@ -8,6 +8,7 @@
     using ExcelDna.Documentation.Models;
     using ExcelDna.Integration;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
 
     public static class ModelHelper
     {
@@ -34,6 +35,23 @@
                 if (excelCommand.HelpTopic != null) { command.TopicId = excelCommand.HelpTopic.Split('!').Last(); }
             }
 
+            if (excelCommand.ShortCut != null)
+            {
+                Match match = Regex.Match(excelCommand.ShortCut, "^[\\^\\+\\%\\s]*([^\\^\\+\\%\\s]+)$");
+                if (match.Success)
+                {
+                    string shortcutKeys = string.Empty;
+                    if (excelCommand.ShortCut.Contains("^"))
+                        shortcutKeys = "Ctrl ";
+                    if (excelCommand.ShortCut.Contains("+"))
+                        shortcutKeys += "Shift ";
+                    if (excelCommand.ShortCut.Contains("%"))
+                        shortcutKeys += "Alt ";
+                    shortcutKeys = shortcutKeys.TrimStart().Replace(" ", " + ");
+                    shortcutKeys += match.Groups[1].Value;
+                    command.ShortCut = shortcutKeys;
+                }
+            }
 
             return command;
         }
