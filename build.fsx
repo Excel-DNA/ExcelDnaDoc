@@ -112,9 +112,9 @@ Target.create "GenerateDocs" (fun _ ->
     Fsi.exec (fun p -> 
         { p with 
             WorkingDirectory = "docs/tools"
-            // ToolPath = FsiTool.External fsiExe
+            Definitions = ["RELEASE"]
         })
-        "generate.fsx" ["--define:RELEASE"] |> ignore
+        "generate.fsx" [] |> ignore
 )
 
 
