@@ -2,13 +2,28 @@
 // FAKE build script 
 // --------------------------------------------------------------------------------------
 
-#r "packages/FAKE/tools/FakeLib.dll"
+#r "paket:
+nuget Fake.DotNet.MsBuild
+nuget Fake.DotNet.NuGet
+nuget Fake.DotNet.Fsi
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.Core.Target
+nuget Fake.Core.ReleaseNotes
+nuget Fake.Core.Environment
+nuget Fake.IO.FileSystem
+nuget Fake.Tools.Git
+//"
+#load "./.fake/build.fsx/intellisense.fsx"
 
 open System
 open System.IO
-open Fake 
-open Fake.AssemblyInfoFile
-open Fake.Git
+open Fake.Core
+open Fake.DotNet
+open Fake.IO
+open Fake.DotNet.NuGet
+open Fake.Tools.Git
+
+
 
 // --------------------------------------------------------------------------------------
 // Information about the project to be used at NuGet and in AssemblyInfo files
@@ -26,43 +41,48 @@ let tags = "Excel-DNA Excel"
 let gitHome = "https://github.com/Excel-DNA"
 let gitName = "ExcelDnaDoc"
 
-RestorePackages()
+NuGet.Restore.RestorePackages ()
 
 // Read release notes & version info from RELEASE_NOTES.md
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 let release = 
     File.ReadLines "RELEASE_NOTES.md" 
-    |> ReleaseNotesHelper.parseReleaseNotes
+    |> ReleaseNotes.parse
 
 // --------------------------------------------------------------------------------------
 // Generate assembly info files with the right version & up-to-date information
 
-Target "AssemblyInfo" (fun _ ->
+Target.create "AssemblyInfo" (fun _ ->
     [ ("src/ExcelDnaDoc/Properties/AssemblyInfo.cs", "ExcelDnaDoc", project, summary)
       ("src/ExcelDna.Documentation/Properties/AssemblyInfo.cs", "ExcelDna.Documentation", project, summary) ]
     |> Seq.iter (fun (fileName, title, project, summary) ->
-        CreateCSharpAssemblyInfo fileName
-           [ Attribute.Title title
-             Attribute.Product project
-             Attribute.Description summary
-             Attribute.Version release.AssemblyVersion
-             Attribute.FileVersion release.AssemblyVersion ] )
+        AssemblyInfoFile.createCSharp fileName
+            [ AssemblyInfo.Title title
+              AssemblyInfo.Product project
+              AssemblyInfo.Description summary
+              AssemblyInfo.Version release.AssemblyVersion
+              AssemblyInfo.FileVersion release.AssemblyVersion ] )
 )
 
 // --------------------------------------------------------------------------------------
 // Clean build results
 
-Target "Clean" (fun _ -> CleanDirs ["bin";"temp"])
+Target.create "Clean" (fun _ -> Shell.cleanDirs ["bin";"temp"])
 
-Target "CleanDocs" (fun _ -> CleanDirs ["docs/output"])
+Target.create "CleanDocs" (fun _ -> Shell.cleanDirs ["docs/output"])
 
 // --------------------------------------------------------------------------------------
 // Build library (builds Visual Studio solution)
 
-Target "Build" (fun _ ->
-    !! "src/ExcelDna.Documentation/ExcelDna.Documentation.csproj"
-    ++ "src/ExcelDnaDoc/ExcelDnaDoc.csproj"
-    |> MSBuildRelease "bin" "Rebuild"
+Target.create "Build" (fun _ ->
+    [ "src/ExcelDna.Documentation/ExcelDna.Documentation.csproj"
+      "src/ExcelDnaDoc/ExcelDnaDoc.csproj" ]
+    |> List.map (MSBuild.build (fun p -> 
+            { p with 
+                Targets = ["ReBuild"]
+            }
+            ) 
+        )
     |> ignore
 //    |> Log "Build-Output: "
 )
@@ -70,8 +90,8 @@ Target "Build" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
 
-Target "NuGet" (fun _ ->
-    NuGet (fun p -> 
+Target.create "NuGet" (fun _ ->
+    NuGet.NuGet (fun p -> 
         { p with   
             Authors = authors
             Project = project
@@ -82,8 +102,8 @@ Target "NuGet" (fun _ ->
             Tags = tags
             OutputPath = "bin"
             ToolPath = ".nuget/nuget.exe"
-            AccessKey = getBuildParamOrDefault "nugetkey" ""
-            Publish = hasBuildParam "nugetkey"
+            AccessKey = Environment.environVarOrDefault "nugetkey" ""
+            Publish = Environment.hasEnvironVar "nugetkey"
             Dependencies = [("ExcelDna.Integration", "1.1.0")] })
         "nuget/ExcelDnaDoc.nuspec"
 )
@@ -91,28 +111,34 @@ Target "NuGet" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Generate the documentation
 
-Target "GenerateDocs" (fun _ ->
-    executeFSIWithArgs "docs/tools" "generate.fsx" ["--define:RELEASE"] [] |> ignore
+Target.create "GenerateDocs" (fun _ ->
+    Fsi.exec (fun p -> 
+        { p with 
+            TargetProfile = Fsi.Profile.NetStandard
+            WorkingDirectory = "docs/tools"
+            // ToolPath = FsiTool.External fsiExe
+        })
+        "generate.fsx" ["--define:RELEASE"] |> ignore
 )
 
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
-Target "ReleaseDocs" (fun _ ->
+Target.create "ReleaseDocs" (fun _ ->
     Repository.clone "" (gitHome + "/" + gitName + ".git") "temp/gh-pages"
     Branches.checkoutBranch "temp/gh-pages" "gh-pages"
-    CopyRecursive "docs/output" "temp/gh-pages" true |> printfn "%A"
+    Shell.copyRecursive "docs/output" "temp/gh-pages" true |> printfn "%A"
     CommandHelper.runSimpleGitCommand "temp/gh-pages" "add ." |> printfn "%s"
     let cmd = sprintf """commit -a -m "Update generated documentation for version %s""" release.NugetVersion
     CommandHelper.runSimpleGitCommand "temp/gh-pages" cmd |> printfn "%s"
     Branches.push "temp/gh-pages"
 )
 
-Target "ReleaseBinaries" (fun _ ->
+Target.create "ReleaseBinaries" (fun _ ->
     Repository.clone "" (gitHome + "/" + gitName + ".git") "temp/release"
     Branches.checkoutBranch "temp/release" "release"
-    CopyRecursive "bin" "temp/release" true |> printfn "%A"
+    Shell.copyRecursive "bin" "temp/release" true |> printfn "%A"
     CommandHelper.runSimpleGitCommand "temp/release" "add ." |> printfn "%s"
     let cmd = sprintf """commit -a -m "Update binaries for version %s""" release.NugetVersion
     CommandHelper.runSimpleGitCommand "temp/release" cmd |> printfn "%s"
@@ -122,7 +148,7 @@ Target "ReleaseBinaries" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Help
 
-Target "Help" (fun _ ->
+Target.create "Help" (fun _ ->
     printfn ""
     printfn "  Please specify the target by calling 'build <Target>'"
     printfn ""
@@ -138,18 +164,25 @@ Target "Help" (fun _ ->
     printfn "  * Release (calls previous 4)"
     printfn "")
 
-Target "All" DoNothing
 
-"Clean" 
-==> "AssemblyInfo" 
-==> "Build" 
-==> "All"
+Target.create "All" 
+    ignore
+Target.create "Release" 
+    ignore
 
-Target "Release" DoNothing
-"All" ==> "CleanDocs"
-"CleanDocs" ==> "GenerateDocs" ==> "ReleaseDocs"
-"ReleaseDocs" ==> "Release"
+
+open Fake.Core.TargetOperators
+
+"Clean" ==> "AssemblyInfo"  ==> "Build" 
+"Build" ==> "CleanDocs" ==> "GenerateDocs" ==> "ReleaseDocs"
+"Build" ==> "NuGet" ==> "ReleaseBinaries"
+
+
+"Build" ==> "All"
+
 "ReleaseBinaries" ==> "Release"
-"NuGet" ==> "Release"
+"ReleaseDocs" ==> "Release"
 
-RunTargetOrDefault "Help"
+
+
+Target.runOrDefaultWithArguments "Help"
