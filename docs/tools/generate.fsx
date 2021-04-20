@@ -23,7 +23,7 @@ let info =
 
 
 #r "nuget: RazorEngine, 3.3.0"
-#r "nuget: FSharp.Formatting, 2.4.0"
+#r "nuget: FSharp.Formatting, 2.13.6"
 #r "nuget: Fake.IO.FileSystem, 5.20.4"
 #r "nuget: Fake.Core.Trace, 5.20.4"
 
@@ -39,8 +39,10 @@ open Fake.IO.FileSystemOperators
 // When called from 'build.fsx', use the public project URL as <root>
 // otherwise, use the current 'output' directory.
 #if RELEASE
+printfn "RELEASE is defined"
 let root = website
 #else
+printfn "RELEASE is not defined"
 let root = "file://" + (__SOURCE_DIRECTORY__ @@ "../output")
 #endif
 
@@ -50,7 +52,7 @@ let content    = __SOURCE_DIRECTORY__ @@ "../content"
 let output     = __SOURCE_DIRECTORY__ @@ "../output"
 let files      = __SOURCE_DIRECTORY__ @@ "../files"
 let templates  = __SOURCE_DIRECTORY__ @@ "templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.4.0/"
+let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.13.6/"
 let docTemplate = formatting @@ "templates/docpage.cshtml"
 
 // Where to look for *.csproj templates (in this order)
