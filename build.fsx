@@ -41,7 +41,9 @@ let tags = "Excel-DNA Excel"
 let gitHome = "https://github.com/Excel-DNA"
 let gitName = "ExcelDnaDoc"
 
-NuGet.Restore.RestorePackages ()
+Target.create "NuGetRestore" (fun _ ->
+    Restore.RestorePackages ()
+)
 
 // Read release notes & version info from RELEASE_NOTES.md
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
@@ -77,12 +79,7 @@ Target.create "CleanDocs" (fun _ -> Shell.cleanDirs ["docs/output"])
 Target.create "Build" (fun _ ->
     [ "src/ExcelDna.Documentation/ExcelDna.Documentation.csproj"
       "src/ExcelDnaDoc/ExcelDnaDoc.csproj" ]
-    |> List.map (MSBuild.build (fun p -> 
-            { p with 
-                Targets = ["ReBuild"]
-            }
-            ) 
-        )
+    |> MSBuild.runRelease id "bin" "Rebuild"
     |> ignore
 //    |> Log "Build-Output: "
 )
@@ -114,7 +111,6 @@ Target.create "NuGet" (fun _ ->
 Target.create "GenerateDocs" (fun _ ->
     Fsi.exec (fun p -> 
         { p with 
-            TargetProfile = Fsi.Profile.NetStandard
             WorkingDirectory = "docs/tools"
             // ToolPath = FsiTool.External fsiExe
         })
@@ -162,23 +158,30 @@ Target.create "Help" (fun _ ->
     printfn "  * ReleaseBinaries"
     printfn "  * NuGet (creates package only, doesn't publish)"
     printfn "  * Release (calls previous 4)"
+    printfn "  * DryRunRelease"
     printfn "")
 
 
 Target.create "All" 
     ignore
-Target.create "Release" 
+Target.create "DryRunRelease"
+    ignore
+Target.create "Release"
     ignore
 
 
 open Fake.Core.TargetOperators
 
 "Clean" ==> "AssemblyInfo"  ==> "Build" 
+"Clean" ==> "NuGetRestore" ==> "Build"
 "Build" ==> "CleanDocs" ==> "GenerateDocs" ==> "ReleaseDocs"
 "Build" ==> "NuGet" ==> "ReleaseBinaries"
 
 
 "Build" ==> "All"
+
+"GenerateDocs" ==> "DryRunRelease"
+"NuGet" ==> "DryRunRelease"
 
 "ReleaseBinaries" ==> "Release"
 "ReleaseDocs" ==> "Release"
