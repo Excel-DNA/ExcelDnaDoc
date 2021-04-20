@@ -39,10 +39,8 @@ open Fake.IO.FileSystemOperators
 // When called from 'build.fsx', use the public project URL as <root>
 // otherwise, use the current 'output' directory.
 #if RELEASE
-printfn "RELEASE is defined"
 let root = website
 #else
-printfn "RELEASE is not defined"
 let root = "file://" + (__SOURCE_DIRECTORY__ @@ "../output")
 #endif
 
