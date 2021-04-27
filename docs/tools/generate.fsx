@@ -20,22 +20,21 @@ let info =
 // For typical project, no changes are needed below
 // --------------------------------------------------------------------------------------
 
-#I "../../packages/FAKE/tools/"
 
-#I "../../packages/FSharp.Formatting.2.4.0/lib/net40"
-#I "../../packages/RazorEngine.3.3.0/lib/net40/"
-#r "../../packages/Microsoft.AspNet.Razor.2.0.30506.0/lib/net40/System.Web.Razor.dll"
-#r "../../packages/FAKE/tools/FakeLib.dll"
-#r "RazorEngine.dll"
-#r "FSharp.Literate.dll"
-#r "FSharp.CodeFormat.dll"
-#r "FSharp.MetadataFormat.dll"
 
-open Fake
+#r "nuget: RazorEngine, 3.3.0"
+#r "nuget: FSharp.Formatting, 2.13.6"
+#r "nuget: Fake.IO.FileSystem, 5.20.4"
+#r "nuget: Fake.Core.Trace, 5.20.4"
+
+
+open Fake.IO
+open Fake.Core
 open System.IO
-open Fake.FileHelper
 open FSharp.Literate
 open FSharp.MetadataFormat
+
+open Fake.IO.FileSystemOperators
 
 // When called from 'build.fsx', use the public project URL as <root>
 // otherwise, use the current 'output' directory.
@@ -51,7 +50,7 @@ let content    = __SOURCE_DIRECTORY__ @@ "../content"
 let output     = __SOURCE_DIRECTORY__ @@ "../output"
 let files      = __SOURCE_DIRECTORY__ @@ "../files"
 let templates  = __SOURCE_DIRECTORY__ @@ "templates"
-let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.4.0/"
+let formatting = __SOURCE_DIRECTORY__ @@ "../../packages/FSharp.Formatting.2.13.6/"
 let docTemplate = formatting @@ "templates/docpage.cshtml"
 
 // Where to look for *.csproj templates (in this order)
@@ -61,14 +60,14 @@ let layoutRoots =
 
 // Copy static files and CSS + JS from F# Formatting
 let copyFiles () =
-  CopyRecursive files output true |> Log "Copying file: "
-  ensureDirectory (output @@ "content")
-  CopyRecursive (formatting @@ "styles") (output @@ "content") true 
-    |> Log "Copying styles and scripts: "
+  Shell.copyRecursive files output true |> Trace.logItems "Copying file: " |> ignore
+  Directory.ensure (output @@ "content" )
+  Shell.copyRecursive (formatting @@ "styles") (output @@ "content") true 
+    |> Trace.logItems "Copying styles and scripts: "
 
 // Build API reference from XML comments
 let buildReference () =
-  CleanDir (output @@ "reference")
+  Shell.cleanDir (output @@ "reference")
   for lib in referenceBinaries do
     MetadataFormat.Generate
       ( bin @@ lib, output @@ "reference", layoutRoots, 
