@@ -13,8 +13,12 @@ NuGet Package
 ------------------
 https://www.nuget.org/packages/ExcelDnaDoc/
 
-To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed 
-(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+To build a compiled help file (.chm) the HTML Help Workshop (HHW) must be installed.
+
+HHW is no longer available from Microsoft (it used to be at http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx).
+You can download the installer from the Internet Archive: https://web.archive.org/web/20200918004813/https://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe
+Or install using the Chocolatey installer (https://community.chocolatey.org/packages/html-help-workshop / https://chocolatey.org/install). 
+
 ExcelDnaDoc expects HHW to be installed at `C:\Program Files (x86)\HTML Help Workshop\`. 
 If it is installed at another location change `packages/ExcelDnaDoc/tools/ExcelDnaDoc.exe.config` 
 to reference the proper directory before compiling your project.  
@@ -138,4 +142,4 @@ Dependencies
  FAKE (F# MAKE) (http://fsharp.github.io/FAKE/)  
  Excel-DNA (http://exceldna.codeplex.com/)  
  RazorEngine(https://github.com/Antaris/RazorEngine)  
- HTML Help Workshop(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
+ HTML Help Workshop(http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx / https://web.archive.org/web/20200918004813/https://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe)  
