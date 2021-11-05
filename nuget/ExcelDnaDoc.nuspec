@@ -11,12 +11,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>@description@</description>
     <releaseNotes>@releaseNotes@</releaseNotes>
-    <copyright>Copyright 2016</copyright>    
+    <copyright>Copyright 2016-2021</copyright>    
     <tags>@tags@</tags>
     @dependencies@
   </metadata>
   <files>
-    <file src="..\bin\ExcelDna.Documentation.dll" target="lib/net40" />
+    <file src="..\bin\ExcelDna.Documentation.dll" target="lib/net452" />
     <file src="..\bin\ExcelDna.Documentation.dll" target="tools" />
     <file src="..\bin\ExcelDna.Documentation.dll" target="content/HelpContent/bin" />    
     <file src="..\bin\ExcelDna.Integration.dll" target="tools" />

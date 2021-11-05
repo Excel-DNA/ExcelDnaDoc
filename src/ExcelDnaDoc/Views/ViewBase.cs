@@ -50,7 +50,7 @@
             });
 
             // unicode result
-            string content = Razor.Parse(cacheItem, this.Model);
+            string content = Engine.Razor.RunCompile(cacheItem, "templateKey", null, this.Model); // Razor.Parse(cacheItem, this.Model);
 
             // strip non ANSI characters from result
             content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);
