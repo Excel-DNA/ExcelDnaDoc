@@ -4,7 +4,7 @@
 
     public class Text
     {
-        [ExcelFunction( Name = "Text.ConcatThem", 
+        [ExcelFunction( Name = "Text.ConcatThem15", 
                         Description = "concatenates two strings", 
                         HelpTopic = "MyAddIn.chm!1001")]
         public static object ConcatThem(

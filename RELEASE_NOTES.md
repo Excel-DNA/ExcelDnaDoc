@@ -1,5 +1,6 @@
-#### 1.5.0
+#### 1.5.0-rc
 * rebuild for Excel-DNA 1.5.0
+* update Razor engine
 
 #### 1.1.0-beta2 - 30/06/2020
 * add async support (thanks @Cronan)

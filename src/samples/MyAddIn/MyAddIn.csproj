@@ -35,11 +35,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExcelDna.Documentation, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ExcelDnaDoc.1.1.0-beta\lib\net40\ExcelDna.Documentation.dll</HintPath>
+    <Reference Include="ExcelDna.Documentation, Version=1.5.0.0, Culture=neutral, PublicKeyToken=f225e9659857edbe, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ExcelDnaDoc.1.5.0\lib\net452\ExcelDna.Documentation.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDna.Integration, Version=1.1.0.0, Culture=neutral, PublicKeyToken=f225e9659857edbe, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ExcelDna.Integration.1.1.0\lib\ExcelDna.Integration.dll</HintPath>
+      <HintPath>..\..\..\packages\ExcelDna.Integration.1.5.0\lib\net452\ExcelDna.Integration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,7 +66,7 @@
     </Content>
     <None Include="HelpContent\web.config" />
     <Content Include="HelpContent\_readme_.txt" />
-    <Content Include="MyAddIn.dna">
+    <Content Include="MyAddIn-AddIn.dna">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="HelpContent\CategoryTemplate.cshtml">
@@ -90,24 +90,23 @@
     <None Include="HelpContent\TableOfContentsTemplate.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MyAddIn-AddIn.dna" />
-    <None Include="packages.config" />
     <None Include="Properties\ExcelDna.Build.props" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Work\Excel-DNA\ExcelDnaDoc\packages\ExcelDnaDoc.1.1.0-beta\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn-AddIn.dna" /Y</PostBuildEvent>
+    <PostBuildEvent>"C:\Work\Excel-DNA\ExcelDnaDoc\packages\ExcelDnaDoc.1.5.0\tools\ExcelDnaDoc.exe" "$(TargetDir)MyAddIn-AddIn.dna" /Y</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
-  <Import Project="..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets" Condition="Exists('..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets')" />
+  <Import Project="..\..\..\packages\ExcelDna.AddIn.1.5.0\build\ExcelDna.AddIn.targets" Condition="Exists('..\..\..\packages\ExcelDna.AddIn.1.5.0\build\ExcelDna.AddIn.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ExcelDna.AddIn.1.1.1\build\ExcelDna.AddIn.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\ExcelDna.AddIn.1.5.0\build\ExcelDna.AddIn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ExcelDna.AddIn.1.5.0\build\ExcelDna.AddIn.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
