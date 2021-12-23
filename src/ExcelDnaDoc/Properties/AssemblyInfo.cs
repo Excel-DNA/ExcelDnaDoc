@@ -5,14 +5,14 @@ using System.Reflection;
 [assembly: AssemblyTitle("ExcelDnaDoc")]
 [assembly: AssemblyProduct("ExcelDnaDoc")]
 [assembly: AssemblyDescription("command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna")]
-[assembly: AssemblyVersion("1.5.0")]
-[assembly: AssemblyFileVersion("1.5.0")]
+[assembly: AssemblyVersion("1.5.1")]
+[assembly: AssemblyFileVersion("1.5.1")]
 namespace System {
     internal static class AssemblyVersionInformation {
         internal const System.String AssemblyTitle = "ExcelDnaDoc";
         internal const System.String AssemblyProduct = "ExcelDnaDoc";
         internal const System.String AssemblyDescription = "command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna";
-        internal const System.String AssemblyVersion = "1.5.0";
-        internal const System.String AssemblyFileVersion = "1.5.0";
+        internal const System.String AssemblyVersion = "1.5.1";
+        internal const System.String AssemblyFileVersion = "1.5.1";
     }
 }

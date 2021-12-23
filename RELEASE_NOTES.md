@@ -1,3 +1,6 @@
+#### 1.5.1
+* rebuild for Excel-DNA 1.5.1
+
 #### 1.5.0-rc
 * rebuild for Excel-DNA 1.5.0
 * update Razor engine

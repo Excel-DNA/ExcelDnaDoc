@@ -101,7 +101,7 @@ Target.create "NuGet" (fun _ ->
             ToolPath = ".nuget/nuget.exe"
             AccessKey = Environment.environVarOrDefault "nugetkey" ""
             Publish = Environment.hasEnvironVar "nugetkey"
-            Dependencies = [("ExcelDna.Integration", "[1.5.0]")] })
+            Dependencies = [("ExcelDna.Integration", "[1.5.1]")] })
         "nuget/ExcelDnaDoc.nuspec"
 )
 
