@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="ExcelDna.Integration">
+			<HintPath>..\Package\tools\ExcelDna.Integration.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Import Project="$(ProjectDir)..\Package\build\ExcelDnaDoc.targets" />
+</Project>

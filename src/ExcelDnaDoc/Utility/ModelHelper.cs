@@ -158,24 +158,33 @@
 
         public static AddInModel CreateAddInModel(string dnaPath, bool excludeHidden)
         {
-            var model = new AddInModel();
+            string defaultCategory;
+            List<Library> libraries;
             var dnaLibrary = DnaLibrary.LoadFrom(dnaPath);
-            var defaultCategory = dnaLibrary.Name;
+            if (dnaLibrary != null)
+            {
+                defaultCategory = dnaLibrary.Name;
+                libraries = dnaLibrary.ExternalLibraries.Select(library => new Library() { Path = dnaLibrary.ResolvePath(library.Path), ExplicitExports = library.ExplicitExports }).ToList();
+            }
+            else
+            {
+                defaultCategory = Path.GetFileNameWithoutExtension(dnaPath);
+                libraries = new List<Library>();
+                libraries.Add(new Library() { Path = dnaPath });
+            }
 
-            //var functions = new List<FunctionModel>();
-
+            var model = new AddInModel();
             model.DnaFileName = Path.GetFileNameWithoutExtension(dnaPath);
 
-            if (dnaLibrary.Name != null) { model.ProjectName = dnaLibrary.Name; }
+            if (dnaLibrary?.Name != null) { model.ProjectName = dnaLibrary.Name; }
             else { model.ProjectName = model.DnaFileName; }
 
             // process function libraries
 
             model.Categories =
-                dnaLibrary
-                .ExternalLibraries
+                libraries
                 .SelectMany(library =>
-                    Assembly.LoadFrom(dnaLibrary.ResolvePath(library.Path))
+                    Assembly.LoadFrom(library.Path)
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
@@ -188,10 +197,9 @@
             // find ExcelCommands
 
             model.Commands =
-                dnaLibrary
-                .ExternalLibraries
+                libraries
                 .SelectMany(library =>
-                    Assembly.LoadFrom(dnaLibrary.ResolvePath(library.Path))
+                    Assembly.LoadFrom(library.Path)
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidCommand(m))
@@ -199,6 +207,12 @@
                 .OrderBy(c => c.Name);
 
             return model;
+        }
+
+        private class Library
+        {
+            public string Path { get; set; }
+            public bool ExplicitExports { get; set; }
         }
     }
 }

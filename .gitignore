@@ -29,6 +29,7 @@ nuget/*.nuspec
 
 .project
 
+*.TaskCanvasSL
 **/_Resharper.*/**
 .vs/config/applicationhost.config
 
@@ -37,3 +38,4 @@ nuget/*.nuspec
 
 /src/samples/MyAddIn/HelpContent
 /src/samples/MyLib/HelpContent
+/src/samples/Package

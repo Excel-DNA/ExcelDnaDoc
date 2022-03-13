@@ -32,7 +32,7 @@
             Console.WriteLine($"creating HTML Help content in {HelpContentFolderPath}");
             Console.WriteLine($"ExcludeHidden: {excludeHidden}, SkipCompile: {skipCompile}, Async: {runAsync}");
             Console.WriteLine();
-            
+
             //Only needed for HelpWorkshop compilation
             if (!skipCompile)
             {
@@ -45,7 +45,7 @@
             //Perhaps better to actually enumerate the values?
             List<Task> tasks = new List<Task>(runAsync ? 5000 : 0);
 
-            foreach (var group in addin.Categories) 
+            foreach (var group in addin.Categories)
             {
                 Action categoryAction = new Action(() => new CategoryView { Model = group }.Publish());
                 Run(categoryAction, tasks, runAsync);
@@ -103,10 +103,6 @@
             }
 
             Console.WriteLine($"Finished: {DateTime.Now}");
-#if DEBUG
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
-#endif
         }
 
         private static void Run(Action action, List<Task> taskList, bool runAsync)

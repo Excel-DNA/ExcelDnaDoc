@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<ExcelDnaDocToolsPath Condition="$(ExcelDnaDocToolsPath) == '' Or $(ExcelDnaDocToolsPath) == '*Undefined*'">$(MSBuildThisFileDirectory)..\tools\</ExcelDnaDocToolsPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
+		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net6.0-windows\</ExcelDnaDocTasksPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(MSBuildRuntimeType)' != 'Core'">
+		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\</ExcelDnaDocTasksPath>
+	</PropertyGroup>
+
+	<UsingTask TaskName="ExcelDnaDoc.Tasks.CreateDocumentation" AssemblyFile="$(ExcelDnaDocTasksPath)ExcelDnaDoc.Tasks.dll" />
+
+	<PropertyGroup>
+		<BuildDependsOn>
+			$(BuildDependsOn);
+			ExcelDnaDocCreateDocumentation;
+		</BuildDependsOn>
+	</PropertyGroup>
+
+	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
+		<CreateDocumentation
+			ExcelDnaDocPath="$(ExcelDnaDocTasksPath)ExcelDnaDoc.exe"
+			TargetPath="$(TargetPath)">
+		</CreateDocumentation>
+	</Target>
+	
+</Project>
