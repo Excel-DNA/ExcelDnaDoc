@@ -8,6 +8,10 @@
 		<Reference Include="Microsoft.Build.Framework" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj" />
+	</ItemGroup>
+
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="cd $(ProjectDir)&#xD;&#xA;CopyPackageFilesForSamples.cmd $(TargetPath)" />
 	</Target>

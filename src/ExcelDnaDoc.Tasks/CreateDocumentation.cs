@@ -1,6 +1,5 @@
 ﻿using Microsoft.Build.Framework;
 using System;
-using System.Diagnostics;
 
 namespace ExcelDnaDoc.Tasks
 {
@@ -10,7 +9,7 @@ namespace ExcelDnaDoc.Tasks
         {
             try
             {
-                Process.Start(ExcelDnaDocPath, TargetPath);
+                HtmlHelp.Create(TargetPath, excludeHidden: false, skipCompile: false);
                 return true;
             }
             catch (Exception)
@@ -24,8 +23,5 @@ namespace ExcelDnaDoc.Tasks
 
         [Required]
         public string TargetPath { get; set; }
-
-        [Required]
-        public string ExcelDnaDocPath { get; set; }
     }
 }

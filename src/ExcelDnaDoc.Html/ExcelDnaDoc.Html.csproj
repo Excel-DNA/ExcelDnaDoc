@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net452</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExcelDna.Integration" Version="1.5.0" />
+    <PackageReference Include="RazorEngine" Version="3.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExcelDna.Documentation\ExcelDna.Documentation.csproj" />
+  </ItemGroup>
+
+</Project>

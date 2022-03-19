@@ -23,7 +23,6 @@
 
 	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
 		<CreateDocumentation
-			ExcelDnaDocPath="$(ExcelDnaDocTasksPath)ExcelDnaDoc.exe"
 			TargetPath="$(TargetPath)">
 		</CreateDocumentation>
 	</Target>

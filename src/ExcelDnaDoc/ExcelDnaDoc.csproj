@@ -157,6 +157,10 @@
       <Project>{b46d10f6-9ce3-4e46-ad31-3c44f8d6b51f}</Project>
       <Name>ExcelDna.Documentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj">
+      <Project>{b672bad2-5f26-4fd4-9ead-43e9ec5c7a44}</Project>
+      <Name>ExcelDnaDoc.Html</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HelpContent\helpstyle.css">
