@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net452</TargetFramework>
@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="cd $(ProjectDir)&#xD;&#xA;CopyPackageFilesForSamples.cmd $(TargetPath)" />
+		<Exec Command="cd $(ProjectDir)&#xD;&#xA;CopyPackageFilesForSamples.cmd $(TargetDir)" />
 	</Target>
 
 </Project>
