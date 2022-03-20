@@ -184,7 +184,7 @@
             model.Categories =
                 libraries
                 .SelectMany(library =>
-                    Assembly.LoadFrom(library.Path)
+                    Assembly.Load(File.ReadAllBytes(library.Path))
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidFunction(m, library.ExplicitExports))
@@ -199,7 +199,7 @@
             model.Commands =
                 libraries
                 .SelectMany(library =>
-                    Assembly.LoadFrom(library.Path)
+                    Assembly.Load(File.ReadAllBytes(library.Path))
                     .GetExportedTypes()
                     .SelectMany(t => t.GetMethods())
                     .Where(m => ExcelDnaHelper.IsValidCommand(m))
