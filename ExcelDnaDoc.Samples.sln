@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32314.265
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibNET4", "src\samples\LibNET4\LibNET4.csproj", "{12A27A85-BBB8-4DA3-ADB0-966EBE958737}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibNET6", "src\samples\LibNET6\LibNET6.csproj", "{7180A9AD-A13B-4F11-A431-1C396A96BE4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{12A27A85-BBB8-4DA3-ADB0-966EBE958737}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12A27A85-BBB8-4DA3-ADB0-966EBE958737}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12A27A85-BBB8-4DA3-ADB0-966EBE958737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7180A9AD-A13B-4F11-A431-1C396A96BE4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7180A9AD-A13B-4F11-A431-1C396A96BE4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7180A9AD-A13B-4F11-A431-1C396A96BE4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7180A9AD-A13B-4F11-A431-1C396A96BE4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

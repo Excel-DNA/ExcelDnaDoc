@@ -1,13 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net452</TargetFramework>
+		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
 		<Reference Include="Microsoft.Build.Framework" />
 	</ItemGroup>
 
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
+		<PackageReference Include="Microsoft.Build.Framework" Version="15.9.20" />
+		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.9.20" />
+	</ItemGroup>
+	
 	<ItemGroup>
 	  <ProjectReference Include="..\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj" />
 	</ItemGroup>

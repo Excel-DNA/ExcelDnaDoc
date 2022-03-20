@@ -6,10 +6,10 @@
 
 	<ItemGroup>
 		<Reference Include="ExcelDna.Integration">
-			<HintPath>..\Package\tools\ExcelDna.Integration.dll</HintPath>
+			<HintPath>..\Package\tools\net452\ExcelDna.Integration.dll</HintPath>
 		</Reference>
 		<Reference Include="ExcelDna.Documentation.dll">
-			<HintPath>..\Package\tools\ExcelDna.Documentation.dll</HintPath>
+			<HintPath>..\Package\tools\net452\ExcelDna.Documentation.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

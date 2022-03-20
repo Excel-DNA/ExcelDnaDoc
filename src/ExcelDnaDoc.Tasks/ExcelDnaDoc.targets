@@ -9,7 +9,7 @@
 		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net6.0-windows\</ExcelDnaDocTasksPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(MSBuildRuntimeType)' != 'Core'">
-		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\</ExcelDnaDocTasksPath>
+		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net452\</ExcelDnaDocTasksPath>
 	</PropertyGroup>
 
 	<UsingTask TaskName="ExcelDnaDoc.Tasks.CreateDocumentation" AssemblyFile="$(ExcelDnaDocTasksPath)ExcelDnaDoc.Tasks.dll" />
