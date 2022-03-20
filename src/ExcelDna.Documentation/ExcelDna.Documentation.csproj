@@ -6,7 +6,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDna.Integration" Version="1.5.0" />
+		<PackageReference Include="ExcelDna.Integration" Version="1.6.0-preview3" />
 	</ItemGroup>
 
 </Project>
