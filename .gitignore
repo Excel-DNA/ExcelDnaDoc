@@ -39,3 +39,4 @@ nuget/*.nuspec
 /src/samples/MyAddIn/HelpContent
 /src/samples/MyLib/HelpContent
 /src/samples/Package
+/src/ExcelDnaDoc/Properties/launchSettings.json

@@ -6,11 +6,23 @@
 
   <ItemGroup>
     <PackageReference Include="ExcelDna.Integration" Version="1.6.0-preview3" />
-    <PackageReference Include="RazorEngine" Version="3.10.0" />
+
   </ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+		<PackageReference Include="RazorEngine" Version="3.10.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+		<PackageReference Include="RazorEngineCore">
+			<Version>2022.1.2</Version>
+		</PackageReference>
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ExcelDna.Documentation\ExcelDna.Documentation.csproj" />
   </ItemGroup>
+
+
 
 </Project>
