@@ -2,6 +2,7 @@
 using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ namespace ExcelDnaDoc.Utility
         public static IEnumerable<CategoryModel> GetCategories(List<Library> libraries, string defaultCategory, bool excludeHidden)
         {
             return libraries
-                .SelectMany(library => ModuleDefinition.ReadModule(library.Path).Types
+                .SelectMany(library => ReadModule(library.Path).Types
                     .Where(type => type.IsPublic)
                     .SelectMany(t => t.Methods)
                     .Where(m => IsValidFunction(m, library.ExplicitExports))
@@ -20,18 +21,28 @@ namespace ExcelDnaDoc.Utility
                 .Where(m => !excludeHidden || !m.IsHidden)
                 .GroupBy(f => f.Category)
                 .Select(g => new CategoryModel { Name = g.Key, Functions = g.OrderBy(f => f.Name) })
-                .OrderBy(c => c.Name);
+                .OrderBy(c => c.Name)
+                .ToList();
         }
 
         public static IEnumerable<CommandModel> GetCommands(List<Library> libraries, string defaultCategory)
         {
             return libraries
-                .SelectMany(library => ModuleDefinition.ReadModule(library.Path).Types
+                .SelectMany(library => ReadModule(library.Path).Types
                     .Where(type => type.IsPublic)
                     .SelectMany(t => t.Methods)
                     .Where(m => IsValidCommand(m))
                     .Select(m => CreateCommandModel(m, defaultCategory)))
-                .OrderBy(c => c.Name);
+                .OrderBy(c => c.Name)
+                .ToList();
+        }
+
+        private static ModuleDefinition ReadModule(string path)
+        {
+            var resolver = new DefaultAssemblyResolver();
+            resolver.AddSearchDirectory(Path.GetDirectoryName(path));
+
+            return ModuleDefinition.ReadModule(path, new ReaderParameters { AssemblyResolver = resolver });
         }
 
         private static FunctionModel CreateFunctionModel(MethodDefinition method, string defaultCategory)
