@@ -138,7 +138,7 @@ namespace ExcelDnaDoc.Utility
 
             if (explicitExports)
             {
-                // return Attribute.IsDefined(method, typeof(ExcelFunctionAttribute));
+                return GetCustomAttribute(method, "ExcelDna.Integration.ExcelFunctionAttribute") != null;
             }
 
             return true;
