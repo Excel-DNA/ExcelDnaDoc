@@ -3,6 +3,7 @@ using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ExcelDnaDoc.Utility
 {
@@ -22,7 +23,18 @@ namespace ExcelDnaDoc.Utility
                 .OrderBy(c => c.Name);
         }
 
-        public static FunctionModel CreateFunctionModel(MethodDefinition method, string defaultCategory)
+        public static IEnumerable<CommandModel> GetCommands(List<Library> libraries, string defaultCategory)
+        {
+            return libraries
+                .SelectMany(library => ModuleDefinition.ReadModule(library.Path).Types
+                    .Where(type => type.IsPublic)
+                    .SelectMany(t => t.Methods)
+                    .Where(m => IsValidCommand(m))
+                    .Select(m => CreateCommandModel(m, defaultCategory)))
+                .OrderBy(c => c.Name);
+        }
+
+        private static FunctionModel CreateFunctionModel(MethodDefinition method, string defaultCategory)
         {
             var function = new FunctionModel
             {
@@ -62,6 +74,50 @@ namespace ExcelDnaDoc.Utility
             }
 
             return function;
+        }
+
+        public static CommandModel CreateCommandModel(MethodDefinition method, string defaultCategory)
+        {
+            var command = new CommandModel
+            {
+                Name = method.Name,
+                Description = string.Empty,
+                ShortCut = string.Empty,
+                TopicId = string.Empty,
+                Category = defaultCategory
+            };
+
+            var excelCommand = GetCustomAttribute(method, "ExcelDna.Integration.ExcelCommandAttribute");
+            if (excelCommand != null)
+            {
+                command.Name = GetField(excelCommand, "Name") ?? command.Name;
+                command.Description = GetField(excelCommand, "Description") ?? command.Description;
+
+                string helpTopic = GetField(excelCommand, "HelpTopic");
+                if (helpTopic != null)
+                    command.TopicId = helpTopic.Split('!').Last();
+
+                string shortCut = GetField(excelCommand, "ShortCut");
+                if (shortCut != null)
+                {
+                    Match match = Regex.Match(shortCut, "^[\\^\\+\\%\\s]*([^\\^\\+\\%\\s]+)$");
+                    if (match.Success)
+                    {
+                        string shortcutKeys = string.Empty;
+                        if (shortCut.Contains("^"))
+                            shortcutKeys = "Ctrl ";
+                        if (shortCut.Contains("+"))
+                            shortcutKeys += "Shift ";
+                        if (shortCut.Contains("%"))
+                            shortcutKeys += "Alt ";
+                        shortcutKeys = shortcutKeys.TrimStart().Replace(" ", " + ");
+                        shortcutKeys += match.Groups[1].Value;
+                        command.ShortCut = shortcutKeys;
+                    }
+                }
+            }
+
+            return command;
         }
 
         private static string GetField(CustomAttribute a, string name)
@@ -143,6 +199,16 @@ namespace ExcelDnaDoc.Utility
 
             var parameters = method.Parameters;
             return parameters.All(p => IsValidExcelDnaType(p.ParameterType)) && IsValidExcelDnaType(method.ReturnType);
+        }
+
+        public static bool IsValidCommand(MethodDefinition method)
+        {
+            if (!(method.IsPublic && method.IsStatic))
+            {
+                return false;
+            }
+
+            return GetCustomAttribute(method, "ExcelDna.Integration.ExcelCommandAttribute") != null;
         }
 
         private static string NetTypeName(string monoTypeName)
