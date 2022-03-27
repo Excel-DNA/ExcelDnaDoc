@@ -103,7 +103,7 @@ namespace ExcelDnaDoc.Utility
             var model = new ParameterModel
             {
                 Name = parameter.Name,
-                ParameterType = parameter.ParameterType.Name,
+                ParameterType = NetTypeName(parameter.ParameterType.Name),
                 Description = string.Empty
             };
 
@@ -119,14 +119,14 @@ namespace ExcelDnaDoc.Utility
             return model;
         }
 
-        private static bool IsValidExcelDnaType(Type type)
+        private static bool IsValidExcelDnaType(TypeReference type)
         {
             var validTypes =
                 new Type[] {typeof(String), typeof(DateTime), typeof(Double), typeof(Double[]), typeof(Double[,]),
                             typeof(Object), typeof(Object[]), typeof(Object[,]), typeof(Boolean), typeof(Int32),
                             typeof(Int16), typeof(UInt16), typeof(Decimal), typeof(Int64)};
 
-            return validTypes.Any(t => type.Equals(t));
+            return validTypes.Any(t => t.FullName == NetTypeName(type.FullName));
         }
 
         private static bool IsValidFunction(MethodDefinition method, bool explicitExports)
@@ -141,9 +141,13 @@ namespace ExcelDnaDoc.Utility
                 return GetCustomAttribute(method, "ExcelDna.Integration.ExcelFunctionAttribute") != null;
             }
 
-            return true;
-            //var parameters = method.Parameters;
-            //return (parameters.All(p => IsValidExcelDnaType(p.ParameterType))) && IsValidExcelDnaType(method.ReturnType);
+            var parameters = method.Parameters;
+            return parameters.All(p => IsValidExcelDnaType(p.ParameterType)) && IsValidExcelDnaType(method.ReturnType);
+        }
+
+        private static string NetTypeName(string monoTypeName)
+        {
+            return monoTypeName.Replace("[0...,0...]", "[,]");
         }
     }
 }
