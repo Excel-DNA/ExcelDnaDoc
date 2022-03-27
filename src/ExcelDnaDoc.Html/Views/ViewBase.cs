@@ -18,7 +18,11 @@
     public abstract class ViewBase<T>
 #endif
     {
+#if NETFRAMEWORK
         public new T Model { get; set; }
+#else
+        public T Model { get; set; }
+#endif
 
         public abstract string PageName { get; }
 
