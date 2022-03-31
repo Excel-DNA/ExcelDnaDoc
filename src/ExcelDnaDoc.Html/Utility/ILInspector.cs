@@ -41,6 +41,7 @@ namespace ExcelDnaDoc.Utility
         {
             var resolver = new DefaultAssemblyResolver();
             resolver.AddSearchDirectory(Path.GetDirectoryName(path));
+            resolver.AddSearchDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
 
             return ModuleDefinition.ReadModule(path, new ReaderParameters { AssemblyResolver = resolver });
         }

@@ -12,8 +12,9 @@ namespace ExcelDnaDoc.Tasks
                 HtmlHelp.Create(TargetPath, excludeHidden: false, skipCompile: false);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                BuildEngine.LogMessageEvent(new BuildMessageEventArgs("ExcelDnaDoc exception: " + e.Message, "", "ExcelDnaDoc", MessageImportance.High));
                 return false;
             }
         }
