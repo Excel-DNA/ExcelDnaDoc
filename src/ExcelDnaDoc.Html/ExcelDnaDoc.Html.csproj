@@ -15,9 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
-		<PackageReference Include="RazorEngineCore">
-			<Version>2022.1.2</Version>
-		</PackageReference>
+		<PackageReference Include="RazorEngineCore" Version="2022.1.2" />
 	</ItemGroup>
 
   <ItemGroup>
