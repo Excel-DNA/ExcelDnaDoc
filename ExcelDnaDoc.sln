@@ -34,13 +34,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{ADAA
 		docs\content\index.md = docs\content\index.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelDna.Documentation", "src\ExcelDna.Documentation\ExcelDna.Documentation.csproj", "{B46D10F6-9CE3-4E46-AD31-3C44F8D6B51F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelDnaDoc", "src\ExcelDnaDoc\ExcelDnaDoc.csproj", "{498B3355-81A0-4946-AC0D-DED3B4E14A0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelDnaDoc.Tasks", "src\ExcelDnaDoc.Tasks\ExcelDnaDoc.Tasks.csproj", "{990A35B0-926C-465E-A6AB-887A25D068D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDnaDoc.Html", "src\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj", "{B672BAD2-5F26-4FD4-9EAD-43E9EC5C7A44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelDnaDoc.Html", "src\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj", "{B672BAD2-5F26-4FD4-9EAD-43E9EC5C7A44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{669C6066-43A6-4D13-BF9B-1E4163ECD18C}"
+	ProjectSection(SolutionItems) = preProject
+		Package\ExcelDnaDoc\ExcelDnaDoc.nuspec = Package\ExcelDnaDoc\ExcelDnaDoc.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

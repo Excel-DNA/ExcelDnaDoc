@@ -59,9 +59,6 @@
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net452\ExcelDna.Documentation.dll" target="content\HelpContent\bin" />    
     <file src="..\..\src\ExcelDnaDoc.Html\HelpContent\*.*" target="content\HelpContent" />
     <file src="..\..\src\ExcelDnaDoc.Html\HelpContent\*.*" target="tools\HelpContent" />
-    <file src="..\..\nuget\install.ps1" target="tools" />
-    <file src="..\..\nuget\uninstall.ps1" target="tools" />    
-    <file src="..\..\nuget\ExcelDnaDoc-Template.dna" target="content" />
     <file src="..\..\README.md" target="" />
   </files>
 </package>
