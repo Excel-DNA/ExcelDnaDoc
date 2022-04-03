@@ -68,9 +68,7 @@
             IRazorEngine razorEngine = new RazorEngine();
             string templateText = (new UTF8Encoding()).GetString(this.Template);
 
-            templateText = templateText.Replace("@model ExcelDna.Documentation.Models.AddInModel", "");
-            templateText = templateText.Replace("@model ExcelDna.Documentation.Models.CategoryModel", "");
-            templateText = templateText.Replace("@model ExcelDna.Documentation.Models.FunctionModel", "");
+            templateText = Regex.Replace(templateText, "@model .+", "");
             templateText = templateText.Replace("@Raw", "");
 
             IRazorEngineCompiledTemplate<RazorEngineTemplateBase<T>> template = razorEngine.Compile<RazorEngineTemplateBase<T>>(templateText);
