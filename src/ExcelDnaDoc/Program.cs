@@ -65,7 +65,8 @@ Function Wizard, but will be included in the HTML Help Workshop content.
                         @"/Async", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/A", StringComparison.OrdinalIgnoreCase));
 
-                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile);
+                var addin = Utility.ModelHelper.CreateAddInModel(dnaPath, excludeHidden);
+                HtmlHelp.Create(addin, Path.GetDirectoryName(dnaPath), Path.GetFileNameWithoutExtension(dnaPath), excludeHidden: excludeHidden, skipCompile: skipCompile);
                 Console.WriteLine("Successful");
             }
         }

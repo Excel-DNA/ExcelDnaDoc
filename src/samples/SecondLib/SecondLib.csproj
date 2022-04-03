@@ -1,11 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<ExcelAddInInclude>SecondLib.dll</ExcelAddInInclude>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
@@ -24,10 +20,6 @@
 		<Reference Include="ExcelDna.Documentation.dll">
 			<HintPath>..\Package\tools\net6.0-windows\ExcelDna.Documentation.dll</HintPath>
 		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\SecondLib\SecondLib.csproj" />
 	</ItemGroup>
 
 	<Import Project="$(ProjectDir)..\Package\build\ExcelDnaDoc.targets" />

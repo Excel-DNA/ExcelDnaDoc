@@ -23,7 +23,8 @@
 
 	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
 		<CreateDocumentation
-			TargetPath="$(TargetPath)">
+			TargetPath="$(TargetPath)"
+			Include="$(ExcelAddInInclude)">
 		</CreateDocumentation>
 	</Target>
 	

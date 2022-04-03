@@ -5,7 +5,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
     using ExcelDna.Documentation.Models;
     using ExcelDnaDoc.Templates;
@@ -16,13 +15,10 @@
         public static string HelpContentFolderPath { get; set; }
         public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
-        public static void Create(string dnaPath, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
+        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
         {
-            BuildFolderPath = Path.GetDirectoryName(dnaPath);
+            BuildFolderPath = buildFolderPath;
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
-
-            // initialize data models
-            var addin = Utility.ModelHelper.CreateAddInModel(dnaPath, excludeHidden);
 
             // create help content folder if it does not exist
             if (!Directory.Exists(HelpContentFolderPath)) Directory.CreateDirectory(HelpContentFolderPath);
@@ -90,14 +86,14 @@
             {
                 // compile HTML Help
                 Console.WriteLine("creating chm file");
-                Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".hhp"));
+                Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, outputFileName + ".hhp"));
                 Console.WriteLine();
                 Console.WriteLine();
 
                 // move HTML Help chm file to the main build folder
                 Utility.FileHelper.Move(
-                    Path.Combine(HelpContentFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".chm"),
-                    Path.Combine(BuildFolderPath, Path.GetFileNameWithoutExtension(dnaPath) + ".chm"));
+                    Path.Combine(HelpContentFolderPath, outputFileName + ".chm"),
+                    Path.Combine(BuildFolderPath, outputFileName + ".chm"));
 
                 Console.WriteLine();
             }
