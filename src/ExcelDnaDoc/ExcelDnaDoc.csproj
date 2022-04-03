@@ -3,7 +3,15 @@
   <PropertyGroup>
 	  <TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
 	  <OutputType>Exe</OutputType>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+	  <AssemblyTitle>ExcelDnaDoc</AssemblyTitle>
+	  <Description>command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna</Description>
+	  <Product>ExcelDnaDoc</Product>
+
+	  <Version>1.5.1.0</Version>
+	  <FileVersion>1.5.1.0</FileVersion>
+	  <InformationalVersion>1.5.1</InformationalVersion>
+	  
   </PropertyGroup>
 
   <ItemGroup>
