@@ -25,7 +25,8 @@
 		<CreateDocumentation
 			TargetPath="$(TargetPath)"
 			Include="$(ExcelAddInInclude)"
-			ExcludeHidden="$(ExcelDnaDocExcludeHidden)">
+			ExcludeHidden="$(ExcelDnaDocExcludeHidden)"
+			HHCPath="$(ExcelDnaDocHtmlHelpWorkshopCompilerPath)">
 		</CreateDocumentation>
 	</Target>
 	

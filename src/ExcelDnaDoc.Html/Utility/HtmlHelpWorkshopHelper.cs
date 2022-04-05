@@ -5,7 +5,7 @@
 
     public static class HtmlHelpWorkshopHelper
     {
-        public static void Compile(string projectFile)
+        public static void Compile(string projectFile, string hhcPath)
         {
             // the HTML Help project file
             var p = new FileInfo(projectFile);
@@ -15,7 +15,7 @@
             }
 
             // the HTML compiler
-            var c = new FileInfo(@"C:\Program Files (x86)\HTML Help Workshop\hhc.exe");
+            var c = new FileInfo(hhcPath ?? @"C:\Program Files (x86)\HTML Help Workshop\hhc.exe");
             if (!c.Exists)
             {
                 throw new Exception("HTML Help compiler not found, check hhc.exe path");

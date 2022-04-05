@@ -37,7 +37,7 @@ namespace ExcelDnaDoc.Tasks
                 }
 
                 var addin = Utility.ModelHelper.CreateAddInModel(libraries, name, ExcludeHidden);
-                HtmlHelp.Create(addin, targetDir, name, excludeHidden: ExcludeHidden, skipCompile: false);
+                HtmlHelp.Create(addin, targetDir, name, HHCPath, excludeHidden: ExcludeHidden, skipCompile: false);
                 return true;
             }
             catch (Exception e)
@@ -54,6 +54,8 @@ namespace ExcelDnaDoc.Tasks
         public string TargetPath { get; set; }
 
         public string Include { get; set; }
+
+        public string HHCPath { get; set; }
 
         public bool ExcludeHidden { get; set; }
     }

@@ -15,7 +15,7 @@
         public static string HelpContentFolderPath { get; set; }
         public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
-        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
+        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string hhcPath = null, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
         {
             BuildFolderPath = buildFolderPath;
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
@@ -86,7 +86,7 @@
             {
                 // compile HTML Help
                 Console.WriteLine("creating chm file");
-                Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, outputFileName + ".hhp"));
+                Utility.HtmlHelpWorkshopHelper.Compile(Path.Combine(HelpContentFolderPath, outputFileName + ".hhp"), hhcPath);
                 Console.WriteLine();
                 Console.WriteLine();
 
