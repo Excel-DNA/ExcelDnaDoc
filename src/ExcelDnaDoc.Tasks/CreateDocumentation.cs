@@ -27,7 +27,6 @@ namespace ExcelDnaDoc.Tasks
             {
                 string targetDir = Path.GetDirectoryName(TargetPath);
                 string name = Path.GetFileNameWithoutExtension(TargetPath);
-                bool excludeHidden = false;
 
                 var libraries = new List<Utility.Library>();
                 libraries.Add(new Utility.Library() { Path = TargetPath });
@@ -37,8 +36,8 @@ namespace ExcelDnaDoc.Tasks
                         libraries.Add(new Utility.Library() { Path = Path.Combine(targetDir, i) });
                 }
 
-                var addin = Utility.ModelHelper.CreateAddInModel(libraries, name, excludeHidden);
-                HtmlHelp.Create(addin, targetDir, name, excludeHidden: excludeHidden, skipCompile: false);
+                var addin = Utility.ModelHelper.CreateAddInModel(libraries, name, ExcludeHidden);
+                HtmlHelp.Create(addin, targetDir, name, excludeHidden: ExcludeHidden, skipCompile: false);
                 return true;
             }
             catch (Exception e)
@@ -55,5 +54,7 @@ namespace ExcelDnaDoc.Tasks
         public string TargetPath { get; set; }
 
         public string Include { get; set; }
+
+        public bool ExcludeHidden { get; set; }
     }
 }

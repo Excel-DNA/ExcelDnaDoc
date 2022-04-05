@@ -24,7 +24,8 @@
 	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
 		<CreateDocumentation
 			TargetPath="$(TargetPath)"
-			Include="$(ExcelAddInInclude)">
+			Include="$(ExcelAddInInclude)"
+			ExcludeHidden="$(ExcelDnaDocExcludeHidden)">
 		</CreateDocumentation>
 	</Target>
 	
