@@ -10,6 +10,7 @@
     using RazorEngine.Templating;
 #else
     using RazorEngineCore;
+    using System.Threading.Tasks;
 #endif
 
 #if NETFRAMEWORK
@@ -69,9 +70,8 @@
             string templateText = (new UTF8Encoding()).GetString(this.Template);
 
             templateText = Regex.Replace(templateText, "@model .+", "");
-            templateText = templateText.Replace("@Raw", "");
 
-            IRazorEngineCompiledTemplate<RazorEngineTemplateBase<T>> template = razorEngine.Compile<RazorEngineTemplateBase<T>>(templateText);
+            IRazorEngineCompiledTemplate<HtmlSafeTemplate<T>> template = razorEngine.Compile<HtmlSafeTemplate<T>>(templateText);
 
             string content = template.Run(instance =>
             {
@@ -85,4 +85,42 @@
             File.WriteAllText(Path.Combine(HtmlHelp.HelpContentFolderPath, this.PageName), content);
         }
     }
+
+#if !NETFRAMEWORK
+    public class HtmlSafeTemplate<T> : RazorEngineTemplateBase<T>
+    {
+        class RawContent
+        {
+            public object Value { get; set; }
+
+            public RawContent(object value)
+            {
+                Value = value;
+            }
+        }
+
+        public object Raw(object value)
+        {
+            return new RawContent(value);
+        }
+
+        public override Task WriteAsync(object obj = null)
+        {
+            object value = obj is RawContent rawContent
+                ? rawContent.Value
+                : System.Web.HttpUtility.HtmlEncode(obj);
+
+            return base.WriteAsync(value);
+        }
+
+        public override Task WriteAttributeValueAsync(string prefix, int prefixOffset, object value, int valueOffset, int valueLength, bool isLiteral)
+        {
+            value = value is RawContent rawContent
+                ? rawContent.Value
+                : System.Web.HttpUtility.HtmlAttributeEncode(value?.ToString());
+
+            return base.WriteAttributeValueAsync(prefix, prefixOffset, value, valueOffset, valueLength, isLiteral);
+        }
+    }
+#endif
 }
