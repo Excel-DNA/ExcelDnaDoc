@@ -23,10 +23,17 @@
 
 	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
 		<CreateDocumentation
+			ProjectName="$(MSBuildProjectName)"
 			TargetPath="$(TargetPath)"
+			
 			Include="$(ExcelAddInInclude)"
+			AddInFileName="$(ExcelAddInFileName)"
+			
 			ExcludeHidden="$(ExcelDnaDocExcludeHidden)"
-			HHCPath="$(ExcelDnaDocHtmlHelpWorkshopCompilerPath)">
+			HHCPath="$(ExcelDnaDocHtmlHelpWorkshopCompilerPath)"
+			DefaultCategory="$(ExcelDnaDocDefaultCategory)"
+			DocProject="$(ExcelDnaDocProject)"
+			>
 		</CreateDocumentation>
 	</Target>
 	

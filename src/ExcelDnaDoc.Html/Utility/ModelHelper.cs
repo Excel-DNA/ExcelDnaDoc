@@ -20,12 +20,7 @@
             return CreateAddInModel(libraries, defaultCategory, dnaFileName, projectName, excludeHidden);
         }
 
-        public static AddInModel CreateAddInModel(List<Library> libraries, string name, bool excludeHidden)
-        {
-            return CreateAddInModel(libraries, name, name, name, excludeHidden);
-        }
-
-        private static AddInModel CreateAddInModel(List<Library> libraries, string defaultCategory, string dnaFileName, string projectName, bool excludeHidden)
+        public static AddInModel CreateAddInModel(List<Library> libraries, string defaultCategory, string dnaFileName, string projectName, bool excludeHidden)
         {
             var model = new AddInModel();
             model.DnaFileName = dnaFileName;

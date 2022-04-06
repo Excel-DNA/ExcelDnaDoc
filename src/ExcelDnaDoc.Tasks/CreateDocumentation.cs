@@ -26,7 +26,6 @@ namespace ExcelDnaDoc.Tasks
             try
             {
                 string targetDir = Path.GetDirectoryName(TargetPath);
-                string name = Path.GetFileNameWithoutExtension(TargetPath);
 
                 var libraries = new List<Utility.Library>();
                 libraries.Add(new Utility.Library() { Path = TargetPath });
@@ -36,8 +35,11 @@ namespace ExcelDnaDoc.Tasks
                         libraries.Add(new Utility.Library() { Path = Path.Combine(targetDir, i) });
                 }
 
-                var addin = Utility.ModelHelper.CreateAddInModel(libraries, name, ExcludeHidden);
-                HtmlHelp.Create(addin, targetDir, name, HHCPath, excludeHidden: ExcludeHidden, skipCompile: false);
+                string defaultCategory = DefaultCategory ?? ProjectName + " Add-In";
+                string dnaFileName = AddInFileName ?? ProjectName + "-AddIn";
+                string docProjectName = DocProject ?? ProjectName + " Add-In";
+                var addin = Utility.ModelHelper.CreateAddInModel(libraries, defaultCategory, dnaFileName, docProjectName, ExcludeHidden);
+                HtmlHelp.Create(addin, targetDir, dnaFileName, HHCPath, excludeHidden: ExcludeHidden, skipCompile: false);
                 return true;
             }
             catch (Exception e)
@@ -51,12 +53,17 @@ namespace ExcelDnaDoc.Tasks
         public ITaskHost HostObject { get; set; }
 
         [Required]
+        public string ProjectName { get; set; }
+
+        [Required]
         public string TargetPath { get; set; }
 
         public string Include { get; set; }
-
-        public string HHCPath { get; set; }
+        public string AddInFileName { get; set; }
 
         public bool ExcludeHidden { get; set; }
+        public string HHCPath { get; set; }
+        public string DefaultCategory { get; set; }
+        public string DocProject { get; set; }
     }
 }
