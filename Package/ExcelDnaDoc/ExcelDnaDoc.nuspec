@@ -27,8 +27,6 @@
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.dll" target="lib\net6.0-windows" />
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.pdb" target="lib\net6.0-windows" />
 	  
-    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDnaDoc.exe" target="tools\net452" />
-    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDnaDoc.exe.config" target="tools\net452" />
     <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDna.Documentation.dll" target="tools\net452" />
     <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDna.Integration.dll" target="tools\net452" />
     <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDnaDoc.Html.dll" target="tools\net452" />
