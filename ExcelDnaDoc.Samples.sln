@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcludeHidden", "src\sample
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncodeHTML", "src\samples\EncodeHTML\EncodeHTML.csproj", "{38E0009E-E266-40CB-AEED-2547AD0B6E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Names", "src\samples\Names\Names.csproj", "{B7CCA2DD-EBEA-4B89-832F-2C5CFC97E256}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Names", "src\samples\Names\Names.csproj", "{B7CCA2DD-EBEA-4B89-832F-2C5CFC97E256}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalHelpContent", "src\samples\LocalHelpContent\LocalHelpContent.csproj", "{2CF54A76-FF68-4202-8D05-BCFBF3BA4E9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B7CCA2DD-EBEA-4B89-832F-2C5CFC97E256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7CCA2DD-EBEA-4B89-832F-2C5CFC97E256}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7CCA2DD-EBEA-4B89-832F-2C5CFC97E256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF54A76-FF68-4202-8D05-BCFBF3BA4E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF54A76-FF68-4202-8D05-BCFBF3BA4E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF54A76-FF68-4202-8D05-BCFBF3BA4E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF54A76-FF68-4202-8D05-BCFBF3BA4E9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

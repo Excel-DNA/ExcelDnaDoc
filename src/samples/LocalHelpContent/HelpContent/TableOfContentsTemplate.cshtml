@@ -1,0 +1,58 @@
+﻿@model ExcelDna.Documentation.Models.AddInModel
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</head>
+<body>
+	<object type="text/site	properties">
+		<param name="ImageType" value="Folder">
+	</object>
+	<ul>
+		<li> <object type="text/sitemap">
+				<param name="Name" value="@Model.ProjectName">
+				<param name="Local" value="index.htm">
+			</object>
+		</li>
+		<ul>
+			@foreach (var group in Model.Categories)
+			{
+				<li> <object type="text/sitemap">
+						<param name="Name" value="@group.Name Functions">
+						<param name="Local" value="@group.Name Functions.htm">
+					</object>
+				</li>
+				<ul>
+					@foreach (var function in group.Functions)
+					{
+						<li> <object type="text/sitemap">
+								<param name="Name" value="@function.Name">
+								<param name="Local" value="@(function.Name + ".htm")">
+							</object>
+						</li>
+					}
+				</ul>
+			}
+			@if (Model.Commands.Count() != 0)
+			{ 
+				<li> <object type="text/sitemap">
+						<param name="Name" value="@Model.ProjectName Commands">
+						<param name="Local" value="@Model.ProjectName Commands.htm">
+					</object>
+				</li>
+				<ul>
+					@foreach (var command in Model.Commands)
+					{
+						<li> <object type="text/sitemap">
+								<param name="Name" value="@command.Name">
+								<param name="Local" value="@(command.Name + ".htm")">
+							</object>
+						</li>
+					}
+				</ul>
+			}
+		</ul>
+	</ul>
+</body>
+</html>

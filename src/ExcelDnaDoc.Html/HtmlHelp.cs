@@ -12,13 +12,15 @@
     public static class HtmlHelp
     {
         public static string BuildFolderPath { get; set; }
+        public static string HelpContentSourcePath { get; set; }
         public static string HelpContentFolderPath { get; set; }
         public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
-        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string hhcPath = null, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
+        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string helpContentSourcePath = null, string hhcPath = null, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
         {
             BuildFolderPath = buildFolderPath;
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
+            HelpContentSourcePath = helpContentSourcePath ?? HelpContentFolderPath;
 
             // create help content folder if it does not exist
             if (!Directory.Exists(HelpContentFolderPath)) Directory.CreateDirectory(HelpContentFolderPath);
@@ -70,7 +72,12 @@
 
             // look for style sheet otherwise use embedded one
 
+            string styleSourcePath = Path.Combine(HelpContentSourcePath, "helpstyle.css");
             string stylePath = Path.Combine(HelpContentFolderPath, "helpstyle.css");
+            if (string.Compare(styleSourcePath, stylePath, true) != 0 && File.Exists(styleSourcePath))
+            {
+                File.Copy(styleSourcePath, stylePath, true);
+            }
             if (!File.Exists(stylePath))
             {
                 File.WriteAllText(stylePath, Properties.Resources.helpstyle);

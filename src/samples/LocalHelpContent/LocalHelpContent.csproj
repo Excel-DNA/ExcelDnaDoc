@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="ExcelDna.Integration">
+			<HintPath>..\Package\tools\net6.0-windows\ExcelDna.Integration.dll</HintPath>
+		</Reference>
+		<Reference Include="ExcelDna.Documentation.dll">
+			<HintPath>..\Package\tools\net6.0-windows\ExcelDna.Documentation.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Import Project="$(ProjectDir)..\Package\build\ExcelDnaDoc.targets" />
+
+</Project>

@@ -26,6 +26,8 @@ namespace ExcelDnaDoc.Tasks
             try
             {
                 string targetDir = Path.GetDirectoryName(TargetPath);
+                string localHelpContent = Path.Combine(ProjectDirectory, "HelpContent");
+                string helpContentSourcePath = Directory.Exists(localHelpContent) ? localHelpContent : null;
 
                 var libraries = new List<Utility.Library>();
                 libraries.Add(new Utility.Library() { Path = TargetPath });
@@ -39,7 +41,7 @@ namespace ExcelDnaDoc.Tasks
                 string dnaFileName = AddInFileName ?? ProjectName + "-AddIn";
                 string docProjectName = DocProject ?? ProjectName + " Add-In";
                 var addin = Utility.ModelHelper.CreateAddInModel(libraries, defaultCategory, dnaFileName, docProjectName, ExcludeHidden);
-                HtmlHelp.Create(addin, targetDir, dnaFileName, HHCPath, excludeHidden: ExcludeHidden, skipCompile: false);
+                HtmlHelp.Create(addin, targetDir, dnaFileName, helpContentSourcePath: helpContentSourcePath, hhcPath: HHCPath, excludeHidden: ExcludeHidden, skipCompile: false);
                 return true;
             }
             catch (Exception e)
@@ -54,6 +56,9 @@ namespace ExcelDnaDoc.Tasks
 
         [Required]
         public string ProjectName { get; set; }
+
+        [Required]
+        public string ProjectDirectory { get; set; }
 
         [Required]
         public string TargetPath { get; set; }

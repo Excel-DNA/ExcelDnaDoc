@@ -24,6 +24,7 @@
 	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
 		<CreateDocumentation
 			ProjectName="$(MSBuildProjectName)"
+			ProjectDirectory="$(MSBuildProjectDirectory)"
 			TargetPath="$(TargetPath)"
 			
 			Include="$(ExcelAddInInclude)"

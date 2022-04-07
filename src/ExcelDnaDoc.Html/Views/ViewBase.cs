@@ -33,7 +33,7 @@
         {
             get
             {
-                return Path.Combine(HtmlHelp.HelpContentFolderPath, this.TemplateName + ".cshtml");
+                return Path.Combine(HtmlHelp.HelpContentSourcePath, this.TemplateName + ".cshtml");
             }
         }
 
@@ -48,26 +48,13 @@
         public void Publish()
         {
 #if NETFRAMEWORK
-            // check to see if template is in cache
-            string cacheItem = HtmlHelp.TemplateCache.GetOrAdd(this.TemplateName, k =>
-            {
-                // look for razorengine template otherwise use embedded one
-                if (File.Exists(this.ViewFilePath))
-                {
-                    Console.WriteLine("using local template : " + Path.GetFileName(this.ViewFilePath));
-                    return File.ReadAllText(this.ViewFilePath);
-                }
-                else
-                {
-                    return (new UTF8Encoding()).GetString(this.Template);
-                }
-            });
+            string templateText = LoadTemplate();
 
             // unicode result
-            string content = Engine.Razor.RunCompile(cacheItem, this.TemplateName, null, this.Model); // Razor.Parse(cacheItem, this.Model);
+            string content = Engine.Razor.RunCompile(templateText, GetStringSha256Hash(templateText), null, this.Model);
 #else
             IRazorEngine razorEngine = new RazorEngine();
-            string templateText = (new UTF8Encoding()).GetString(this.Template);
+            string templateText = LoadTemplate();
 
             templateText = Regex.Replace(templateText, "@model .+", "");
 
@@ -83,6 +70,33 @@
             content = content.TrimStart(new char[] { '\r', '\n' });
 
             File.WriteAllText(Path.Combine(HtmlHelp.HelpContentFolderPath, this.PageName), content);
+        }
+
+        private string LoadTemplate()
+        {
+            // look for razorengine template otherwise use embedded one
+            if (File.Exists(this.ViewFilePath))
+            {
+                Console.WriteLine("using local template : " + Path.GetFileName(this.ViewFilePath));
+                return File.ReadAllText(this.ViewFilePath);
+            }
+            else
+            {
+                return (new UTF8Encoding()).GetString(this.Template);
+            }
+        }
+
+        private static string GetStringSha256Hash(string text)
+        {
+            if (String.IsNullOrEmpty(text))
+                return String.Empty;
+
+            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            {
+                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return BitConverter.ToString(hash).Replace("-", String.Empty);
+            }
         }
     }
 
