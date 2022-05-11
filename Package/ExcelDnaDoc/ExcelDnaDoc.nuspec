@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">    
+    <id>ExcelDnaDoc</id>
+    <version>1.6.0-preview3</version>
+    <authors>David Carlson, Excel-DNA Developers</authors>
+    <owners>David Carlson, Excel-DNA Developers</owners>
+    <summary>command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna</summary>
+    <licenseUrl>https://github.com/Excel-DNA/ExcelDnaDoc/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://excel-dna.net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description> Command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna. To build compiled help file (.chm) the HTML Help Workshop must be installed. For examples see https://github.com/Excel-DNA/ExcelDnaDoc.</description>
+    <copyright>Copyright 2016-2022</copyright>    
+    <tags>Excel-DNA Excel</tags>
+	  <dependencies>
+		  <group targetFramework=".NETFramework4.5.2" >
+			  <dependency id="ExcelDna.Integration" version="[1.6.0-preview3]" />
+		  </group>
+		  <group targetFramework="net6.0-windows" >
+			  <dependency id="ExcelDna.Integration" version="[1.6.0-preview3]" />
+		  </group>
+	  </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net452\ExcelDna.Documentation.dll" target="lib\net452" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net452\ExcelDna.Documentation.pdb" target="lib\net452" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.dll" target="lib\net6.0-windows" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.pdb" target="lib\net6.0-windows" />
+	  
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDna.Documentation.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDna.Integration.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\ExcelDnaDoc.Html.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\Mono.Cecil.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\Mono.Cecil.Mdb.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\Mono.Cecil.Pdb.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\Mono.Cecil.Rocks.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\RazorEngine.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc\bin\Release\net452\System.Web.Razor.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net452\ExcelDnaDoc.Tasks.dll" target="tools\net452" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net452\ExcelDnaDoc.Tasks.pdb" target="tools\net452" />
+
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDna.Documentation.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDna.Integration.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDnaDoc.Html.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDnaDoc.Tasks.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.AspNetCore.Razor.Language.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Mdb.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Pdb.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Rocks.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\RazorEngineCore.dll" target="tools\net6.0-windows" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\System.CodeDom.dll" target="tools\net6.0-windows" />
+
+    <file src="..\..\src\ExcelDnaDoc.Tasks\ExcelDnaDoc.targets" target="build" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net452\ExcelDna.Documentation.dll" target="content\HelpContent\bin" />    
+    <file src="..\..\src\ExcelDnaDoc.Html\HelpContent\*.*" target="content\HelpContent" />
+    <file src="..\..\src\ExcelDnaDoc.Html\HelpContent\*.*" target="tools\HelpContent" />
+    <file src="..\..\README.md" target="" />
+  </files>
+</package>

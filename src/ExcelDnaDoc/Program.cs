@@ -37,10 +37,6 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             if (args.Length < 1)
             {
                 Console.Write("dnaPath not provided.\r\n\r\n" + usageInfo);
-#if DEBUG
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-#endif
                 return;
             }
 
@@ -51,21 +47,17 @@ Function Wizard, but will be included in the HTML Help Workshop content.
             if (!File.Exists(dnaPath))
             {
                 Console.Write("No dna file found at the specified location.");
-#if DEBUG
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-#endif
             }
             else
             {
                 bool excludeHidden = args.Any(
                     x => x.Equals(
-                        @"/ExcludeHidden", StringComparison.OrdinalIgnoreCase) || 
+                        @"/ExcludeHidden", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/X", StringComparison.OrdinalIgnoreCase));
 
                 bool skipCompile = args.Any(
                     x => x.Equals(
-                        @"/SkipCompile", StringComparison.OrdinalIgnoreCase) || 
+                        @"/SkipCompile", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/S", StringComparison.OrdinalIgnoreCase));
 
                 bool runAsync = args.Any(
@@ -73,12 +65,9 @@ Function Wizard, but will be included in the HTML Help Workshop content.
                         @"/Async", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/A", StringComparison.OrdinalIgnoreCase));
 
-                HtmlHelp.Create(dnaPath, excludeHidden: excludeHidden, skipCompile: skipCompile);
+                var addin = Utility.ModelHelper.CreateAddInModel(dnaPath, excludeHidden);
+                HtmlHelp.Create(addin, Path.GetDirectoryName(dnaPath), Path.GetFileNameWithoutExtension(dnaPath), excludeHidden: excludeHidden, skipCompile: skipCompile);
                 Console.WriteLine("Successful");
-#if DEBUG
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-#endif
             }
         }
     }

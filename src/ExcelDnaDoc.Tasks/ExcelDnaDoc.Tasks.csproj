@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
+		<EnableDynamicLoading>true</EnableDynamicLoading>
+
+		<AssemblyTitle>ExcelDnaDoc.Tasks</AssemblyTitle>
+		<Description>command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna</Description>
+		<Product>ExcelDnaDoc</Product>
+
+		<Version>1.5.1.0</Version>
+		<FileVersion>1.5.1.0</FileVersion>
+		<InformationalVersion>1.5.1</InformationalVersion>
+		
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+		<Reference Include="Microsoft.Build.Framework" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
+		<PackageReference Include="Microsoft.Build.Framework" Version="15.9.20" />
+		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.9.20" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\ExcelDnaDoc.Html\ExcelDnaDoc.Html.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="cd $(ProjectDir)&#xD;&#xA;CopyPackageFilesForSamples.cmd $(TargetDir)" />
+	</Target>
+
+</Project>
