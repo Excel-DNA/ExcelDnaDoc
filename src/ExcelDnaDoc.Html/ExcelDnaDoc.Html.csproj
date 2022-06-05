@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExcelDna.Integration" Version="1.6.0-preview3" />
+		<PackageReference Include="ExcelDna.Integration" />
 		<PackageReference Include="Mono.Cecil" Version="0.11.4" />
 	</ItemGroup>
 
