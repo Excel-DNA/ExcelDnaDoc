@@ -46,7 +46,8 @@ namespace ExcelDnaDoc.Tasks
             }
             catch (Exception e)
             {
-                BuildEngine.LogMessageEvent(new BuildMessageEventArgs("ExcelDnaDoc exception: " + e.Message, "", "ExcelDnaDoc", MessageImportance.High));
+                string targetName = "ExcelDnaDoc";
+                BuildEngine.LogErrorEvent(new BuildErrorEventArgs(targetName, "DNADOC1", null, 0, 0, 0, 0, e.Message, targetName, targetName));
                 return false;
             }
         }
