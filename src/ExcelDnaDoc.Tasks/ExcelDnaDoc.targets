@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
-		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net6.0-windows\</ExcelDnaDocTasksPath>
+		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net6.0-windows7.0\</ExcelDnaDocTasksPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(MSBuildRuntimeType)' != 'Core'">
 		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net452\</ExcelDnaDocTasksPath>
