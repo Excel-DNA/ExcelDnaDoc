@@ -21,7 +21,7 @@
 		</BuildDependsOn>
 	</PropertyGroup>
 
-	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="PostBuildEvent">
+	<Target Name="ExcelDnaDocCreateDocumentation" BeforeTargets="ExcelDnaBuild;PostBuildEvent">
 		<CreateDocumentation
 			ProjectName="$(MSBuildProjectName)"
 			ProjectDirectory="$(MSBuildProjectDirectory)"
