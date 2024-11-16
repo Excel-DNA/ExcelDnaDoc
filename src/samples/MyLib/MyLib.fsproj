@@ -10,7 +10,7 @@
     <RootNamespace>MyLib</RootNamespace>
     <AssemblyName>MyLib</AssemblyName>
     <UseStandardResourceNames>true</UseStandardResourceNames>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <Name>MyLib</Name>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
 
 		<AssemblyTitle>ExcelDnaDoc.Html</AssemblyTitle>
 		<Description>command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna</Description>
@@ -13,7 +13,7 @@
 		<PackageReference Include="Mono.Cecil" Version="0.11.4" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
 		<PackageReference Include="RazorEngine" Version="3.10.0" />
 	</ItemGroup>
 

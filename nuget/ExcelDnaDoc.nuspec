@@ -16,7 +16,7 @@
     @dependencies@
   </metadata>
   <files>
-    <file src="..\bin\ExcelDna.Documentation.dll" target="lib/net452" />
+    <file src="..\bin\ExcelDna.Documentation.dll" target="lib/net462" />
     <file src="..\bin\ExcelDna.Documentation.dll" target="tools" />
     <file src="..\bin\ExcelDna.Documentation.dll" target="content/HelpContent/bin" />    
     <file src="..\bin\ExcelDna.Integration.dll" target="tools" />
