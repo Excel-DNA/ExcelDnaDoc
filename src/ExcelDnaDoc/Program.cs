@@ -17,6 +17,7 @@ Usage: ExcelDnaDoc.exe dnaPath [/X]
   /ExcludeHidden or /X    Optional. Excludes hidden functions from being documented if provided.
   /SkipCompile or /S      Optional. Skips compiling the HTML Help file (.chm) if provided.
   /Async or /A            Optional. Runs in async mode, consuming more cpu, but taking less time to run.
+  /Utf8 or /U             Optional. Writes help files using UTF-8 encoding.
 
 Example: ExcelDnaDoc.exe <build folder>\SampleLib-AddIn.dna
          The HTML Help Workshop content will be created in <build folder>\HelpContent\.
@@ -65,8 +66,13 @@ Function Wizard, but will be included in the HTML Help Workshop content.
                         @"/Async", StringComparison.OrdinalIgnoreCase) ||
                         x.Equals(@"/A", StringComparison.OrdinalIgnoreCase));
 
+                bool useUtf8Encoding = args.Any(
+                    x => x.Equals(
+                        @"/Utf8", StringComparison.OrdinalIgnoreCase) ||
+                        x.Equals(@"/U", StringComparison.OrdinalIgnoreCase));
+
                 var addin = Utility.ModelHelper.CreateAddInModel(dnaPath, excludeHidden);
-                HtmlHelp.Create(addin, Path.GetDirectoryName(dnaPath), Path.GetFileNameWithoutExtension(dnaPath), excludeHidden: excludeHidden, skipCompile: skipCompile);
+                HtmlHelp.Create(addin, Path.GetDirectoryName(dnaPath), Path.GetFileNameWithoutExtension(dnaPath), excludeHidden: excludeHidden, skipCompile: skipCompile, useUtf8Encoding: useUtf8Encoding);
                 Console.WriteLine("Successful");
             }
         }

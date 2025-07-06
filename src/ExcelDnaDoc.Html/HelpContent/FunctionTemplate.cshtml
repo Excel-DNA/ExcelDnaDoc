@@ -1,4 +1,5 @@
 ﻿@model ExcelDna.Documentation.Models.FunctionModel
+@using ExcelDnaDoc
 @{
     var parameters = new List<string>();
     foreach (var p in Model.Parameters)
@@ -12,6 +13,7 @@
 
 <html>
 <head>
+    @if (HtmlHelp.UseUtf8Encoding) { <meta charset="utf-8"> }
     <link rel="stylesheet" type="text/css" href="helpstyle.css">
     <title></title>
 </head>
