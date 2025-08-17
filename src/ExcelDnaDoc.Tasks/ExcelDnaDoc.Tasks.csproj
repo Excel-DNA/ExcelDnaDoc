@@ -14,8 +14,8 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
-		<PackageReference Include="Microsoft.Build.Framework" Version="15.9.20" />
-		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.9.20" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="15.9.30" />
+		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.9.30" />
 	</ItemGroup>
 	
 	<ItemGroup>
