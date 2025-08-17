@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<PropertyGroup>
-		<ExcelDnaDocToolsPath Condition="$(ExcelDnaDocToolsPath) == '' Or $(ExcelDnaDocToolsPath) == '*Undefined*'">$(MSBuildThisFileDirectory)..\tools\</ExcelDnaDocToolsPath>
-	</PropertyGroup>
+        <PropertyGroup>
+                <ExcelDnaDocToolsPath Condition="$(ExcelDnaDocToolsPath) == '' Or $(ExcelDnaDocToolsPath) == '*Undefined*'">$(MSBuildThisFileDirectory)..\tools\</ExcelDnaDocToolsPath>
+                <ExcelDnaDocUseUtf8 Condition="'$(ExcelDnaDocUseUtf8)' == ''">false</ExcelDnaDocUseUtf8>
+        </PropertyGroup>
 
 	<PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
 		<ExcelDnaDocTasksPath>$(ExcelDnaDocToolsPath)\net6.0-windows7.0\</ExcelDnaDocTasksPath>
@@ -33,9 +34,10 @@
 			ExcludeHidden="$(ExcelDnaDocExcludeHidden)"
 			HHCPath="$(ExcelDnaDocHtmlHelpWorkshopCompilerPath)"
 			DefaultCategory="$(ExcelDnaDocDefaultCategory)"
-			DocProject="$(ExcelDnaDocProject)"
-			>
-		</CreateDocumentation>
+                        DocProject="$(ExcelDnaDocProject)"
+                        UseUtf8="$(ExcelDnaDocUseUtf8)"
+                        >
+                </CreateDocumentation>
 	</Target>
 	
 </Project>

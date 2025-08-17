@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using ExcelDna.Documentation.Models;
     using ExcelDnaDoc.Templates;
@@ -14,11 +15,13 @@
         public static string BuildFolderPath { get; set; }
         public static string HelpContentSourcePath { get; set; }
         public static string HelpContentFolderPath { get; set; }
+        public static bool UseUtf8Encoding { get; private set; }
         public static ConcurrentDictionary<string, string> TemplateCache = new ConcurrentDictionary<string, string>();
 
-        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string helpContentSourcePath = null, string hhcPath = null, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false)
+        public static void Create(AddInModel addin, string buildFolderPath, string outputFileName, string helpContentSourcePath = null, string hhcPath = null, string helpSubfolder = "HelpContent", bool excludeHidden = false, bool skipCompile = false, bool runAsync = false, bool useUtf8Encoding = false)
         {
             BuildFolderPath = buildFolderPath;
+            UseUtf8Encoding = useUtf8Encoding;
             HelpContentFolderPath = Path.Combine(HtmlHelp.BuildFolderPath, helpSubfolder);
             HelpContentSourcePath = helpContentSourcePath ?? HelpContentFolderPath;
 
@@ -80,7 +83,10 @@
             }
             if (!File.Exists(stylePath))
             {
-                File.WriteAllText(stylePath, Properties.Resources.helpstyle);
+                if (UseUtf8Encoding)
+                    File.WriteAllText(stylePath, Properties.Resources.helpstyle, Encoding.UTF8);
+                else
+                    File.WriteAllText(stylePath, Properties.Resources.helpstyle);
             }
             else
             {

@@ -65,11 +65,18 @@
                 instance.Model = Model;
             });
 #endif
-            // strip non ANSI characters from result
-            content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);
-            content = content.TrimStart(new char[] { '\r', '\n' });
+            if (!HtmlHelp.UseUtf8Encoding)
+            {
+                // strip non ANSI characters from result
+                content = Regex.Replace(content, @"[^\u0000-\u007F]", string.Empty);
+                content = content.TrimStart(new char[] { '\r', '\n' });
+            }
 
-            File.WriteAllText(Path.Combine(HtmlHelp.HelpContentFolderPath, this.PageName), content);
+            string filePath = Path.Combine(HtmlHelp.HelpContentFolderPath, this.PageName);
+            if (HtmlHelp.UseUtf8Encoding)
+                File.WriteAllText(filePath, content, Encoding.UTF8);
+            else
+                File.WriteAllText(filePath, content);
         }
 
         private string LoadTemplate()

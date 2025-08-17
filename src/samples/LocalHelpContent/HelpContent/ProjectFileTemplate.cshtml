@@ -1,5 +1,6 @@
 ﻿@model ExcelDna.Documentation.Models.AddInModel
 @using System.Text;
+@using ExcelDnaDoc
 @using System.Linq;
 @{ var functions = Model.Functions.Where(f => f.TopicId != string.Empty);
    var commands = Model.Commands.Where(c => c.TopicId != string.Empty);
@@ -22,7 +23,7 @@ Compiled file="@(Model.DnaFileName).chm"
 Contents file=Table of Contents.hhc
 Default topic=index.htm
 Display compile progress=No
-Language=0x409 English (United States)
+@if (HtmlHelp.UseUtf8Encoding) { "Code page=65001" } else { "Language=0x409 English (United States)" }
 
 [INFOTYPES]
 

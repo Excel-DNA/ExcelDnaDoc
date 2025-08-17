@@ -134,11 +134,21 @@ that are exposed to Excel and documented using the ExcelFunctionAttribute and th
 
 If The ExcelDna.Documentation library has been referenced then the ExcelFunctionDocAttribute 
 is also available to include additional documentation fields that will not be exposed in the Excel Function 
-Wizard, but will be included in the HTML Help Workshop content.  
+Wizard, but will be included in the HTML Help Workshop content.
+
+Build Properties
+----------------
+ExcelDnaDoc runs automatically when referenced via NuGet. Additional options
+can be set through MSBuild properties in your project file. To generate
+UTF-8 encoded documentation add:
+
+```
+<ExcelDnaDocUseUtf8>true</ExcelDnaDocUseUtf8>
+```
 
 This Project Uses
 -----------------
- [Excel-DNA](http://exceldna.codeplex.com/)  
+ [Excel-DNA](http://exceldna.codeplex.com/)
  [FAKE (F# MAKE)](http://fsharp.github.io/FAKE/)  
  [HTML Help Workshop ](http://msdn.microsoft.com/en-us/library/windows/desktop/ms669985(v=vs.85).aspx)  
  [NuGet Package Manager](http://nuget.codeplex.com/)  
