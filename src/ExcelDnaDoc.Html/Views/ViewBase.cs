@@ -74,7 +74,7 @@
 
             string filePath = Path.Combine(HtmlHelp.HelpContentFolderPath, this.PageName);
             if (HtmlHelp.UseUtf8Encoding)
-                File.WriteAllText(filePath, content, Encoding.UTF8);
+                File.WriteAllText(filePath, content, System.Text.Encoding.UTF8);
             else
                 File.WriteAllText(filePath, content);
         }
