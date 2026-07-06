@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
 		<EnableDynamicLoading>true</EnableDynamicLoading>
 
 		<AssemblyTitle>ExcelDnaDoc.Tasks</AssemblyTitle>
@@ -13,9 +13,8 @@
 		<Reference Include="Microsoft.Build.Framework" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net8.0-windows' ">
 		<PackageReference Include="Microsoft.Build.Framework" Version="15.9.20" />
-		<PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.9.20" />
 	</ItemGroup>
 	
 	<ItemGroup>

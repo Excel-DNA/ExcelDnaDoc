@@ -1,24 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net472;net8.0-windows</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
 		<Reference Include="ExcelDna.Integration">
-			<HintPath>..\Package\tools\net452\ExcelDna.Integration.dll</HintPath>
+			<HintPath>..\Package\tools\net462\ExcelDna.Integration.dll</HintPath>
 		</Reference>
 		<Reference Include="ExcelDna.Documentation.dll">
-			<HintPath>..\Package\tools\net452\ExcelDna.Documentation.dll</HintPath>
+			<HintPath>..\Package\tools\net462\ExcelDna.Documentation.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0-windows' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net8.0-windows' ">
 		<Reference Include="ExcelDna.Integration">
-			<HintPath>..\Package\tools\net6.0-windows\ExcelDna.Integration.dll</HintPath>
+			<HintPath>..\Package\tools\net8.0-windows\ExcelDna.Integration.dll</HintPath>
 		</Reference>
 		<Reference Include="ExcelDna.Documentation.dll">
-			<HintPath>..\Package\tools\net6.0-windows\ExcelDna.Documentation.dll</HintPath>
+			<HintPath>..\Package\tools\net8.0-windows\ExcelDna.Documentation.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

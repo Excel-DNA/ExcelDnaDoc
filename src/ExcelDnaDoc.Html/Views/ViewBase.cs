@@ -93,18 +93,20 @@
             }
         }
 
+#if NETFRAMEWORK
         private static string GetStringSha256Hash(string text)
         {
             if (String.IsNullOrEmpty(text))
                 return String.Empty;
 
-            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            using (var sha = System.Security.Cryptography.SHA256.Create())
             {
                 byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
                 byte[] hash = sha.ComputeHash(textData);
                 return BitConverter.ToString(hash).Replace("-", String.Empty);
             }
         }
+#endif
     }
 
 #if !NETFRAMEWORK

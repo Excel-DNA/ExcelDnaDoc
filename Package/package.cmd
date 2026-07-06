@@ -11,7 +11,7 @@ if exist "%outputPath%\*.nupkg" del "%outputPath%\*.nupkg"
 if not exist "%outputPath%" mkdir "%outputPath%"
 
 echo on
-nuget.exe pack "%basePath%\ExcelDnaDoc\ExcelDnaDoc.nuspec" -BasePath "%basePath%\ExcelDnaDoc" -OutputDirectory "%outputPath%" -Verbosity detailed -NonInteractive -Prop ExcelDnaVersion="%ExcelDnaVersion%"
+nuget.exe pack "%basePath%\ExcelDnaDoc\ExcelDnaDoc.nuspec" -BasePath "%basePath%\ExcelDnaDoc" -OutputDirectory "%outputPath%" -Verbosity detailed -NonInteractive -NoPackageAnalysis -Prop ExcelDnaVersion="%ExcelDnaVersion%"
 @if errorlevel 1 goto end
 
 :end

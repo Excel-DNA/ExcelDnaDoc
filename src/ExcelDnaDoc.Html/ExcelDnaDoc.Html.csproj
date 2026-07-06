@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net462;net8.0-windows</TargetFrameworks>
 
 		<AssemblyTitle>ExcelDnaDoc.Html</AssemblyTitle>
 		<Description>command-line utility to create a compiled HTML Help Workshop file (.chm) for ExcelDna</Description>
@@ -14,10 +14,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-		<PackageReference Include="RazorEngine" Version="3.10.0" />
+		<PackageReference Include="RazorEngine" Version="3.10.0" NoWarn="NU1904" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
 		<PackageReference Include="RazorEngineCore" Version="2022.1.2" />
 	</ItemGroup>
 

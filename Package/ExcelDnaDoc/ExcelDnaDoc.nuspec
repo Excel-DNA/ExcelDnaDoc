@@ -17,7 +17,7 @@
 		  <group targetFramework=".NETFramework4.6.2" >
 			  <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
 		  </group>
-		  <group targetFramework="net6.0-windows7.0" >
+		  <group targetFramework="net8.0-windows7.0" >
 			  <dependency id="ExcelDna.Integration" version="[$ExcelDnaVersion$]" />
 		  </group>
 	  </dependencies>
@@ -25,8 +25,8 @@
   <files>
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net462\ExcelDna.Documentation.dll" target="lib\net462\" />
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net462\ExcelDna.Documentation.pdb" target="lib\net462\" />
-    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.dll" target="lib\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net6.0-windows\ExcelDna.Documentation.pdb" target="lib\net6.0-windows7.0\" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net8.0-windows\ExcelDna.Documentation.dll" target="lib\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDna.Documentation\bin\Release\net8.0-windows\ExcelDna.Documentation.pdb" target="lib\net8.0-windows7.0\" />
 	  
     <file src="..\..\src\ExcelDnaDoc\bin\Release\net462\ExcelDna.Documentation.dll" target="tools\net462\" />
     <file src="..\..\src\ExcelDnaDoc\bin\Release\net462\ExcelDna.Integration.dll" target="tools\net462\" />
@@ -40,19 +40,18 @@
     <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net462\ExcelDnaDoc.Tasks.dll" target="tools\net462\" />
     <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net462\ExcelDnaDoc.Tasks.pdb" target="tools\net462\" />
 
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDna.Documentation.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDna.Integration.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDnaDoc.Html.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\ExcelDnaDoc.Tasks.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.AspNetCore.Razor.Language.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Microsoft.CodeAnalysis.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Mdb.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Pdb.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\Mono.Cecil.Rocks.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\RazorEngineCore.dll" target="tools\net6.0-windows7.0\" />
-    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net6.0-windows\System.CodeDom.dll" target="tools\net6.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\ExcelDna.Documentation.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\ExcelDna.Integration.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\ExcelDnaDoc.Html.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\ExcelDnaDoc.Tasks.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Microsoft.AspNetCore.Razor.Language.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Microsoft.CodeAnalysis.CSharp.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Microsoft.CodeAnalysis.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Mono.Cecil.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Mono.Cecil.Mdb.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Mono.Cecil.Pdb.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\Mono.Cecil.Rocks.dll" target="tools\net8.0-windows7.0\" />
+    <file src="..\..\src\ExcelDnaDoc.Tasks\bin\Release\net8.0-windows\RazorEngineCore.dll" target="tools\net8.0-windows7.0\" />
 
     <file src="..\..\src\ExcelDnaDoc.Tasks\ExcelDnaDoc.targets" target="build\" />
     <file src="..\..\src\ExcelDna.Documentation\bin\Release\net462\ExcelDna.Documentation.dll" target="content\HelpContent\bin\" />    
